@@ -2,19 +2,17 @@ import React, { Component } from "react";
 import axios from "./axios";
 import { Link } from "react-router-dom";
 
-export default class login extends Component {
+export default class Reset extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: "",
-            password: "",
+            view: 1,
         };
     }
     submit() {
         axios
-            .post("/login", {
+            .post("/password-reset", {
                 email: this.state.email,
-                password: this.state.password,
             })
             .then(({ data }) => {
                 if (data.success) {
@@ -37,19 +35,9 @@ export default class login extends Component {
         return (
             <div>
                 {this.state.error && (
-                    <div className="error">Wrong Email/password</div>
+                    <div className="error">Email does not exist</div>
                 )}
                 <form>
-                    <div className="form__group">
-                        <input
-                            type="email"
-                            placeholder="Email"
-                            className="form__input"
-                            name="email"
-                            onChange={(e) => this.handleChange(e)}
-                        />
-                    </div>
-
                     <div className="form__group">
                         <input
                             type="password"
@@ -65,11 +53,9 @@ export default class login extends Component {
                         type="button"
                         onClick={() => this.submit()}
                     >
-                        Log In
+                        Submit
                     </button>
                 </form>
-                <Link to="/">Click here to Register!</Link>
-                <Link to="/password-reset">I forgot my password</Link>
             </div>
         );
     }

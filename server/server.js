@@ -4,6 +4,7 @@ const compression = require("compression");
 const path = require("path");
 const csurf = require("csurf");
 const { createUser, registeredUser } = require("../db");
+const cryptoRandomString = require("crypto-random-string");
 
 // const s3 = require("../s3");
 // const { s3Url } = require("../config.json");
@@ -35,7 +36,7 @@ let cookieSecret;
 if (process.env.COOKIE_SECRET) {
     cookieSecret = process.env.COOKIE_SECRET;
 } else {
-    cookieSecret = require("../secrets.json")[0];
+    cookieSecret = require("../secrets.json")[0].COOKIE_SECRET;
 }
 
 app.use(
@@ -45,9 +46,7 @@ app.use(
     })
 );
 app.use((req, res, next) => {
-    console.log("req.session:", req.session);
-    console.log("req.url:", req.url);
-    console.log("req.method:", req.method);
+    res.locals.fname = req.session.fname;
     next();
 });
 
@@ -92,16 +91,43 @@ app.post("/registration", (req, res) => {
 
 app.post("/login", (req, res) => {
     const { email, password } = req.body;
-    registeredUser(email, password).then((result) => {
-        compare(password, result.rows[0].password_hash).then((match) => {
-            if (match) {
-                console.log("match", match);
-            } else {
-                console.log("error thrown");
-            }
+    registeredUser(email, password)
+        .then((result) => {
+            compare(password, result.rows[0].password_hash)
+                .then((match) => {
+                    if (match) {
+                        req.session.userId = result.rows[0].id;
+                        req.session.fname = result.rows[0].first_name;
+                        res.json({ success: true });
+                    } else {
+                        console.log("error thrown");
+                    }
+                })
+                .catch((error) => {
+                    console.log("error: ", error);
+                    res.status(500).json({
+                        error: "Error thrown in login-route",
+                    });
+                });
+        })
+        .catch((error) => {
+            console.log("error: ", error);
+            res.status(500).json({ error: "Error thrown in login-route" });
         });
+});
+
+app.post("/password/reset/start", (req, res) => {
+    let { email } = req.body;
+    registeredUser(email).then((result) => {
+        if (req.rows.length > 1) {
+            const secretCode = cryptoRandomString({
+                length: 6,
+            });
+        }
     });
 });
+
+app.post("/password/reset/verify", (req, res) => {});
 
 app.get("*", (req, res) => {
     if (!req.session.userId) {

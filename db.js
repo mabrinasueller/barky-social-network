@@ -15,3 +15,25 @@ module.exports.createUser = (firstName, lastName, email, hashedPassword) => {
 module.exports.registeredUser = (email) => {
     return db.query(`SELECT * FROM users WHERE email = $1`, [email]);
 };
+
+module.exports.getSecretCode = (email) => {
+    return db.query(
+        `SELECT * FROM my_table WHERE email = $1 AND 
+CURRENT_TIMESTAMP - created_at < INTERVAL '10 minutes'`,
+        [email]
+    );
+};
+
+module.exports.updatePassword = (hashedPassword, email) => {
+    return db.query(
+        `UPDATE users SET hashedPassword = $1 WHERE email = $2 RETURNING *`,
+        [hashedPassword, email]
+    );
+};
+
+module.exports.insertCode = (code, email) => {
+    return db.query(
+        `INSERT INTO reset_codes (code, email) VALUES ($1, $2) RETURNING *`,
+        [code, email]
+    );
+};

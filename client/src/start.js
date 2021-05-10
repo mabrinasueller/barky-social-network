@@ -6,7 +6,7 @@ if (location.pathname == "/welcome") {
     ReactDOM.render(<Welcome />, document.querySelector("main"));
 } else {
     ReactDOM.render(
-        <img src="/placeholder.jpg" />,
+        <img src="./placeholder.gif" />,
         document.querySelector("main")
     );
 }
