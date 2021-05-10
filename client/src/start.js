@@ -5,5 +5,8 @@ import Welcome from "./welcome";
 if (location.pathname == "/welcome") {
     ReactDOM.render(<Welcome />, document.querySelector("main"));
 } else {
-    ReactDOM.render(<img src="logo.jpg" />, document.querySelector("main"));
+    ReactDOM.render(
+        <img src="/placeholder.jpg" />,
+        document.querySelector("main")
+    );
 }

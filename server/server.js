@@ -62,11 +62,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.use(compression());
-app.use((req, res, next) => {
-    console.log("req.session:", req.session);
-    console.log("req.url:", req.url);
-    console.log("req.method:", req.method);
-});
+
 app.use(express.static(path.join(__dirname, "..", "client", "public")));
 
 app.get("/welcome", (req, res) => {
@@ -88,8 +84,7 @@ app.post("/registration", (req, res) => {
                 console.log("result", result);
                 console.log("result", result.rows);
                 console.log("result", result.rows[0]);
-                // res.json(result);
-                res.json({ success: true });
+                res.json({ success: true, userId: result.rows[0] });
             })
             .catch((error) => console.log("error was thrown: ", error));
     });
