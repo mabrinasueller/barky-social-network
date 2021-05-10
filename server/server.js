@@ -2,8 +2,8 @@ const express = require("express");
 const app = express();
 const compression = require("compression");
 const path = require("path");
-
-const { newUser, registeredUser } = require("../db");
+const csurf = require("csurf");
+const { createUser, registeredUser } = require("../db");
 
 // const s3 = require("../s3");
 // const { s3Url } = require("../config.json");
@@ -44,8 +44,13 @@ app.use(
         maxAge: 1000 * 60 * 60 * 24 * 14,
     })
 );
+app.use((req, res, next) => {
+    console.log("req.session:", req.session);
+    console.log("req.url:", req.url);
+    console.log("req.method:", req.method);
+    next();
+});
 
-const csurf = require("csurf");
 app.use(csurf());
 
 app.use(function (req, res, next) {
@@ -57,7 +62,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.use(compression());
-
+app.use((req, res, next) => {
+    console.log("req.session:", req.session);
+    console.log("req.url:", req.url);
+    console.log("req.method:", req.method);
+});
 app.use(express.static(path.join(__dirname, "..", "client", "public")));
 
 app.get("/welcome", (req, res) => {
@@ -72,7 +81,7 @@ app.post("/registration", (req, res) => {
     console.log(req.body);
     hash(password).then((hashedPassword) => {
         console.log(hashedPassword);
-        newUser(firstName, lastName, email, hashedPassword)
+        createUser(firstName, lastName, email, hashedPassword)
             .then((result) => {
                 const { id } = result?.rows[0];
                 req.session.userId = id;
