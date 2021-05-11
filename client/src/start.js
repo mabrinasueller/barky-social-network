@@ -1,13 +1,10 @@
 import ReactDOM from "react-dom";
-import Welcome from "./welcome";
-import App from "./app";
+import Welcome from "./Welcome";
+import App from "./App";
 //no curly brackets, cause export default
 
 if (location.pathname == "/welcome") {
     ReactDOM.render(<Welcome />, document.querySelector("main"));
 } else {
-    ReactDOM.render(
-        <img src="./placeholder.gif" />,
-        document.querySelector("main")
-    );
+    ReactDOM.render(<App />, document.querySelector("main"));
 }

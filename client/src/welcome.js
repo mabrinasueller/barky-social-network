@@ -1,13 +1,12 @@
 import { HashRouter, Route } from "react-router-dom";
-import Registration from "./registration";
-import Login from "./login";
-import Reset from "./reset";
+import Registration from "./Registration";
+import Login from "./Login";
+import Reset from "./Reset";
 
 export default function Welcome() {
     return (
         <div>
-            <img src="./placeholder.gif"></img>
-
+            <img src="./placeholder.gif" />;
             <HashRouter>
                 <div>
                     <Route exact path="/" component={Registration} />
