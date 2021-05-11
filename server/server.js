@@ -5,7 +5,7 @@ const cookieSession = require("cookie-session");
 const compression = require("compression");
 const path = require("path");
 const csurf = require("csurf");
-// const {} = require("./db");
+const { getUser } = require("./db");
 const s3 = require("./s3");
 const { s3Url } = require("./config.json");
 const multer = require("multer");
@@ -76,7 +76,14 @@ require("./routes/auth");
 
 require("./routes/reset-password");
 
-app.get("/user", (req, res) => {});
+app.get("/user", (req, res) => {
+    const { userId } = req.session;
+    getUser(userId)
+        .then(({ rows }) => {
+            res.json(rows[0]);
+        })
+        .catch((error) => console.log("error: ", error));
+});
 
 app.get("*", (req, res) => {
     if (!req.session.userId) {

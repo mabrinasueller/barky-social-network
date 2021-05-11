@@ -20,6 +20,7 @@ export default class Uploader extends Component {
                 <h2 onClick={() => this.methodInUploader()}>
                     Click here to upload
                 </h2>
+                <input type="file"></input>
             </>
         );
     }

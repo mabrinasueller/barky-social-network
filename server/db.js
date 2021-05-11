@@ -16,6 +16,10 @@ module.exports.registeredUser = (email) => {
     return db.query(`SELECT * FROM users WHERE email = $1`, [email]);
 };
 
+module.exports.getUser = (userId) => {
+    return db.query(`SELECT * FROM users WHERE id = $1`, [userId]);
+};
+
 module.exports.checkVerificationCode = (email) => {
     return db.query(
         `SELECT * FROM reset_codes WHERE email = $1 AND 
@@ -36,4 +40,11 @@ module.exports.insertCode = (code, email) => {
         `INSERT INTO reset_codes (code, email) VALUES ($1, $2) RETURNING *`,
         [code, email]
     );
+};
+
+module.exports.newImage = (imgUrl, userId) => {
+    return db.query(`UPDATE users SET img_url = $1 WHERE id = $2 RETURNING *`, [
+        imgUrl,
+        userId,
+    ]);
 };
