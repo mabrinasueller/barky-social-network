@@ -5,7 +5,7 @@ let secrets;
 if (process.env.NODE_ENV == "production") {
     secrets = process.env; // in prod the secrets are environment variables
 } else {
-    const { AWS_KEY, AWS_SECRET } = require("../secrets")[0]; // in dev they are in secrets.json which is listed in .gitignore
+    secrets = require("../secrets.json")[1]; // in dev they are in secrets.json which is listed in .gitignore
 }
 
 const s3 = new aws.S3({

@@ -25,15 +25,14 @@ export default class Reset extends Component {
                     email: this.state.email,
                 })
                 .then(() => {
-                    this.setState = {
-                        view: 2,
-                    };
+                    console.log("moving to view 2");
+                    this.setState({ view: 2 });
                 })
                 .catch((error) => {
                     console.log(error);
-                    this.setState = {
+                    this.setState({
                         error: "An error occcured, please try again.",
-                    };
+                    });
                 });
         } else if (this.state.view === 2) {
             axios
@@ -43,15 +42,14 @@ export default class Reset extends Component {
                     code: this.state.code,
                 })
                 .then(() => {
-                    this.setState = {
-                        view: 3,
-                    };
+                    console.log("moving to view 3");
+                    this.setState({ view: 3 });
                 })
                 .catch((error) => {
                     console.log(error);
-                    this.setState = {
+                    this.setState({
                         error: "An error occcured, please try again.",
-                    };
+                    });
                 });
         }
     }
@@ -117,11 +115,12 @@ export default class Reset extends Component {
                     </form>
                 </div>
             );
-        } else if (this.state.view === 3) {
+        }
+        if (this.state.view === 3) {
             return (
                 <div>
                     <h2>Password has been successfully updated!</h2>
-                    <Link to="/login">Log into your profile</Link>;
+                    <Link to="/login">Log into your profile</Link>
                 </div>
             );
         }

@@ -1,38 +1,16 @@
 const express = require("express");
 const app = express();
 module.exports.app = app;
-
+const cookieSession = require("cookie-session");
 const compression = require("compression");
 const path = require("path");
 const csurf = require("csurf");
-
 // const {} = require("./db");
+const s3 = require("./s3");
+const { s3Url } = require("./config.json");
+const multer = require("multer");
+const uidSafe = require("uid-safe");
 
-// const s3 = require("../s3");
-// const { s3Url } = require("../config.json");
-// const multer = require("multer");
-// const uidSafe = require("uid-safe");
-
-// const diskStorage = multer.diskStorage({
-//     destination: function (req, file, callback) {
-//         callback(null, __dirname + "/uploads");
-//     },
-//     filename: function (req, file, callback) {
-//         uidSafe(24).then(function (uid) {
-//             callback(null, uid + path.extname(file.originalname));
-//         });
-//     },
-// });
-
-// const uploader = multer({
-//     storage: diskStorage,
-//     limits: {
-//         fileSize: 2097152, //files over 2mb can't be uploaded
-//     },
-// });
-
-const cookieSession = require("cookie-session");
-// const cookieSecret = require("../secrets.json")["COOKIE_SECRET"];
 let cookieSecret;
 if (process.env.COOKIE_SECRET) {
     cookieSecret = process.env.COOKIE_SECRET;
@@ -65,6 +43,24 @@ app.use(compression());
 
 app.use(express.static(path.join(__dirname, "..", "client", "public")));
 
+const diskStorage = multer.diskStorage({
+    destination: function (req, file, callback) {
+        callback(null, __dirname + "/uploads");
+    },
+    filename: function (req, file, callback) {
+        uidSafe(24).then(function (uid) {
+            callback(null, uid + path.extname(file.originalname));
+        });
+    },
+});
+
+const uploader = multer({
+    storage: diskStorage,
+    limits: {
+        fileSize: 2097152, //files over 2mb can't be uploaded
+    },
+});
+
 app.get("/welcome", (req, res) => {
     if (req.session.userId) {
         res.redirect("/");
@@ -79,6 +75,8 @@ require("./routes/auth");
 //requiring Password reset routes
 
 require("./routes/reset-password");
+
+app.get("/user", (req, res) => {});
 
 app.get("*", (req, res) => {
     if (!req.session.userId) {

@@ -18,15 +18,15 @@ module.exports.registeredUser = (email) => {
 
 module.exports.checkVerificationCode = (email) => {
     return db.query(
-        `SELECT * FROM my_table WHERE email = $1 AND 
-CURRENT_TIMESTAMP - created_at < INTERVAL '10 minutes'`,
+        `SELECT * FROM reset_codes WHERE email = $1 AND 
+CURRENT_TIMESTAMP - created_at < INTERVAL '5 minutes'`,
         [email]
     );
 };
 
 module.exports.updatePassword = (hashedPassword, email) => {
     return db.query(
-        `UPDATE users SET hashedPassword = $1 WHERE email = $2 RETURNING *`,
+        `UPDATE users SET password_hash = $1 WHERE email = $2 RETURNING *`,
         [hashedPassword, email]
     );
 };

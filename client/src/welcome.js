@@ -6,7 +6,7 @@ import Reset from "./Reset";
 export default function Welcome() {
     return (
         <div>
-            <img src="./placeholder.gif" />;
+            <img src="./placeholder.gif" />
             <HashRouter>
                 <div>
                     <Route exact path="/" component={Registration} />

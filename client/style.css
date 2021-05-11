@@ -9,6 +9,11 @@ body {
     height: 100vh;
 }
 
+.logo {
+    width: 200px;
+    height: 150px;
+}
+
 /* .form {
     margin-top: 40px;
     border-radius: 6px;
