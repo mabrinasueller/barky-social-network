@@ -9,6 +9,12 @@ export default class Reset extends Component {
             view: 1,
         };
     }
+    handleChange({ target }) {
+        // console.log(target.value);
+        this.setState({
+            [target.name]: target.value,
+        });
+    }
     submit() {
         this.setState({
             error: null,
@@ -33,8 +39,8 @@ export default class Reset extends Component {
             axios
                 .post("/password/reset/verify", {
                     email: this.state.email,
-                    code: this.state.code,
                     password: this.state.password,
+                    code: this.state.code,
                 })
                 .then(() => {
                     this.setState = {
@@ -49,12 +55,7 @@ export default class Reset extends Component {
                 });
         }
     }
-    handleChange({ target }) {
-        console.log(target.value);
-        this.setState({
-            [target.name]: target.value,
-        });
-    }
+
     determineViewToRender() {
         if (this.state.view === 1) {
             return (

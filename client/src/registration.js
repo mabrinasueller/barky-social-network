@@ -40,6 +40,7 @@ export default class Registration extends Component {
     render() {
         return (
             <div>
+                <h1>So glad to have you here!</h1>
                 <h2>
                     If you want to become part of the experience and stay in
                     touch, please register:

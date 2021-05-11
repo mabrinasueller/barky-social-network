@@ -1,5 +1,6 @@
 import ReactDOM from "react-dom";
 import Welcome from "./welcome";
+import App from "./app";
 //no curly brackets, cause export default
 
 if (location.pathname == "/welcome") {

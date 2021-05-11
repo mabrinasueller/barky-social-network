@@ -16,7 +16,7 @@ module.exports.registeredUser = (email) => {
     return db.query(`SELECT * FROM users WHERE email = $1`, [email]);
 };
 
-module.exports.getSecretCode = (email) => {
+module.exports.checkVerificationCode = (email) => {
     return db.query(
         `SELECT * FROM my_table WHERE email = $1 AND 
 CURRENT_TIMESTAMP - created_at < INTERVAL '10 minutes'`,

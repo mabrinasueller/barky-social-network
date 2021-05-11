@@ -7,7 +7,7 @@ export default function Welcome() {
     return (
         <div>
             <img src="./placeholder.gif"></img>
-            <h1>So glad to have you here!</h1>
+
             <HashRouter>
                 <div>
                     <Route exact path="/" component={Registration} />
