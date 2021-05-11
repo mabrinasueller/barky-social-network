@@ -1,11 +1,14 @@
 const express = require("express");
 const app = express();
 module.exports.app = app;
+
 const cookieSession = require("cookie-session");
 const compression = require("compression");
 const path = require("path");
 const csurf = require("csurf");
-const { getUser } = require("./db");
+
+const { getUser, newImage } = require("./db");
+
 const s3 = require("./s3");
 const { s3Url } = require("./config.json");
 const multer = require("multer");
@@ -80,9 +83,31 @@ app.get("/user", (req, res) => {
     const { userId } = req.session;
     getUser(userId)
         .then(({ rows }) => {
+            console.log(rows[0]);
             res.json(rows[0]);
         })
         .catch((error) => console.log("error: ", error));
+});
+
+app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
+    console.log("upload worked!");
+    if (req.file) {
+        const { filename } = req.file;
+        const { userId } = req.session;
+        var fullUrl = s3Url + filename;
+        console.log("fullUrl: ", fullUrl);
+        newImage(fullUrl, userId)
+            .then(({ rows }) => {
+                console.log("rows: ", rows);
+                res.json(rows[0]);
+            })
+            .catch((error) => {
+                console.log("error: ", error);
+                res.status(500).json({ error: "Error in /upload/route" });
+            });
+    } else {
+        res.json({ success: false });
+    }
 });
 
 app.get("*", (req, res) => {
