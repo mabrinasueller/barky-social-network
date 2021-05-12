@@ -42,9 +42,9 @@ module.exports.insertCode = (code, email) => {
     );
 };
 
-module.exports.newImage = (imgUrl, userId) => {
+module.exports.newImage = (fullUrl, userId) => {
     return db.query(`UPDATE users SET img_url = $1 WHERE id = $2 RETURNING *`, [
-        imgUrl,
+        fullUrl,
         userId,
     ]);
 };

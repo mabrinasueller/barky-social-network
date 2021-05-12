@@ -10,7 +10,8 @@ export default class login extends Component {
             password: "",
         };
     }
-    submit() {
+    submit(e) {
+        e.preventDefault();
         axios
             .post("/login", {
                 email: this.state.email,
@@ -63,7 +64,7 @@ export default class login extends Component {
                     <button
                         className="btn"
                         type="button"
-                        onClick={() => this.submit()}
+                        onClick={(e) => this.submit(e)}
                     >
                         Log In
                     </button>

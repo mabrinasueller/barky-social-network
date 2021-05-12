@@ -1,13 +1,18 @@
-import React, { Component } from "react";
-
-export default function ProfilePic({ firstName, lastName, imgUrl }) {
-    console.log("props in Xmpl:", firstName, lastName, imgUrl);
+export default function ProfilePic({
+    firstName,
+    lastName,
+    imgUrl,
+    toggleUploader,
+}) {
+    console.log("props in Xmpl:", firstName, lastName, imgUrl, toggleUploader);
     return (
         <div>
-            <h2>
-                Good to see you, {firstName} {lastName}
-            </h2>
-            <img className="profile-picture" src={imgUrl} />
+            <img
+                className="profile-picture"
+                alt={`{firstName} {lastName}`}
+                onClick={toggleUploader}
+                src={imgUrl}
+            />
         </div>
     );
 }

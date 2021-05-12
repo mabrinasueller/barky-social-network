@@ -94,12 +94,13 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
     if (req.file) {
         const { filename } = req.file;
         const { userId } = req.session;
+        console.log(userId);
         var fullUrl = s3Url + filename;
         console.log("fullUrl: ", fullUrl);
         newImage(fullUrl, userId)
-            .then(({ rows }) => {
-                console.log("rows: ", rows);
-                res.json(rows[0]);
+            .then((response) => {
+                // console.log("response: ", response.rows[0]);
+                res.json(response.rows[0]);
             })
             .catch((error) => {
                 console.log("error: ", error);
