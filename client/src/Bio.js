@@ -10,10 +10,11 @@ export default class BioEditor extends Component {
     }
 
     handleBioChange(e) {
-        e.preventDefault();
+        e.preventDefault(e);
+        this.state({});
     }
 
-    submitBio() {}
+    submitBio(e) {}
 
     render() {
         return (

@@ -9,7 +9,7 @@ export default function ProfilePic({
         <div>
             <img
                 className="profile-picture"
-                alt={`{firstName} {lastName}`}
+                alt={`${firstName} ${lastName}`}
                 onClick={toggleUploader}
                 src={imgUrl}
             />

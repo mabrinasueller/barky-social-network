@@ -48,3 +48,10 @@ module.exports.newImage = (fullUrl, userId) => {
         userId,
     ]);
 };
+
+module.exports.updateBio = (bioText, userId) => {
+    return db.query(`UPDATE users SET bio = $1 WHERE id = $2 RETURNING *`, [
+        bioText,
+        userId,
+    ]);
+};

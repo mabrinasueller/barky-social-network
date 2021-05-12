@@ -13,6 +13,7 @@ export default class App extends Component {
         };
         this.toggleUploader = this.toggleUploader.bind(this);
         this.updateProfilePic = this.updateProfilePic.bind(this);
+        // this.setBio = this.setBio.bind(this);
     }
     componentDidMount() {
         axios
@@ -38,6 +39,8 @@ export default class App extends Component {
         this.toggleUploader();
     }
 
+    setBio() {}
+
     render() {
         return (
             <div>
@@ -45,7 +48,12 @@ export default class App extends Component {
                     <img className="logo" src="./placeholder.gif" />
                 </header>
                 <div className="main-container">
-                    {/* <Profile firstName ={this.state.firstName} lastName = {this.state.lastName} imgUrl = {this.state.imgUrl}/> */}
+                    <Profile
+                        firstName={this.state.firstName}
+                        lastName={this.state.lastName}
+                        imgUrl={this.state.imgUrl || "default_user.jpeg"}
+                        bio={this.state.bio}
+                    />
                     <ProfilePic
                         firstName={this.state.firstName}
                         lastName={this.state.lastName}
