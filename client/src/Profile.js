@@ -20,7 +20,7 @@ export default function Profile(props) {
                         {props.firstName} {props.lastName}
                     </h2>
                     <h3>{props.bio}</h3>
-                    <BioEditor setBio={props.setBio} />
+                    <BioEditor bio={props.bio} setBio={props.setBio} />
                 </div>
             </div>
         </div>
