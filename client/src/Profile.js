@@ -1,18 +1,28 @@
 import ProfilePic from "./ProfilePic";
+import BioEditor from "./Bio";
 
-export default function Profile({ firstName, lastName, imgUrl }) {
-    console.log("Props in Profile: ", firstName, lastName, imgUrl);
+export default function Profile(props) {
+    console.log("Props in Profile: ", props);
     return (
-        <div>
-            <h2>
-                Good to see you, {firstName} {lastName}
-            </h2>
-            <ProfilePic
-                className="profilepic-big"
-                firstName={firstName}
-                lastName={lastName}
-                imgUrl={imgUrl}
-            />
+        <div className="content">
+            <div className="profile-container">
+                <div className="profile-picture-container">
+                    <ProfilePic
+                        className="profile-picture-big"
+                        firstName={props.firstName}
+                        lastName={props.lastName}
+                        imgUrl={props.imgUrl}
+                        toggleUploader={props.toggleUploader}
+                    />
+                </div>
+                <div className="user-info-container">
+                    <h2>
+                        {props.firstName} {props.lastName}
+                    </h2>
+                    <h3>{props.bio}</h3>
+                    <BioEditor setBio={props.setBio} />
+                </div>
+            </div>
         </div>
     );
 }

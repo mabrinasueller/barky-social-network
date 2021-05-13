@@ -19,12 +19,10 @@ export default class Uploader extends Component {
     handleSubmit(e) {
         e.preventDefault();
         var formData = new FormData();
-        // console.log("file2: ", this.state.file);
         formData.append("file", this.state.file);
         axios
             .post("/upload", formData)
             .then(({ data }) => {
-                // console.log("response: ", response);
                 const { img_url } = data;
                 this.props.updateProfilePic(img_url);
             })

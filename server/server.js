@@ -7,7 +7,7 @@ const compression = require("compression");
 const path = require("path");
 const csurf = require("csurf");
 
-const { getUser, newImage } = require("./db");
+const { getUser, newImage, updateBio } = require("./db");
 
 const s3 = require("./s3");
 const { s3Url } = require("./config.json");
@@ -98,9 +98,9 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
         var fullUrl = s3Url + filename;
         console.log("fullUrl: ", fullUrl);
         newImage(fullUrl, userId)
-            .then((response) => {
+            .then(({ rows }) => {
                 // console.log("response: ", response.rows[0]);
-                res.json(response.rows[0]);
+                res.json(rows[0]);
             })
             .catch((error) => {
                 console.log("error: ", error);
@@ -110,6 +110,24 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
         res.json({ success: false });
     }
 });
+
+app.post("/update-bio", (req, res) => {
+    const { bio } = req.body;
+    const { userId } = req.session;
+    updateBio(bio, userId)
+        .then(({ rows }) => {
+            res.json(rows[0]);
+        })
+        .catch((error) => {
+            console.log("Error in bio update: ", error);
+            res.status(500).json({ error: "Error in /update-bio route" });
+        });
+});
+
+// app.get("/logout", (req, res) => {
+//     req.session = null;
+//
+// });
 
 app.get("*", (req, res) => {
     if (!req.session.userId) {

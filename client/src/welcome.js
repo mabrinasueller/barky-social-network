@@ -5,8 +5,11 @@ import Reset from "./Reset";
 
 export default function Welcome() {
     return (
-        <div>
-            <img src="./placeholder.gif" />
+        <div className="content">
+            <header></header>
+            <div className="logo">
+                <img src="./logo.png" />
+            </div>
             <HashRouter>
                 <div>
                     <Route exact path="/" component={Registration} />

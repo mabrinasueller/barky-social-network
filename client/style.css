@@ -5,22 +5,92 @@
 }
 
 body {
-    background-color: #ffc09f;
-    height: 100vh;
+    background-color: #ffe8d6;
+    min-height: 100vh;
     display: flex;
+    flex-direction: column;
+    font-family: "Montserrat", sans-serif;
 }
 
-.logo {
-    width: 200px;
+main {
+    display: flex;
+    flex: 1;
+    height: 100%;
+    padding: 30px;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+a {
+    text-decoration: none;
+}
+
+.content {
+    flex: 1;
+    flex-direction: row;
+    display: flex;
+    min-height: 0;
+}
+
+.profile-picture-small {
+    height: 50px;
+    width: 50px;
+}
+
+header {
+    flex: 0;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+}
+
+header * {
+    display: inline;
+    margin-left: auto;
+}
+
+header li {
+    margin: 20px;
+}
+
+header li a {
+    text-decoration: none;
+    color: black;
+}
+
+.logo img {
+    width: 150px;
     height: 150px;
+    /* flex: 0; */
 }
 
-.profile-picture {
+.logout {
+    cursor: pointer;
+}
+
+.profile-picture-big {
     width: 100px;
     height: 100px;
     border-radius: 50%;
     border: 3px solid white;
     cursor: pointer;
+}
+
+.profile-container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding-top: 40px;
+}
+
+.profile-picture-container {
+    flex: 0;
+}
+
+.user-info-container {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 100px;
 }
 
 .modal-container {
