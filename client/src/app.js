@@ -57,9 +57,12 @@ export default class App extends Component {
         return (
             <div>
                 <header>
-                    <div className="logo">
-                        <img src="./logo.png" />
-                    </div>
+                    {/* <div className="logo"> */}
+                    <img className="logo" src="./logo.png" />
+                    {/* </div> */}
+                    <Profile
+                        imgUrl={this.state.imgUrl || "default_user.jpeg"}
+                    />
                     <a href="#" className="logout" onClick={this.logout}>
                         Logout
                     </a>
@@ -69,7 +72,7 @@ export default class App extends Component {
                         <Profile
                             firstName={this.state.firstName}
                             lastName={this.state.lastName}
-                            imgUrl={this.state.imgUrl || "default_user.jpeg"}
+                            // imgUrl={this.state.imgUrl || "default_user.jpeg"}
                             bio={this.state.bio}
                             setBio={this.setBio}
                         />

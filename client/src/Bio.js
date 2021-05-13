@@ -49,20 +49,16 @@ export default class BioEditor extends Component {
     render() {
         return (
             <div>
-                {!this.props.bio && !this.state.showTextArea && (
-                    <>
-                        <button onClick={(e) => this.toggleBio(e)}>
-                            Add Bio
-                        </button>
-                    </>
-                )}
-                {this.props.bio && (
-                    <>
+                {!this.state.showTextArea &&
+                    (this.props.bio ? (
                         <button onClick={(e) => this.toggleBio(e)}>
                             Edit Bio
                         </button>
-                    </>
-                )}
+                    ) : (
+                        <button onClick={(e) => this.toggleBio(e)}>
+                            Add Bio
+                        </button>
+                    ))}
                 {this.state.showTextArea && (
                     <>
                         <textarea
