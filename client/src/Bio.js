@@ -64,7 +64,7 @@ export default class BioEditor extends Component {
                         <textarea
                             onChange={(e) => this.handleBioChange(e)}
                             name="draftbio"
-                            defaultValue={this.state.draftbio}
+                            defaultValue={this.props.bio}
                         ></textarea>
                         <button
                             type="submit"

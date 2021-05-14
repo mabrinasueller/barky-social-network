@@ -40,3 +40,8 @@ app.post("/login", (req, res) => {
             res.status(500).json({ error: "Error thrown in login-route" });
         });
 });
+
+app.get("/logout", (req, res) => {
+    req.session = null;
+    res.redirect("/welcome");
+});

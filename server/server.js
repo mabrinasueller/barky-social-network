@@ -126,9 +126,9 @@ app.post("/update-bio", (req, res) => {
 
 app.get("/other-user/:id", (req, res) => {
     const { id } = req.params;
-    console.log("req.params.id ", req.params.id);
-    console.log("req.params.id ", req.session.userId);
-    if (req.params.id === req.session.userId) {
+    console.log("req.params.id ", typeof req.params.id);
+    console.log("req.params.id ", typeof req.session.userId);
+    if (parseInt(id) === req.session.userId) {
         res.status(400).json({
             error: "User is trying to access his own profile via Url",
         });
@@ -144,11 +144,6 @@ app.get("/other-user/:id", (req, res) => {
         }
         res.json(rows[0]);
     });
-});
-
-app.get("/logout", (req, res) => {
-    req.session = null;
-    res.redirect("/welcome");
 });
 
 app.get("*", (req, res) => {
