@@ -3,6 +3,8 @@ import Uploader from "./Uploader";
 import axios from "./axios";
 import ProfilePic from "./ProfilePic";
 import Profile from "./Profile";
+import { BrowserRouter, Route } from "react-router-dom";
+import OtherProfile from "./OtherProfile";
 
 export default class App extends Component {
     constructor(props) {
@@ -45,54 +47,70 @@ export default class App extends Component {
         });
     }
 
-    logout() {
-        console.log("Logout was clicked");
-        axios.get("/logout").then((response) => {
-            console.log("response: ", response);
-            window.location.reload(false);
-        });
-    }
-
     render() {
         return (
             <div>
                 <header>
                     {/* <div className="logo"> */}
-                    <img className="logo" src="./logo.png" />
+                    <img className="logo" src="./logo2.png" />
                     {/* </div> */}
-                    <Profile
+                    <ProfilePic
+                        id={this.state.id}
+                        firstName={this.state.firstName}
+                        lastName={this.state.lastName}
                         imgUrl={this.state.imgUrl || "default_user.jpeg"}
                     />
-                    <a href="#" className="logout" onClick={this.logout}>
+                    <a href="/logout" className="logout">
                         Logout
                     </a>
                 </header>
-                <div>
+                <BrowserRouter>
                     <div className="main-container">
-                        <Profile
-                            firstName={this.state.firstName}
-                            lastName={this.state.lastName}
-                            // imgUrl={this.state.imgUrl || "default_user.jpeg"}
-                            bio={this.state.bio}
-                            setBio={this.setBio}
+                        <Route
+                            exact
+                            path="/"
+                            render={() => (
+                                <Profile
+                                    firstName={this.state.firstName}
+                                    lastName={this.state.lastName}
+                                    imgUrl={
+                                        this.state.imgUrl || "default_user.jpeg"
+                                    }
+                                    bio={this.state.bio}
+                                    setBio={this.setBio}
+                                    toggleUploader={this.toggleUploader}
+                                />
+                            )}
                         />
-                        <ProfilePic
-                            id={this.state.id}
-                            firstName={this.state.firstName}
-                            lastName={this.state.lastName}
-                            imgUrl={this.state.imgUrl || "default_user.jpeg"}
-                            toggleUploader={this.toggleUploader}
-                        />
-
-                        {this.state.uploaderIsVisible && (
-                            <Uploader
-                                updateProfilePic={this.updateProfilePic}
-                                toggleUploader={this.toggleUploader}
-                            />
-                        )}
+                        <Route path="/user/:id" component={OtherProfile} />
                     </div>
-                </div>
+                </BrowserRouter>
+                {this.state.uploaderIsVisible && (
+                    <Uploader
+                        updateProfilePic={this.updateProfilePic}
+                        toggleUploader={this.toggleUploader}
+                    />
+                )}
             </div>
         );
     }
 }
+
+//   <div className="main-container">
+//                     <Profile
+//                         firstName={this.state.firstName}
+//                         lastName={this.state.lastName}
+//                         imgUrl={this.state.imgUrl || "default_user.jpeg"}
+//                         bio={this.state.bio}
+//                         setBio={this.setBio}
+//                         toggleUploader={this.toggleUploader}
+//                     />
+
+//                     {this.state.uploaderIsVisible && (
+//                         <Uploader
+//                             updateProfilePic={this.updateProfilePic}
+//                             toggleUploader={this.toggleUploader}
+//                         />
+//                     )}
+//                 </div>
+//             </div>

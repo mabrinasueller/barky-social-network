@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import axios from "./axios";
 import { Link } from "react-router-dom";
 
@@ -63,7 +63,7 @@ export default class login extends Component {
 
                     <button
                         className="btn"
-                        type="button"
+                        type="submit"
                         onClick={(e) => this.submit(e)}
                     >
                         Log In

@@ -4,7 +4,7 @@ export default function ProfilePic({
     imgUrl,
     toggleUploader,
 }) {
-    console.log("props in Xmpl:", firstName, lastName, imgUrl, toggleUploader);
+    // console.log("props in Xmpl:", firstName, lastName, imgUrl, toggleUploader);
     return (
         <div>
             <img

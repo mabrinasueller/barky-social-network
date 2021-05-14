@@ -7,11 +7,12 @@ export default function Profile(props) {
         <div className="content">
             <div className="profile-container">
                 <div className="profile-picture-container">
-                    <img
+                    <ProfilePic
                         className="profile-picture-small"
                         firstName={props.firstName}
                         lastName={props.lastName}
-                        src={props.imgUrl}
+                        imgUrl={props.imgUrl}
+                        toggleUploader={props.toggleUploader}
                     />
                 </div>
 

@@ -124,10 +124,18 @@ app.post("/update-bio", (req, res) => {
         });
 });
 
-// app.get("/logout", (req, res) => {
-//     req.session = null;
-//
-// });
+app.get("/other-user/:id", (req, res) => {
+    const { id } = req.params;
+    getUser(id).then(({ rows }) => {
+        console.log("rows", rows);
+        res.json(rows[0]);
+    });
+});
+
+app.get("/logout", (req, res) => {
+    req.session = null;
+    res.redirect("/welcome");
+});
 
 app.get("*", (req, res) => {
     if (!req.session.userId) {
