@@ -51,9 +51,8 @@ export default class App extends Component {
         return (
             <div>
                 <header>
-                    {/* <div className="logo"> */}
-                    <img className="logo" src="./logo2.png" />
-                    {/* </div> */}
+                    <img className="logo" src="../logo2.png" />
+
                     <ProfilePic
                         id={this.state.id}
                         firstName={this.state.firstName}

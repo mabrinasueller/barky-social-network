@@ -20,6 +20,13 @@ module.exports.getUser = (userId) => {
     return db.query(`SELECT * FROM users WHERE id = $1`, [userId]);
 };
 
+module.exports.getOtherUsers = (userId) => {
+    return db.query(
+        `SELECT first_name, last_name, img_url, bio FROM users WHERE id = $1`,
+        [userId]
+    );
+};
+
 module.exports.checkVerificationCode = (email) => {
     return db.query(
         `SELECT * FROM reset_codes WHERE email = $1 AND 

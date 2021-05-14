@@ -9,7 +9,7 @@ export default class OtherProfile extends Component {
 
     componentDidMount() {
         const { id } = this.props.match.params;
-        console.log("id: ", id);
+        // console.log("id: ", id);
         axios
             .get(`/other-user/${id}`)
             .then(({ data }) => {
@@ -29,8 +29,11 @@ export default class OtherProfile extends Component {
     render() {
         return (
             <>
-                <h1>User-Id is </h1>
-                <img src={this.state.imgUrl} />
+                <h1>User-Id is {this.props.match.params.id}</h1>
+                <img
+                    src={this.state.imgUrl}
+                    alt={`${this.state.firstName} ${this.state.lastName}`}
+                />
                 <h3>
                     {this.state.firstName} {this.state.lastName}
                 </h3>
