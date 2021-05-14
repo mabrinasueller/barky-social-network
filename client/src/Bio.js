@@ -4,7 +4,6 @@ import axios from "./axios";
 export default class BioEditor extends Component {
     constructor(props) {
         super(props);
-        console.log("props: ", props);
         this.state = {
             showTextArea: false,
         };
@@ -16,28 +15,25 @@ export default class BioEditor extends Component {
         });
     }
 
-    handleSubmit(e) {
+    async handleSubmit(e) {
         e.preventDefault();
-        console.log("test: ", this.state.draftbio);
         if (!this.state.draftbio) {
             this.toggleBio();
             return;
         }
-
-        axios
-            .post("/update-bio", { bio: this.state.draftbio })
-            .then(({ data }) => {
-                const { bio } = data;
-                console.log("bio: ", bio);
-                this.props.setBio(bio);
-                this.toggleBio();
-            })
-            .catch((error) => {
-                console.log("error in handleSubmit: ", error);
-                this.setState({
-                    error: "Bio couldn't be updated, please try again.",
-                });
+        try {
+            const { data } = await axios.post("/update-bio", {
+                bio: this.state.draftbio,
             });
+            const { bio } = data;
+            this.props.setBio(bio);
+            this.toggleBio();
+        } catch (error) {
+            console.log("error in handleSubmit: ", error);
+            this.setState({
+                error: "Bio couldn't be updated, please try again.",
+            });
+        }
     }
 
     toggleBio() {

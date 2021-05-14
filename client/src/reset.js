@@ -10,7 +10,7 @@ export default class Reset extends Component {
         };
     }
     handleChange({ target }) {
-        // console.log(target.value);
+        console.log(target.value);
         this.setState({
             [target.name]: target.value,
         });

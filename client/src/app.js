@@ -16,18 +16,18 @@ export default class App extends Component {
         this.updateProfilePic = this.updateProfilePic.bind(this);
         this.setBio = this.setBio.bind(this);
     }
-    componentDidMount() {
-        axios
-            .get("/user")
-            .then(({ data }) => {
-                this.setState({
-                    firstName: data.first_name,
-                    lastName: data.last_name,
-                    imgUrl: data.img_url,
-                    bio: data.bio,
-                });
-            })
-            .catch((error) => console.log("error: ", error));
+    async componentDidMount() {
+        try {
+            const { data } = await axios.get("/user");
+            this.setState({
+                firstName: data.first_name,
+                lastName: data.last_name,
+                imgUrl: data.img_url,
+                bio: data.bio,
+            });
+        } catch (error) {
+            console.log("error: ", error);
+        }
     }
 
     toggleUploader() {
@@ -81,7 +81,16 @@ export default class App extends Component {
                                 />
                             )}
                         />
-                        <Route path="/user/:id" component={OtherProfile} />
+                        <Route
+                            path="/user/:id"
+                            render={(props) => (
+                                <OtherProfile
+                                    key={props.match.url}
+                                    match={props.match}
+                                    history={props.history}
+                                />
+                            )}
+                        />
                     </div>
                 </BrowserRouter>
                 {this.state.uploaderIsVisible && (

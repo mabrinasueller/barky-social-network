@@ -79,63 +79,53 @@ require("./routes/auth");
 
 require("./routes/reset-password");
 
-app.get("/user", (req, res) => {
+app.get("/user", async (req, res) => {
     const { userId } = req.session;
-    getUser(userId)
-        .then(({ rows }) => {
-            console.log(rows[0]);
-            res.json(rows[0]);
-        })
-        .catch((error) => console.log("error: ", error));
-});
-
-app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
-    console.log("upload worked!");
-    if (req.file) {
-        const { filename } = req.file;
-        const { userId } = req.session;
-        console.log(userId);
-        var fullUrl = s3Url + filename;
-        console.log("fullUrl: ", fullUrl);
-        newImage(fullUrl, userId)
-            .then(({ rows }) => {
-                // console.log("response: ", response.rows[0]);
-                res.json(rows[0]);
-            })
-            .catch((error) => {
-                console.log("error: ", error);
-                res.status(500).json({ error: "Error in /upload/route" });
-            });
-    } else {
-        res.json({ success: false });
+    try {
+        const { rows } = await getUser(userId);
+        res.json(rows[0]);
+    } catch (error) {
+        console.log("error: ", error);
     }
 });
 
-app.post("/update-bio", (req, res) => {
-    const { bio } = req.body;
-    const { userId } = req.session;
-    updateBio(bio, userId)
-        .then(({ rows }) => {
+app.post("/upload", uploader.single("file"), s3.upload, async (req, res) => {
+    if (req.file) {
+        const { filename } = req.file;
+        const { userId } = req.session;
+        var fullUrl = s3Url + filename;
+        try {
+            const { rows } = await newImage(fullUrl, userId);
             res.json(rows[0]);
-        })
-        .catch((error) => {
-            console.log("Error in bio update: ", error);
-            res.status(500).json({ error: "Error in /update-bio route" });
-        });
+        } catch (error) {
+            console.log("error: ", error);
+            res.status(500).json({ error: "Error in /upload/route" });
+        }
+    }
 });
 
-app.get("/other-user/:id", (req, res) => {
+app.post("/update-bio", async (req, res) => {
+    const { bio } = req.body;
+    const { userId } = req.session;
+    try {
+        const { rows } = await updateBio(bio, userId);
+        res.json(rows[0]);
+    } catch (error) {
+        console.log("Error in bio update: ", error);
+        res.status(500).json({ error: "Error in /update-bio route" });
+    }
+});
+
+app.get("/other-user/:id", async (req, res) => {
     const { id } = req.params;
-    console.log("req.params.id ", typeof req.params.id);
-    console.log("req.params.id ", typeof req.session.userId);
     if (parseInt(id) === req.session.userId) {
         res.status(400).json({
             error: "User is trying to access his own profile via Url",
         });
         return;
     }
-    getOtherUsers(id).then(({ rows }) => {
-        console.log("rows", rows);
+    try {
+        const { rows } = await getOtherUsers(id);
         if (rows.length === 0) {
             res.status(400).json({
                 error: "User is trying to access a non-existing url",
@@ -143,7 +133,9 @@ app.get("/other-user/:id", (req, res) => {
             return;
         }
         res.json(rows[0]);
-    });
+    } catch (error) {
+        console.log("error: ", error);
+    }
 });
 
 app.get("*", (req, res) => {
