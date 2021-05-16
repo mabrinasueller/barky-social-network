@@ -6,10 +6,9 @@ import Reset from "./Reset";
 export default function Welcome() {
     return (
         <div className="content">
-            <header></header>
-            <div className="logo">
-                <img src="./logo.png" />
-            </div>
+            {/* <div className="logo-container">
+                <img src="./logo-big.png" />
+            </div> */}
             <HashRouter>
                 <div>
                     <Route exact path="/" component={Registration} />

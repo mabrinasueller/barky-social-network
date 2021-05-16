@@ -24,6 +24,7 @@ export default class App extends Component {
                 lastName: data.last_name,
                 imgUrl: data.img_url,
                 bio: data.bio,
+                id: data.id,
             });
         } catch (error) {
             console.log("error: ", error);
@@ -52,17 +53,24 @@ export default class App extends Component {
             <div>
                 <header>
                     <img className="logo" src="../logo2.png" />
+                    <img
+                        className="profile-picture-small"
+                        src={this.state.imgUrl || "default_user.jpeg"}
+                    />
 
+                    <a href="/logout" className="logout">
+                        Logout
+                    </a>
+                </header>
+                <div className="profile-picture-small">
                     <ProfilePic
                         id={this.state.id}
                         firstName={this.state.firstName}
                         lastName={this.state.lastName}
                         imgUrl={this.state.imgUrl || "default_user.jpeg"}
+                        toggleUploader={this.toggleUploader}
                     />
-                    <a href="/logout" className="logout">
-                        Logout
-                    </a>
-                </header>
+                </div>
                 <BrowserRouter>
                     <div className="main-container">
                         <Route
@@ -76,8 +84,8 @@ export default class App extends Component {
                                         this.state.imgUrl || "default_user.jpeg"
                                     }
                                     bio={this.state.bio}
+                                    id={this.state.id}
                                     setBio={this.setBio}
-                                    toggleUploader={this.toggleUploader}
                                 />
                             )}
                         />

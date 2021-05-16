@@ -10,8 +10,8 @@ const { sendEmail } = require("../ses");
 const { hash } = require("../bc");
 
 app.post("/password/reset/start", async (req, res) => {
+    const { rows } = await registeredUser(req.body.email);
     try {
-        const { rows } = await registeredUser(req.body.email);
         if (rows.length > 0) {
             const secretCode = cryptoRandomString({
                 length: 6,
@@ -46,44 +46,25 @@ app.post("/password/reset/start", async (req, res) => {
     }
 });
 
-app.post("/password/reset/verify", (req, res) => {
+app.post("/password/reset/verify", async (req, res) => {
     const { email, password, code } = req.body;
-    checkVerificationCode(email)
-        .then((result) => {
-            if (result.rows[0].code === code) {
-                hash(password)
-                    .then((hashedPassword) => {
-                        updatePassword(hashedPassword, email)
-                            .then(() => {
-                                res.status(200).json({
-                                    success:
-                                        "New password inserted successfully",
-                                });
-                            })
-                            .catch((error) => {
-                                console.log("error: ", error);
-                                res.status(500).json({
-                                    error:
-                                        "Error in /password/reset/verify route",
-                                });
-                            });
-                    })
-                    .catch((error) => {
-                        console.log("error: ", error);
-                        res.status(500).json({
-                            error: "Error in /password/reset/verify route",
-                        });
-                    });
-            } else {
-                res.status(500).json({
-                    error: "Error: invalid Email",
-                });
-            }
-        })
-        .catch((error) => {
-            console.log("error: ", error);
-            res.status(500).json({
-                error: "Error in /password/reset/verify route",
+    try {
+        const { rows } = await checkVerificationCode(email);
+        if (rows[0].code === code) {
+            const hashedPassword = await hash(password);
+            await updatePassword(hashedPassword, email);
+            res.status(200).json({
+                success: "New password inserted successfully",
             });
+        } else {
+            res.status(500).json({
+                error: "Error: invalid Email",
+            });
+        }
+    } catch (error) {
+        console.log("error: ", error);
+        res.status(500).json({
+            error: "Error in /password/reset/verify route",
         });
+    }
 });

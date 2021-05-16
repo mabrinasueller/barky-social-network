@@ -33,22 +33,77 @@ a {
     min-height: 0;
 }
 
+.background-container {
+    display: flex;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: -1px 1px 5px 9px rgba(0, 0, 0, 0.25);
+    margin: auto;
+}
+
+.logo-container {
+    flex: 1;
+    flex-shrink: 2;
+}
+
+.logo-container img {
+    max-width: 400px;
+    margin: 30px;
+}
+
+.registration-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 500px;
+    padding-right: 50px;
+    margin: auto;
+}
+
+.registration-text-container {
+    margin-top: 30px;
+    text-align: center;
+    flex: 1;
+}
+
+.registration-form-container {
+    flex: 1;
+}
+
+.login-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 500px;
+    padding-right: 50px;
+    margin: auto;
+}
+
+.login-form-container {
+    flex: 1;
+}
+
 .profile-picture-small {
     height: 50px;
     width: 50px;
     border-radius: 50%;
+    align-self: flex-end;
 }
 
 header {
     flex: 0;
     height: 120px;
     display: flex;
-    justify-content: space-between;
+    /* flex-direction: column; */
+    justify-content: flex-end;
+    /* align-items: center; */
 }
-
+/* 
 header * {
     display: inline;
-}
+} */
 
 header li {
     margin: 20px;
@@ -59,11 +114,13 @@ header li a {
     color: black;
 }
 
+/* header.logo {
+} */
+
 img.logo {
     width: 200px;
     height: 120px;
     flex: 0;
-    align-self: flex-start;
 }
 
 .logout {
@@ -71,8 +128,8 @@ img.logo {
 }
 
 .profile-picture-big {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     border: 3px solid white;
     cursor: pointer;
@@ -168,6 +225,7 @@ img.logo {
     opacity: 0;
     transform: translate3d(0, 500px, 0);
     animation: arrive 500ms ease-in-out 0.9s forwards;
+    box-shadow: -1px 1px 5px 9px rgba(0, 0, 0, 0.25);
 }
 
 .form--no {
@@ -199,9 +257,10 @@ img.logo {
     -webkit-appearance: none;
     outline: 0;
     border: 0;
-    color: white;
+    color: black;
     background: $color-primary;
     transition: 0.3s;
+    cursor: pointer;
 
     &:hover {
         background: darken($color-primary, 5%);

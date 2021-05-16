@@ -57,27 +57,32 @@ export default class Reset extends Component {
     determineViewToRender() {
         if (this.state.view === 1) {
             return (
-                <div>
-                    <form>
-                        <div className="form__group">
-                            <input
-                                type="email"
-                                placeholder="Your Email"
-                                className="form__input"
-                                name="email"
-                                required
-                                onChange={(e) => this.handleChange(e)}
-                            />
-                        </div>
+                <div className="flex flex-row flex-1 bg-white justify-center shadow-xl rounded-xl md: 4/5">
+                    <div className="flex-1 ">
+                        <img src="./logo-big.png" className="max-w-md p-5 " />
+                    </div>
+                    <div className="flex-1 w-96 align-center">
+                        <form>
+                            <div className="mt-40 overflow-hidden opacity-0 shadow-xl">
+                                <input
+                                    type="email"
+                                    placeholder="Your Email"
+                                    className="opacity-1"
+                                    name="email"
+                                    required
+                                    onChange={(e) => this.handleChange(e)}
+                                />
+                            </div>
 
-                        <button
-                            className="btn"
-                            type="button"
-                            onClick={() => this.submit()}
-                        >
-                            Submit
-                        </button>
-                    </form>
+                            <button
+                                className="btn"
+                                type="button"
+                                onClick={() => this.submit()}
+                            >
+                                Submit
+                            </button>
+                        </form>
+                    </div>
                 </div>
             );
         } else if (this.state.view === 2) {
