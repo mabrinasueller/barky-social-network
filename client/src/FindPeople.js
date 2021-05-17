@@ -3,7 +3,7 @@ import axios from "./axios";
 
 export default function FindPeople() {
     const [users, setUsers] = useState("");
-    const [inputField, setInputField] = useState([]);
+    const [inputField, setInputField] = useState();
 
     useEffect(() => {
         console.log("useEffect just ran");
