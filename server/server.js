@@ -148,10 +148,11 @@ app.get("/other-user/:id", async (req, res) => {
 app.get("/find/users", async (req, res) => {
     try {
         const { rows } = await getNewestUsers();
-        console.log("rows", rows);
         res.json(rows);
     } catch (error) {
-        console.log("error in users: ", error);
+        res.status(500).json({
+            error: "Error in /find/users route",
+        });
     }
 });
 
@@ -159,10 +160,11 @@ app.post("/find/users", async (req, res) => {
     const { inputField } = req.body;
     try {
         const { rows } = await getMatchingUsers(inputField);
-        console.log("rows in users: ", rows);
         res.json(rows);
     } catch (error) {
-        console.log("error getting user: ", error);
+        res.status(500).json({
+            error: "Error in /find/users route",
+        });
     }
 });
 app.get("*", (req, res) => {

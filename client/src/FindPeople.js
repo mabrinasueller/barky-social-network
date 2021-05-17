@@ -6,14 +6,11 @@ export default function FindPeople() {
     const [inputField, setInputField] = useState();
 
     useEffect(() => {
-        console.log("useEffect just ran");
         let ignore = false;
         (async () => {
             try {
-                console.log("input: ", inputField);
                 if (!inputField) {
                     const { data } = await axios.get("/find/users");
-                    console.log("data: ", data);
                     if (!ignore) {
                         setUsers(data);
                     }
@@ -35,14 +32,13 @@ export default function FindPeople() {
     }, [inputField]);
 
     const onChange = ({ target }) => {
-        console.log("Input field ", target.value);
         setInputField(target.value);
     };
 
     return (
         <>
             <h2>Find People</h2>
-            <p>Looking for someone special?</p>
+
             <input onChange={onChange} />
             <p>Search results for: {inputField}</p>
 
