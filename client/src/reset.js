@@ -57,13 +57,13 @@ export default class Reset extends Component {
     determineViewToRender() {
         if (this.state.view === 1) {
             return (
-                <div className="flex flex-row flex-1 bg-white justify-center shadow-xl rounded-xl md: 4/5">
-                    <div className="flex-1 ">
-                        <img src="./logo-big.png" className="max-w-md p-5 " />
+                <div className="flex flex-row md:flex-1 bg-white  shadow-lg rounded-xl md: 4/5">
+                    <div className="flex  bg-pink-300 w-1/2 align-center  rounded-xl items-center ">
+                        <img src="./logo-big.png" className="max-w-md p-4" />
                     </div>
-                    <div className="flex-1 w-96 align-center">
+                    <div className="flex-1 flex-col md:flex-row w-96 justify-center items-center">
                         <form>
-                            <div className="mt-40 overflow-hidden opacity-0 shadow-xl">
+                            <div className="flex-auto mt-40 overflow-hidden shadow-xl  border-black">
                                 <input
                                     type="email"
                                     placeholder="Your Email"
@@ -75,7 +75,7 @@ export default class Reset extends Component {
                             </div>
 
                             <button
-                                className="btn"
+                                className="bg-black text-white border-black"
                                 type="button"
                                 onClick={() => this.submit()}
                             >
@@ -95,6 +95,7 @@ export default class Reset extends Component {
                                 placeholder="Verification Code"
                                 className="form__input"
                                 name="code"
+                                key=""
                                 required
                                 onChange={(e) => this.handleChange(e)}
                             />

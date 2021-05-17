@@ -7,7 +7,13 @@ const compression = require("compression");
 const path = require("path");
 const csurf = require("csurf");
 
-const { getUser, newImage, updateBio, getOtherUsers } = require("./db");
+const {
+    getUser,
+    newImage,
+    updateBio,
+    getOtherUsers,
+    getNewestUsers,
+} = require("./db");
 
 const s3 = require("./s3");
 const { s3Url } = require("./config.json");
@@ -138,6 +144,15 @@ app.get("/other-user/:id", async (req, res) => {
     }
 });
 
+app.get("/users", async (req, res) => {
+    try {
+        const { rows } = await getNewestUsers();
+        console.log("rows", rows);
+        res.json(rows);
+    } catch (error) {
+        console.log("error in users: ", error);
+    }
+});
 app.get("*", (req, res) => {
     if (!req.session.userId) {
         res.redirect("/welcome");

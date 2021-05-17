@@ -62,3 +62,9 @@ module.exports.updateBio = (bio, userId) => {
         userId,
     ]);
 };
+
+module.exports.getNewestUsers = () => {
+    return db.query(
+        `SELECT first_name, last_name, img_url FROM users ORDER BY id DESC LIMIT 3`
+    );
+};
