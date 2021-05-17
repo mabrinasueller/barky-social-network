@@ -7,16 +7,32 @@ export default function FindPeople() {
 
     useEffect(() => {
         console.log("useEffect just ran");
+        let ignore = false;
         (async () => {
             try {
-                const response = await axios.get("/find/users");
-                console.log("response: ", response);
-                setUsers(response.data);
+                console.log("input: ", inputField);
+                if (!inputField) {
+                    const { data } = await axios.get("/find/users");
+                    console.log("data: ", data);
+                    if (!ignore) {
+                        setUsers(data);
+                    }
+                } else {
+                    const { data } = await axios.post("/find/users", {
+                        inputField: inputField,
+                    });
+                    if (!ignore) {
+                        setUsers(data);
+                    }
+                }
             } catch (error) {
                 console.log("error: ", error);
             }
         })();
-    }, []);
+        return () => {
+            ignore = true;
+        };
+    }, [inputField]);
 
     const onChange = ({ target }) => {
         console.log("Input field ", target.value);
@@ -28,13 +44,16 @@ export default function FindPeople() {
             <h2>Find People</h2>
             <p>Looking for someone special?</p>
             <input onChange={onChange} />
-            <h4>These users just joined us recently:</h4>
+            <p>Search results for: {inputField}</p>
+
             <ul>
                 {users &&
                     users.map((user, index) => {
                         return (
                             <div key={index}>
-                                <img src={user.img_url} />
+                                <img
+                                    src={user.img_url || "default_user.jpeg"}
+                                />
 
                                 <p key={user.first_name}>
                                     {user.first_name} {user.last_name}
@@ -43,7 +62,6 @@ export default function FindPeople() {
                         );
                     })}
             </ul>
-            <p>{inputField}</p>
         </>
     );
 }

@@ -69,9 +69,9 @@ module.exports.getNewestUsers = () => {
     );
 };
 
-module.exports.getMatchingUsers = (val) => {
+module.exports.getMatchingUsers = (inputField) => {
     return db.query(
-        `SELECT first_name, last_name, img_url FROM users WHERE name ILIKE $1`,
-        [val + "%"]
+        `SELECT first_name, last_name, img_url FROM users WHERE first_name ILIKE $1`,
+        [`${inputField}%`]
     );
 };

@@ -13,6 +13,7 @@ const {
     updateBio,
     getOtherUsers,
     getNewestUsers,
+    getMatchingUsers,
 } = require("./db");
 
 const s3 = require("./s3");
@@ -151,6 +152,17 @@ app.get("/find/users", async (req, res) => {
         res.json(rows);
     } catch (error) {
         console.log("error in users: ", error);
+    }
+});
+
+app.post("/find/users", async (req, res) => {
+    const { inputField } = req.body;
+    try {
+        const { rows } = await getMatchingUsers(inputField);
+        console.log("rows in users: ", rows);
+        res.json(rows);
+    } catch (error) {
+        console.log("error getting user: ", error);
     }
 });
 app.get("*", (req, res) => {
