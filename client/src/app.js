@@ -54,16 +54,10 @@ export default class App extends Component {
             <div>
                 <header>
                     <img className="logo" src="../logo2.png" />
-                    <img
+                    {/* <img
                         className="profile-picture-small"
                         src={this.state.imgUrl || "default_user.jpeg"}
-                    />
-
-                    <a href="/logout" className="logout">
-                        Logout
-                    </a>
-                </header>
-                <div className="profile-picture-small">
+                    /> */}
                     <ProfilePic
                         id={this.state.id}
                         firstName={this.state.firstName}
@@ -71,7 +65,12 @@ export default class App extends Component {
                         imgUrl={this.state.imgUrl || "default_user.jpeg"}
                         toggleUploader={this.toggleUploader}
                     />
-                </div>
+
+                    <a href="/logout" className="logout">
+                        Logout
+                    </a>
+                </header>
+                <div className="profile-picture-small"></div>
                 <BrowserRouter>
                     <div className="main-container">
                         <Route

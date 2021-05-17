@@ -144,7 +144,7 @@ app.get("/other-user/:id", async (req, res) => {
     }
 });
 
-app.get("/users", async (req, res) => {
+app.get("/find/users", async (req, res) => {
     try {
         const { rows } = await getNewestUsers();
         console.log("rows", rows);

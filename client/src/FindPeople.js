@@ -9,7 +9,7 @@ export default function FindPeople() {
         console.log("useEffect just ran");
         (async () => {
             try {
-                const response = await axios.get("/users");
+                const response = await axios.get("/find/users");
                 console.log("response: ", response);
                 setUsers(response.data);
             } catch (error) {
@@ -30,9 +30,18 @@ export default function FindPeople() {
             <input onChange={onChange} />
             <h4>These users just joined us recently:</h4>
             <ul>
-                {users.map((user) => {
-                    <img src={user.img_url} />;
-                })}
+                {users &&
+                    users.map((user, index) => {
+                        return (
+                            <div key={index}>
+                                <img src={user.img_url} />
+
+                                <p key={user.first_name}>
+                                    {user.first_name} {user.last_name}
+                                </p>
+                            </div>
+                        );
+                    })}
             </ul>
             <p>{inputField}</p>
         </>
