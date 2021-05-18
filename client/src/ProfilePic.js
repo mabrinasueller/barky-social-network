@@ -4,11 +4,10 @@ export default function ProfilePic({
     imgUrl,
     toggleUploader,
 }) {
-    // console.log("props in Xmpl:", firstName, lastName, imgUrl, toggleUploader);
     return (
         <div>
             <img
-                className="profile-picture-big"
+                className="h-14 w-14 rounded-lg border-4 border-white-400"
                 alt={`${firstName} ${lastName}`}
                 onClick={toggleUploader}
                 src={imgUrl}

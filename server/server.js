@@ -14,6 +14,10 @@ const {
     getOtherUsers,
     getNewestUsers,
     getMatchingUsers,
+    getConnection,
+    insertConnection,
+    updateConnection,
+    deleteConnection,
 } = require("./db");
 
 const s3 = require("./s3");
@@ -160,6 +164,7 @@ app.post("/find/users", async (req, res) => {
     const { inputField } = req.body;
     try {
         const { rows } = await getMatchingUsers(inputField);
+        console.log(rows);
         res.json(rows);
     } catch (error) {
         res.status(500).json({
@@ -167,6 +172,26 @@ app.post("/find/users", async (req, res) => {
         });
     }
 });
+
+app.get("/friends/:viewedUser", async (req, res) => {
+    const loggedInUser = req.session.userId;
+    console.log("loggedInUser", loggedInUser);
+    console.log("req.params", req.params);
+    const { viewedUser } = req.params;
+
+    console.log(viewedUser);
+    const { rows } = await getConnection(loggedInUser, viewedUser);
+    console.log("rows: ", rows);
+    if (rows.length === 0) {
+        res.status(200).json({
+            btnText: "Add as friend",
+        });
+        return;
+    }
+});
+
+app.post("/friends", async (req, res) => {});
+
 app.get("*", (req, res) => {
     if (!req.session.userId) {
         res.redirect("/welcome");

@@ -65,13 +65,41 @@ module.exports.updateBio = (bio, userId) => {
 
 module.exports.getNewestUsers = () => {
     return db.query(
-        `SELECT first_name, last_name, img_url FROM users ORDER BY id DESC LIMIT 3`
+        `SELECT id, first_name, last_name, img_url FROM users ORDER BY id DESC LIMIT 3`
     );
 };
 
 module.exports.getMatchingUsers = (inputField) => {
     return db.query(
-        `SELECT first_name, last_name, img_url FROM users WHERE first_name ILIKE $1 OR last_name ILIKE $1`,
+        `SELECT id, first_name, last_name, img_url FROM users WHERE first_name ILIKE $1 OR last_name ILIKE $1`,
         [`${inputField}%`]
+    );
+};
+
+module.exports.getConnection = (user1, user2) => {
+    return db.query(
+        `SELECT FROM friends WHERE (recipient_id = $1 AND sender_id = $2) OR (recipient_id =$2 AND sender_id=$1)`,
+        [user1, user2]
+    );
+};
+
+module.exports.insertConnection = (user1, user2) => {
+    return db.query(
+        `INSERT INTO friends (sender_id, recipient_id) VALUES ($1, $2) RETURNING *`,
+        [user1, user2]
+    );
+};
+
+module.exports.updateConnection = (user1, user2) => {
+    return db.query(
+        `UPDATE friends SET accepted = "true" WHERE recipient_id = $1 AND sender_id = $2 RETURNING *`,
+        [user1, user2]
+    );
+};
+
+module.exports.deleteConnection = (user1, user2) => {
+    return db.query(
+        `DELETE FROM friends WHERE (recipient_id = $1 AND sender_id = $2) OR (recipient_id =$2 AND sender_id=$1)`,
+        [user1, user2]
     );
 };

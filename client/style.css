@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
     margin: 0;
     padding: 0;
@@ -26,10 +30,15 @@ a {
     text-decoration: none;
 }
 
+img {
+    width: 172px;
+    height: auto;
+}
+
 .content {
     flex: 1;
     flex-direction: row;
-    display: flex;
+    /* display: flex; */
     min-height: 0;
 }
 
@@ -218,6 +227,77 @@ img.logo {
 .modal-buttons {
     width: 240px;
 }
+
+.main-registration {
+    padding: 150px 0;
+}
+
+.signup {
+    margin-bottom: 150px;
+}
+
+.container {
+    width: 900px;
+    background: #fff;
+    margin: 0 auto;
+    box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
+
+    border-radius: 20px;
+}
+
+.signup {
+    margin-bottom: 150px;
+}
+
+.signup-content {
+    padding: 75px 0;
+}
+
+.signup-form,
+.signup-image,
+.signin-form,
+.signin-image {
+    width: 50%;
+    overflow: hidden;
+}
+
+.signup-image {
+    margin: 0 55px;
+}
+
+.form-title {
+    margin-bottom: 33px;
+}
+
+.signup-image {
+    margin-top: 45px;
+}
+
+figure {
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.form-submit {
+    display: inline-block;
+    background: #6dabe4;
+    color: #fff;
+    border-bottom: none;
+    width: auto;
+    padding: 15px 39px;
+    border-radius: 5px;
+    margin-top: 25px;
+    cursor: pointer;
+}
+.form-submit:hover {
+    background: #4292dc;
+}
+
+.register-image {
+    width: 500px;
+    height: auto;
+}
+
 /* .form {
     margin-top: 40px;
     border-radius: 6px;

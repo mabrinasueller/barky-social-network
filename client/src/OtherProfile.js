@@ -1,5 +1,7 @@
 import { Component } from "react";
 import axios from "axios";
+import FriendButton from "./FriendButton";
+import { Link } from "react-router-dom";
 
 export default class OtherProfile extends Component {
     constructor(props) {
@@ -25,17 +27,17 @@ export default class OtherProfile extends Component {
     }
 
     render() {
+        const { firstName, lastName, imgUrl, bio } = this.state;
         return (
             <>
-                <h1>User-Id is {this.props.match.params.id}</h1>
-                <img
-                    src={this.state.imgUrl}
-                    alt={`${this.state.firstName} ${this.state.lastName}`}
-                />
+                {/* <h1>User-Id is {this.props.match.params.id}</h1> */}
+                <Link to={"/users"}>Back to search</Link>
+                <img src={imgUrl} alt={`${firstName} ${lastName}`} />
                 <h3>
-                    {this.state.firstName} {this.state.lastName}
+                    {firstName} {lastName}
                 </h3>
-                <p>{this.state.bio}</p>
+                <p>{bio}</p>
+                <FriendButton id={this.props.match.params.id} />
             </>
         );
     }

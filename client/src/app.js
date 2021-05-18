@@ -3,7 +3,7 @@ import Uploader from "./Uploader";
 import axios from "./axios";
 import ProfilePic from "./ProfilePic";
 import Profile from "./Profile";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Link } from "react-router-dom";
 import OtherProfile from "./OtherProfile";
 import FindPeople from "./FindPeople";
 
@@ -52,26 +52,28 @@ export default class App extends Component {
     render() {
         return (
             <div>
-                <header>
-                    <img className="logo" src="../logo2.png" />
-                    {/* <img
-                        className="profile-picture-small"
+                <BrowserRouter>
+                    <header>
+                        <img className="logo" src="../logo2.png" />
+                        {/* <img
+                        
                         src={this.state.imgUrl || "default_user.jpeg"}
                     /> */}
-                    <ProfilePic
-                        id={this.state.id}
-                        firstName={this.state.firstName}
-                        lastName={this.state.lastName}
-                        imgUrl={this.state.imgUrl || "default_user.jpeg"}
-                        toggleUploader={this.toggleUploader}
-                    />
+                        <Link to="/">Profile</Link>
+                        <Link to="/users">Find Users</Link>
+                        <a href="/logout" className="logout">
+                            Logout
+                        </a>
+                        <ProfilePic
+                            id={this.state.id}
+                            firstName={this.state.firstName}
+                            lastName={this.state.lastName}
+                            imgUrl={this.state.imgUrl || "default_user.jpeg"}
+                            toggleUploader={this.toggleUploader}
+                            className=""
+                        />
+                    </header>
 
-                    <a href="/logout" className="logout">
-                        Logout
-                    </a>
-                </header>
-                <div className="profile-picture-small"></div>
-                <BrowserRouter>
                     <div className="main-container">
                         <Route
                             exact
@@ -86,6 +88,8 @@ export default class App extends Component {
                                     bio={this.state.bio}
                                     id={this.state.id}
                                     setBio={this.setBio}
+                                    toggleUploader={this.toggleUploader}
+                                    className="profile-picture-big"
                                 />
                             )}
                         />
