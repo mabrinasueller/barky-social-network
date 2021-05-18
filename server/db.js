@@ -71,7 +71,7 @@ module.exports.getNewestUsers = () => {
 
 module.exports.getMatchingUsers = (inputField) => {
     return db.query(
-        `SELECT id, first_name, last_name, img_url FROM users WHERE first_name ILIKE $1 OR last_name ILIKE $1`,
+        `SELECT id, first_name, last_name, img_url FROM users WHERE first_name ILIKE $1 OR last_name ILIKE $1 `,
         [`${inputField}%`]
     );
 };

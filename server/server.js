@@ -175,22 +175,73 @@ app.post("/find/users", async (req, res) => {
 
 app.get("/friends/:viewedUser", async (req, res) => {
     const loggedInUser = req.session.userId;
-    console.log("loggedInUser", loggedInUser);
-    console.log("req.params", req.params);
+    // console.log("loggedInUser", loggedInUser);
+    // console.log("req.params", req.params);
     const { viewedUser } = req.params;
 
-    console.log(viewedUser);
+    // console.log(viewedUser);
     const { rows } = await getConnection(loggedInUser, viewedUser);
-    console.log("rows: ", rows);
+    // console.log("rows: ", rows[0]);
     if (rows.length === 0) {
-        res.status(200).json({
+        return res.status(200).json({
             btnText: "Add as friend",
         });
-        return;
+    }
+    if (rows[0].accepted) {
+        return res.status(200).json({
+            btnText: "Unfriend",
+        });
+    }
+    if (!rows[0].accepted) {
+        if (rows[0].recipient_id === loggedInUser) {
+            return res.status(200).json({
+                btnText: "Accept friend request",
+            });
+        } else {
+            return res.status(200).json({
+                btnText: "Cancel friend request",
+            });
+        }
     }
 });
 
-app.post("/friends", async (req, res) => {});
+app.post("/friends", async (req, res) => {
+    const loggedInUser = req.session.userId;
+    console.log("loggedInUser", typeof loggedInUser);
+
+    const { btnTxt, viewedUser } = req.body;
+    console.log("viewedUser ", viewedUser);
+    console.log("btnTxt", req.body.btnTxt);
+    console.log("viewedUser", typeof viewedUser);
+    console.log("req.body", typeof req.body);
+    console.log("req.body", req.body);
+
+    try {
+        if (btnText === "Add as friend") {
+            const { rows } = await insertConnection(loggedInUser, viewedUser);
+            return res.status(200).json({
+                btnText: "Cancel Friend Request",
+            });
+        }
+        if (btnText === "Accept Friend Request") {
+            const { rows } = await updateConnection(loggedInUser, viewedUser);
+            return res.status(200).json({
+                btnText: "Unfriend",
+            });
+        }
+        if (btnText === "Cancel Friend Request" || btnText === "Unfriend") {
+            const { rows } = await deleteConnection(loggedInUser, viewedUser);
+            return res.status(200).json({
+                btnText: "Add as Friend",
+            });
+        }
+    } catch (error) {
+        console.log("error: ", error);
+        return res.status(500).json({
+            error: "Error in /friends route",
+        });
+    }
+});
 
 app.get("*", (req, res) => {
     if (!req.session.userId) {
