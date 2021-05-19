@@ -6,6 +6,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
 }
 
 body {
@@ -298,6 +299,7 @@ figure {
     height: auto;
 }
 
+
 /* .form {
     margin-top: 40px;
     border-radius: 6px;
@@ -329,18 +331,7 @@ figure {
     }
 }
 
-.btn {
-    display: block;
-    width: 100%;
-    padding: 20px;
-    font-family: $font-family;
-    -webkit-appearance: none;
-    outline: 0;
-    border: 0;
-    color: black;
-    background: $color-primary;
-    transition: 0.3s;
-    cursor: pointer;
+
 
     &:hover {
         background: darken($color-primary, 5%);

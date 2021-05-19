@@ -327,10 +327,10 @@ pre {
   margin: 0;
 }
 
-button {
+/* button {
   background-color: transparent;
   background-image: none;
-}
+} */
 
 /**
  * Work around a Firefox/IE bug where the transparent `button` background
@@ -501,7 +501,7 @@ select,
 textarea {
   padding: 0;
   line-height: inherit;
-  color: inherit;
+  /* color: inherit; */
 }
 
 /**
