@@ -12,8 +12,6 @@ const {
     newImage,
     updateBio,
     getOtherUsers,
-    getNewestUsers,
-    getMatchingUsers,
     getConnection,
     insertConnection,
     updateConnection,
@@ -149,39 +147,18 @@ app.get("/other-user/:id", async (req, res) => {
     }
 });
 
-app.get("/find/users", async (req, res) => {
-    try {
-        const { rows } = await getNewestUsers();
-        res.json(rows);
-    } catch (error) {
-        res.status(500).json({
-            error: "Error in /find/users route",
-        });
-    }
-});
-
-app.post("/find/users", async (req, res) => {
-    const { inputField } = req.body;
-    try {
-        const { rows } = await getMatchingUsers(inputField);
-        console.log(rows);
-        res.json(rows);
-    } catch (error) {
-        res.status(500).json({
-            error: "Error in /find/users route",
-        });
-    }
-});
+require("../server/routes/user-search");
 
 app.get("/friends/:viewedUser", async (req, res) => {
     const loggedInUser = req.session.userId;
-    // console.log("loggedInUser", loggedInUser);
+    console.log("loggedInUser", loggedInUser);
     // console.log("req.params", req.params);
     const { viewedUser } = req.params;
 
-    // console.log(viewedUser);
+    console.log(typeof viewedUser);
     const { rows } = await getConnection(loggedInUser, viewedUser);
-    // console.log("rows: ", rows[0]);
+    console.log("rows2: ", rows);
+
     if (rows.length === 0) {
         return res.status(200).json({
             btnText: "Add as friend",
@@ -207,31 +184,24 @@ app.get("/friends/:viewedUser", async (req, res) => {
 
 app.post("/friends", async (req, res) => {
     const loggedInUser = req.session.userId;
-    console.log("loggedInUser", typeof loggedInUser);
-
-    const { btnTxt, viewedUser } = req.body;
-    console.log("viewedUser ", viewedUser);
-    console.log("btnTxt", req.body.btnTxt);
-    console.log("viewedUser", typeof viewedUser);
-    console.log("req.body", typeof req.body);
-    console.log("req.body", req.body);
+    const { btnText, viewedUser } = req.body;
 
     try {
         if (btnText === "Add as friend") {
-            const { rows } = await insertConnection(loggedInUser, viewedUser);
-            return res.status(200).json({
-                btnText: "Cancel Friend Request",
+            await insertConnection(loggedInUser, viewedUser);
+            return res.json({
+                btnText: "Cancel friend request",
             });
         }
-        if (btnText === "Accept Friend Request") {
-            const { rows } = await updateConnection(loggedInUser, viewedUser);
-            return res.status(200).json({
+        if (btnText === "Accept friend request") {
+            await updateConnection(loggedInUser, viewedUser);
+            return res.json({
                 btnText: "Unfriend",
             });
         }
-        if (btnText === "Cancel Friend Request" || btnText === "Unfriend") {
-            const { rows } = await deleteConnection(loggedInUser, viewedUser);
-            return res.status(200).json({
+        if (btnText === "Cancel friend request" || btnText === "Unfriend") {
+            await deleteConnection(loggedInUser, viewedUser);
+            return res.json({
                 btnText: "Add as Friend",
             });
         }

@@ -1,5 +1,6 @@
 import ProfilePic from "./ProfilePic";
 import BioEditor from "./Bio";
+import FriendButton from "./FriendButton";
 
 export default function Profile(props) {
     console.log("Props in Profile: ", props);
@@ -23,6 +24,7 @@ export default function Profile(props) {
                     </h2>
                     <h3>{props.bio}</h3>
                     <BioEditor bio={props.bio} setBio={props.setBio} />
+                    <FriendButton />
                 </div>
             </div>
         </div>

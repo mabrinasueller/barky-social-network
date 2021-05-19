@@ -78,7 +78,7 @@ module.exports.getMatchingUsers = (inputField) => {
 
 module.exports.getConnection = (user1, user2) => {
     return db.query(
-        `SELECT FROM friends WHERE (recipient_id = $1 AND sender_id = $2) OR (recipient_id =$2 AND sender_id=$1)`,
+        `SELECT * FROM friends WHERE (recipient_id = $1 AND sender_id = $2) OR (recipient_id =$2 AND sender_id=$1)`,
         [user1, user2]
     );
 };
@@ -92,7 +92,7 @@ module.exports.insertConnection = (user1, user2) => {
 
 module.exports.updateConnection = (user1, user2) => {
     return db.query(
-        `UPDATE friends SET accepted = "true" WHERE recipient_id = $1 AND sender_id = $2 RETURNING *`,
+        `UPDATE friends SET accepted = true WHERE recipient_id = $1 AND sender_id = $2 RETURNING *`,
         [user1, user2]
     );
 };
