@@ -151,13 +151,8 @@ require("../server/routes/user-search");
 
 app.get("/friends/:viewedUser", async (req, res) => {
     const loggedInUser = req.session.userId;
-    console.log("loggedInUser", loggedInUser);
-    // console.log("req.params", req.params);
     const { viewedUser } = req.params;
-
-    console.log(typeof viewedUser);
     const { rows } = await getConnection(loggedInUser, viewedUser);
-    console.log("rows2: ", rows);
 
     if (rows.length === 0) {
         return res.status(200).json({
