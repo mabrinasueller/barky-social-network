@@ -103,3 +103,15 @@ module.exports.deleteConnection = (user1, user2) => {
         [user1, user2]
     );
 };
+
+module.exports.getFriendsAndRequests = (userId) => {
+    return db.query(
+        `SELECT users.id, first_name, last_name, img_url, accepted
+    FROM friends
+    JOIN users
+    ON (accepted = false AND recipient_id = $1 AND sender_id = users.id)
+    OR (accepted = true AND recipient_id = $1 AND sender_id = users.id)
+    OR (accepted = true AND sender_id = $1 AND recipient_id = users.id)`,
+        [userId]
+    );
+};

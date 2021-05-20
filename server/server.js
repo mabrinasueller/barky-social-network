@@ -16,6 +16,7 @@ const {
     insertConnection,
     updateConnection,
     deleteConnection,
+    getFriendsAndRequests,
 } = require("./db");
 
 const s3 = require("./s3");
@@ -206,6 +207,22 @@ app.post("/friends", async (req, res) => {
             error: "Error in /friends route",
         });
     }
+});
+
+app.get("/friends-requests", async (req, res) => {
+    const { userId } = req.session;
+    console.log("UserId: ", userId);
+    try {
+        const { rows } = await getFriendsAndRequests(userId);
+        console.log("rows: ", rows);
+        res.json(rows);
+    } catch (error) {
+        console.log("Error in /friends-requests route: ", error);
+    }
+});
+
+app.post("/update-friendship", async (req, res) => {
+    // await
 });
 
 app.get("*", (req, res) => {
