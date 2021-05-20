@@ -27,8 +27,30 @@ export default function Friends() {
         <div>
             <h1>Friends route working</h1>
             <ul>
+                <h2>Your friends:</h2>
                 {friends &&
                     friends.map((user, index) => {
+                        const { id, first_name, last_name, img_url } = user;
+                        console.log(user);
+                        return (
+                            <Link key={index} to={`/user/${id}`}>
+                                <div>
+                                    <img
+                                        src={img_url || "default_user.jpeg"}
+                                        alt={`${first_name} ${last_name}`}
+                                    />
+                                    <p key={first_name}>
+                                        {first_name} {last_name}
+                                    </p>
+                                </div>
+                            </Link>
+                        );
+                    })}
+            </ul>
+            <ul>
+                <h2>These users want to be friends with you:</h2>
+                {requests &&
+                    requests.map((user, index) => {
                         const { id, first_name, last_name, img_url } = user;
                         console.log(user);
                         return (
