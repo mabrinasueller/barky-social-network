@@ -58,6 +58,7 @@ export default class App extends Component {
                         <img className="logo" src="../logo2.png" />
                         <Link to="/">Profile</Link>
                         <Link to="/users">Find Users</Link>
+                        <Link to="/friends">Friends</Link>
                         <a href="/logout" className="logout">
                             Logout
                         </a>
@@ -101,7 +102,7 @@ export default class App extends Component {
                             )}
                         />
                         <Route path="/users" render={() => <FindPeople />} />
-                        <Route path="/connections" render={() => <Friends />} />
+                        <Route path="/friends" render={() => <Friends />} />
                     </div>
                 </BrowserRouter>
                 {this.state.uploaderIsVisible && (

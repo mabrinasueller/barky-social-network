@@ -150,7 +150,7 @@ app.get("/other-user/:id", async (req, res) => {
 
 require("../server/routes/user-search");
 
-app.get("/friends/:viewedUser", async (req, res) => {
+app.get("/connections/:viewedUser", async (req, res) => {
     const loggedInUser = req.session.userId;
     const { viewedUser } = req.params;
     const { rows } = await getConnection(loggedInUser, viewedUser);
@@ -178,7 +178,7 @@ app.get("/friends/:viewedUser", async (req, res) => {
     }
 });
 
-app.post("/friends", async (req, res) => {
+app.post("/connections", async (req, res) => {
     const loggedInUser = req.session.userId;
     const { btnText, viewedUser } = req.body;
 
@@ -195,7 +195,11 @@ app.post("/friends", async (req, res) => {
                 btnText: "Unfriend",
             });
         }
-        if (btnText === "Cancel friend request" || btnText === "Unfriend") {
+        if (
+            btnText === "Cancel friend request" ||
+            btnText === "Unfriend" ||
+            btnText === "Decline friend request"
+        ) {
             await deleteConnection(loggedInUser, viewedUser);
             return res.json({
                 btnText: "Add as Friend",
@@ -219,10 +223,6 @@ app.get("/friends-requests", async (req, res) => {
     } catch (error) {
         console.log("Error in /friends-requests route: ", error);
     }
-});
-
-app.post("/update-friendship", async (req, res) => {
-    // await
 });
 
 app.get("*", (req, res) => {

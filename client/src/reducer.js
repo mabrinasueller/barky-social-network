@@ -31,5 +31,19 @@ export default function reducer(state = {}, action) {
             }),
         };
     }
+
+    if (action.type === "DECLINE_REQUEST") {
+        state = {
+            ...state,
+            users: state.user.map((user) => {
+                if (user.id === action.id) {
+                    return {
+                        ...user,
+                        accepted: false,
+                    };
+                }
+            }),
+        };
+    }
     return state;
 }

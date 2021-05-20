@@ -7,7 +7,7 @@ export default function FriendButton({ id }) {
     useEffect(() => {
         (async () => {
             try {
-                const { data } = await axios.get(`/friends/${id}`);
+                const { data } = await axios.get(`/connections/${id}`);
                 setButtonText(data.btnText);
             } catch (error) {
                 console.log("error in friends-route: ", error);
@@ -18,7 +18,7 @@ export default function FriendButton({ id }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const { data } = await axios.post("/friends", {
+            const { data } = await axios.post("/connections", {
                 btnText: buttonText,
                 viewedUser: id,
             });
