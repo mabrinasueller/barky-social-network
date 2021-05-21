@@ -15,6 +15,7 @@ export async function getFriendsRequests() {
 
 export async function addFriend(id) {
     const btnText = "Accept";
+    console.log("Button clicked");
     try {
         const { data } = await axios.post("/connections", {
             viewedUser: id,
@@ -44,22 +45,5 @@ export async function unfriend(id) {
         };
     } catch (error) {
         console.log("Error in removing friend-action: ", error);
-    }
-}
-
-export async function declineRequest(id) {
-    const btnText = "Decline friend request";
-    try {
-        const { data } = await axios.post("/connections", {
-            viewedUser: id,
-            btnText,
-        });
-        console.log("data from unfriend user: ", data);
-        return {
-            type: "DECLINE_REQUEST",
-            id,
-        };
-    } catch (error) {
-        console.log("Error in declining-request-action: ", error);
     }
 }

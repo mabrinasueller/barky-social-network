@@ -8,12 +8,14 @@ export default function reducer(state = {}, action) {
     if (action.type === "ACCEPT_REQUEST") {
         state = {
             ...state,
-            users: state.user.map((user) => {
+            users: state.users.map((user) => {
                 if (user.id === action.id) {
                     return {
                         ...user,
                         accepted: true,
                     };
+                } else {
+                    return user;
                 }
             }),
         };
@@ -21,29 +23,9 @@ export default function reducer(state = {}, action) {
     if (action.type === "UNFRIEND_USER") {
         state = {
             ...state,
-            users: state.user.map((user) => {
-                if (user.id === action.id) {
-                    return {
-                        ...user,
-                        accepted: false,
-                    };
-                }
-            }),
+            users: state.users.filter((user) => user.id !== action.id),
         };
     }
 
-    if (action.type === "DECLINE_REQUEST") {
-        state = {
-            ...state,
-            users: state.user.map((user) => {
-                if (user.id === action.id) {
-                    return {
-                        ...user,
-                        accepted: false,
-                    };
-                }
-            }),
-        };
-    }
     return state;
 }

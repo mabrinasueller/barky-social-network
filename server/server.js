@@ -168,7 +168,7 @@ app.get("/connections/:viewedUser", async (req, res) => {
     if (!rows[0].accepted) {
         if (rows[0].recipient_id === loggedInUser) {
             return res.status(200).json({
-                btnText: "Accept friend request",
+                btnText: "Accept",
             });
         } else {
             return res.status(200).json({
@@ -181,6 +181,7 @@ app.get("/connections/:viewedUser", async (req, res) => {
 app.post("/connections", async (req, res) => {
     const loggedInUser = req.session.userId;
     const { btnText, viewedUser } = req.body;
+    console.log(btnText);
 
     try {
         if (btnText === "Add as friend") {
@@ -189,7 +190,7 @@ app.post("/connections", async (req, res) => {
                 btnText: "Cancel friend request",
             });
         }
-        if (btnText === "Accept friend request") {
+        if (btnText === "Accept") {
             await updateConnection(loggedInUser, viewedUser);
             return res.json({
                 btnText: "Unfriend",

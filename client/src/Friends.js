@@ -1,12 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 // import { render } from "react-dom/cjs/react-dom.production.min";
-import {
-    getFriendsRequests,
-    addFriend,
-    unfriend,
-    declineRequest,
-} from "./actions";
+import { getFriendsRequests, addFriend, unfriend } from "./actions";
 import { Link } from "react-router-dom";
 
 export default function Friends() {
@@ -14,6 +9,7 @@ export default function Friends() {
     const friends = useSelector(
         (state) => state.users && state.users.filter((user) => user.accepted)
     );
+
     const requests = useSelector(
         (state) =>
             state.users && state.users.filter((user) => user.accepted === false)
@@ -29,67 +25,92 @@ export default function Friends() {
     }
 
     return (
-        <div>
-            <ul>
-                <h2>You have {friends.length} friends</h2>
-                {friends &&
-                    friends.map((user, index) => {
-                        const { id, first_name, last_name, img_url } = user;
-                        console.log(user);
-                        return (
-                            <>
-                                <Link key={index} to={`/user/${id}`}>
-                                    <div>
-                                        <img
-                                            src={img_url || "default_user.jpeg"}
-                                            alt={`${first_name} ${last_name}`}
-                                        />
-                                        <p key={first_name}>
-                                            {first_name} {last_name}
-                                        </p>
+        <div className="content">
+            <div className="friends-container">
+                <ul>
+                    <h2>You have {friends.length} friends</h2>
+                    {friends &&
+                        friends.map((user, index) => {
+                            const { id, first_name, last_name, img_url } = user;
+                            console.log(user);
+                            return (
+                                <>
+                                    <div className="other-users-information">
+                                        <Link key={index} to={`/user/${id}`}>
+                                            <div>
+                                                <img
+                                                    key={img_url}
+                                                    src={
+                                                        img_url ||
+                                                        "default_user.jpeg"
+                                                    }
+                                                    alt={`${first_name} ${last_name}`}
+                                                />
+                                                <p key={first_name}>
+                                                    {first_name} {last_name}
+                                                </p>
+                                            </div>
+                                        </Link>
+                                        <button
+                                            key={unfriend}
+                                            onClick={() =>
+                                                dispatch(unfriend(id))
+                                            }
+                                        >
+                                            Unfriend
+                                        </button>
                                     </div>
-                                </Link>
-                                <button
-                                    key={unfriend}
-                                    onClick={() => dispatch(unfriend(id))}
-                                >
-                                    Unfriend
-                                </button>
-                            </>
-                        );
-                    })}
-            </ul>
-            <ul>
-                <h2>You have {requests.length} friend request</h2>
-                {requests &&
-                    requests.map((user, index) => {
-                        const { id, first_name, last_name, img_url } = user;
-                        console.log(user);
-                        return (
-                            <>
-                                <Link key={index} to={`/user/${id}`}>
-                                    <div>
-                                        <img
-                                            src={img_url || "default_user.jpeg"}
-                                            alt={`${first_name} ${last_name}`}
-                                        />
-                                        <p key={first_name}>
-                                            {first_name} {last_name}
-                                        </p>
+                                </>
+                            );
+                        })}
+                </ul>
+            </div>
+            <div className="request-container">
+                <ul>
+                    <h2>You have {requests.length} friend request</h2>
+                    {requests &&
+                        requests.map((user, index) => {
+                            const { id, first_name, last_name, img_url } = user;
+                            console.log(user);
+                            return (
+                                <>
+                                    <div className="other-users-information">
+                                        <Link key={index} to={`/user/${id}`}>
+                                            <div>
+                                                <img
+                                                    key={img_url}
+                                                    src={
+                                                        img_url ||
+                                                        "default_user.jpeg"
+                                                    }
+                                                    alt={`${first_name} ${last_name}`}
+                                                />
+                                                <p key={first_name}>
+                                                    {first_name} {last_name}
+                                                </p>
+                                            </div>
+                                        </Link>
+                                        <button
+                                            key={addFriend}
+                                            onClick={() =>
+                                                dispatch(addFriend(id))
+                                            }
+                                        >
+                                            Accept
+                                        </button>
+                                        <button
+                                            onClick={() =>
+                                                dispatch(unfriend(id))
+                                            }
+                                        >
+                                            Decline friend request
+                                        </button>
                                     </div>
-                                </Link>
-                                <button onClick={() => dispatch(addFriend(id))}>
-                                    Accept
-                                </button>
-                                <button
-                                    onClick={() => dispatch(declineRequest(id))}
-                                >
-                                    Decline friend request
-                                </button>
-                            </>
-                        );
-                    })}
-            </ul>
+                                </>
+                            );
+                        })}
+                </ul>
+            </div>
         </div>
     );
 }

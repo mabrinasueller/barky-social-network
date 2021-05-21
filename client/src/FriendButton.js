@@ -28,15 +28,30 @@ export default function FriendButton({ id }) {
         }
     };
 
+    const handleDecline = async (e) => {
+        e.preventDefault();
+        try {
+            await axios.post("/connections", {
+                btnText: "Decline friend request",
+                viewedUser: id,
+            });
+            setButtonText("Add as friend");
+        } catch (error) {
+            console.log("Error in Decline: ", error);
+        }
+    };
+
     return (
         <>
             <button
                 className="border-4 border-black-200"
-                type="submit"
                 onClick={handleSubmit}
             >
                 {buttonText}
             </button>
+            {buttonText === "Accept" && (
+                <button onClick={handleDecline}>Decline</button>
+            )}
         </>
     );
 }

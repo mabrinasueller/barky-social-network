@@ -50,21 +50,28 @@ export default function FindPeople() {
                         console.log(user);
 
                         return (
-                            <Link key={index} to={`/user/${id}`}>
-                                <div className="flex flex:1 flex-row p-4">
-                                    <div className="flex border-4 border-white-800">
-                                        <img
-                                            src={img_url || "default_user.jpeg"}
-                                            alt={`${first_name} ${last_name}`}
-                                        />
-                                    </div>
-                                    <div className="flex flex-col justify-center pl-4 text-xl">
-                                        <p key={first_name}>
-                                            {first_name} {last_name}
-                                        </p>
-                                    </div>
+                            <>
+                                <div className="other-users-information">
+                                    <Link key={index} to={`/user/${id}`}>
+                                        <div>
+                                            <div>
+                                                <img
+                                                    src={
+                                                        img_url ||
+                                                        "default_user.jpeg"
+                                                    }
+                                                    alt={`${first_name} ${last_name}`}
+                                                />
+                                            </div>
+                                            <div>
+                                                <p key={first_name}>
+                                                    {first_name} {last_name}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </Link>
                                 </div>
-                            </Link>
+                            </>
                         );
                     })}
             </ul>

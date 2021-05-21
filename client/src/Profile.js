@@ -14,18 +14,16 @@ export default function Profile(props) {
                                 alt={`${props.firstName} ${props.lastName}`}
                                 src={props.imgUrl}
                                 onClick={props.toggleUploader}
-                                className="h-21 rounded-xl "
+                                className="profile-picture-big "
                             />
                         </div>
                     </div>
-
                     <div className="user-info-container">
                         <h2>
                             {props.firstName} {props.lastName}
                         </h2>
                         <h3>{props.bio}</h3>
                         <BioEditor bio={props.bio} setBio={props.setBio} />
-                        <FriendButton />
                     </div>
                 </div>
             </div>

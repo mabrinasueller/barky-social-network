@@ -98,24 +98,26 @@ export default class login extends Component {
             password: "",
         };
     }
-    submit(e) {
+    async submit(e) {
         e.preventDefault();
-        axios
-            .post("/login", {
+        try {
+            const { data } = axios.post("/login", {
                 email: this.state.email,
                 password: this.state.password,
-            })
-            .then(({ data }) => {
-                if (data.success) {
-                    location.replace("/");
-                } else {
-                    console.log("error");
-                    this.setState({
-                        error: "Wrong Email/password",
-                    });
-                }
             });
+            if (data.success) {
+                location.replace("/");
+            } else {
+                console.log("error");
+                this.setState({
+                    error: "Wrong Email/password",
+                });
+            }
+        } catch (error) {
+            console.log("Error in /login route: ", error);
+        }
     }
+
     handleChange({ target }) {
         console.log(target.value);
         this.setState({

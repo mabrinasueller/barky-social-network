@@ -55,21 +55,32 @@ export default class App extends Component {
             <div>
                 <BrowserRouter>
                     <header>
-                        <img className="logo" src="../logo2.png" />
-                        <Link to="/">Profile</Link>
-                        <Link to="/users">Find Users</Link>
-                        <Link to="/friends">Friends</Link>
-                        <a href="/logout" className="logout">
-                            Logout
-                        </a>
-                        <ProfilePic
-                            id={this.state.id}
-                            firstName={this.state.firstName}
-                            lastName={this.state.lastName}
-                            imgUrl={this.state.imgUrl || "default_user.jpeg"}
-                            toggleUploader={this.toggleUploader}
-                            className=""
-                        />
+                        <div className="logo-header-container">
+                            <img className="logo-small" src="../logo2.png" />
+                        </div>
+                        <div className="navbar-container">
+                            <Link to="/">Profile</Link>
+                            <Link to="/users">Find Users</Link>
+                            <Link to="/friends">Friends</Link>
+                            {/* <a href="/logout" className="logout">
+                                Logout
+                            </a> */}
+                        </div>
+                        <div className="profile-small-container">
+                            <a href="/logout">
+                                <img src="../logout.png" className="logout" />
+                            </a>
+                            <ProfilePic
+                                id={this.state.id}
+                                firstName={this.state.firstName}
+                                lastName={this.state.lastName}
+                                imgUrl={
+                                    this.state.imgUrl || "default_user.jpeg"
+                                }
+                                toggleUploader={this.toggleUploader}
+                                className=""
+                            />
+                        </div>
                     </header>
 
                     <div className="main-container">
