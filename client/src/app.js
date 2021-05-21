@@ -87,38 +87,36 @@ export default class App extends Component {
                         </div>
                     </header>
 
-                    <div className="">
-                        <Route
-                            exact
-                            path="/"
-                            render={() => (
-                                <Profile
-                                    firstName={this.state.firstName}
-                                    lastName={this.state.lastName}
-                                    imgUrl={
-                                        this.state.imgUrl || "default_user.jpeg"
-                                    }
-                                    bio={this.state.bio}
-                                    id={this.state.id}
-                                    setBio={this.setBio}
-                                    toggleUploader={this.toggleUploader}
-                                    className="profile-picture-big"
-                                />
-                            )}
-                        />
-                        <Route
-                            path="/user/:id"
-                            render={(props) => (
-                                <OtherProfile
-                                    key={props.match.url}
-                                    match={props.match}
-                                    history={props.history}
-                                />
-                            )}
-                        />
-                        <Route path="/users" render={() => <FindPeople />} />
-                        <Route path="/friends" render={() => <Friends />} />
-                    </div>
+                    <Route
+                        exact
+                        path="/"
+                        render={() => (
+                            <Profile
+                                firstName={this.state.firstName}
+                                lastName={this.state.lastName}
+                                imgUrl={
+                                    this.state.imgUrl || "default_user.jpeg"
+                                }
+                                bio={this.state.bio}
+                                id={this.state.id}
+                                setBio={this.setBio}
+                                toggleUploader={this.toggleUploader}
+                                className="profile-picture-big"
+                            />
+                        )}
+                    />
+                    <Route
+                        path="/user/:id"
+                        render={(props) => (
+                            <OtherProfile
+                                key={props.match.url}
+                                match={props.match}
+                                history={props.history}
+                            />
+                        )}
+                    />
+                    <Route path="/users" render={() => <FindPeople />} />
+                    <Route path="/friends" render={() => <Friends />} />
                 </BrowserRouter>
                 {this.state.uploaderIsVisible && (
                     <Uploader

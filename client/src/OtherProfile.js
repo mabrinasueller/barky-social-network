@@ -12,7 +12,6 @@ export default class OtherProfile extends Component {
 
     async componentDidMount() {
         const { id } = this.props.match.params;
-        // console.log("id: ", id);
         try {
             const { data } = await axios.get(`/other-user/${id}`);
             this.setState({

@@ -165,7 +165,8 @@ img.logo-small {
     height: 100px;
 }
 
-.friends-container {
+.friends-container,
+.request-container {
     /* max-width: 300px; */
     display: flex;
     flex-direction: row;
@@ -198,6 +199,12 @@ img.logo-small {
     object-fit: cover;
     border: 3px solid white;
     box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);
+}
+
+.align-users {
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: wrap;
 }
 
 .profile-picture-big {
@@ -263,7 +270,7 @@ button {
     z-index: 2;
     border-radius: 50%;
 
-    z-index: 1;
+    /* z-index: 1; */
     box-shadow: 0px 10px 40px 0px rgba(76, 70, 124, 0.5);
 
     @media screen and (max-width: 576px), (max-height: 500px) {

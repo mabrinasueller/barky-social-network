@@ -12,17 +12,7 @@ const compression = require("compression");
 const path = require("path");
 const csurf = require("csurf");
 
-const {
-    getUser,
-    newImage,
-    updateBio,
-    getOtherUsers,
-    getConnection,
-    insertConnection,
-    updateConnection,
-    deleteConnection,
-    getFriendsAndRequests,
-} = require("./db");
+const { getUser, newImage } = require("./db");
 
 const s3 = require("./s3");
 const { s3Url } = require("./config.json");
@@ -86,12 +76,7 @@ app.get("/welcome", (req, res) => {
     res.sendFile(path.join(__dirname, "..", "client", "index.html"));
 });
 
-//requiring login and registration
-
 require("./routes/auth");
-
-//requiring Password reset routes
-
 require("./routes/reset-password");
 
 app.get("/user", async (req, res) => {
@@ -119,114 +104,11 @@ app.post("/upload", uploader.single("file"), s3.upload, async (req, res) => {
     }
 });
 
-app.post("/update-bio", async (req, res) => {
-    const { bio } = req.body;
-    const { userId } = req.session;
-    try {
-        const { rows } = await updateBio(bio, userId);
-        res.json(rows[0]);
-    } catch (error) {
-        console.log("Error in bio update: ", error);
-        res.status(500).json({ error: "Error in /update-bio route" });
-    }
-});
-
-app.get("/other-user/:id", async (req, res) => {
-    const { id } = req.params;
-    if (parseInt(id) === req.session.userId) {
-        res.status(400).json({
-            error: "User is trying to access his own profile via Url",
-        });
-        return;
-    }
-    try {
-        const { rows } = await getOtherUsers(id);
-        if (rows.length === 0) {
-            res.status(400).json({
-                error: "User is trying to access a non-existing url",
-            });
-            return;
-        }
-        res.json(rows[0]);
-    } catch (error) {
-        console.log("error: ", error);
-    }
-});
-
+require("../server/routes/update-bio");
+require("../server/routes/other-profiles");
 require("../server/routes/user-search");
-
-app.get("/connections/:viewedUser", async (req, res) => {
-    const loggedInUser = req.session.userId;
-    const { viewedUser } = req.params;
-    const { rows } = await getConnection(loggedInUser, viewedUser);
-
-    if (rows.length === 0) {
-        return res.status(200).json({
-            btnText: "Add as friend",
-        });
-    }
-    if (rows[0].accepted) {
-        return res.status(200).json({
-            btnText: "Unfriend",
-        });
-    }
-    if (!rows[0].accepted) {
-        if (rows[0].recipient_id === loggedInUser) {
-            return res.status(200).json({
-                btnText: "Accept",
-            });
-        } else {
-            return res.status(200).json({
-                btnText: "Cancel friend request",
-            });
-        }
-    }
-});
-
-app.post("/connections", async (req, res) => {
-    const loggedInUser = req.session.userId;
-    const { btnText, viewedUser } = req.body;
-
-    try {
-        if (btnText === "Add as friend") {
-            await insertConnection(loggedInUser, viewedUser);
-            return res.json({
-                btnText: "Cancel friend request",
-            });
-        }
-        if (btnText === "Accept") {
-            await updateConnection(loggedInUser, viewedUser);
-            return res.json({
-                btnText: "Unfriend",
-            });
-        }
-        if (
-            btnText === "Cancel friend request" ||
-            btnText === "Unfriend" ||
-            btnText === "Decline friend request"
-        ) {
-            await deleteConnection(loggedInUser, viewedUser);
-            return res.json({
-                btnText: "Add as Friend",
-            });
-        }
-    } catch (error) {
-        console.log("error: ", error);
-        return res.status(500).json({
-            error: "Error in /friends route",
-        });
-    }
-});
-
-app.get("/friends-requests", async (req, res) => {
-    const { userId } = req.session;
-    try {
-        const { rows } = await getFriendsAndRequests(userId);
-        res.json(rows);
-    } catch (error) {
-        console.log("Error in /friends-requests route: ", error);
-    }
-});
+require("../server/routes/connections");
+require("../server/routes/friend-requests");
 
 app.get("*", (req, res) => {
     if (!req.session.userId) {
