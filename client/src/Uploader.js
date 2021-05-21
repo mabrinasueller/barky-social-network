@@ -35,7 +35,8 @@ export default class Uploader extends Component {
     render() {
         return (
             <>
-                <div className="modal-container overlay">
+                <div className="overlay"></div>
+                <div className="modal-container">
                     <div className="modal-text-container">
                         <h3>Update your profile picture</h3>
                     </div>

@@ -2,6 +2,7 @@ import { Component } from "react";
 import axios from "axios";
 import FriendButton from "./FriendButton";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export default class OtherProfile extends Component {
     constructor(props) {
@@ -30,14 +31,16 @@ export default class OtherProfile extends Component {
         const { firstName, lastName, imgUrl, bio } = this.state;
         return (
             <>
-                {/* <h1>User-Id is {this.props.match.params.id}</h1> */}
-                <Link to={"/users"}>Back to search</Link>
-                <img src={imgUrl} alt={`${firstName} ${lastName}`} />
-                <h3>
-                    {firstName} {lastName}
-                </h3>
-                <p>{bio}</p>
-                <FriendButton id={this.props.match.params.id} />
+                <Link to={"/users"}>Back</Link>
+                <div className="other-users-information">
+                    <img src={imgUrl} alt={`${firstName} ${lastName}`} />
+
+                    <h3>
+                        {firstName} {lastName}
+                    </h3>
+                    <p>{bio}</p>
+                    <FriendButton id={this.props.match.params.id} />
+                </div>
             </>
         );
     }

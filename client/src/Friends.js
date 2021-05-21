@@ -33,7 +33,7 @@ export default function Friends() {
                             console.log(user);
                             return (
                                 <>
-                                    <div className="other-users-information">
+                                    <div className="other-users-information center">
                                         <Link key={index} to={`/user/${id}`}>
                                             <div className="other-user-container">
                                                 <img
@@ -72,7 +72,7 @@ export default function Friends() {
                             console.log(user);
                             return (
                                 <>
-                                    <div className="other-users-information">
+                                    <div className="other-users-information center">
                                         <Link key={index} to={`/user/${id}`}>
                                             <div>
                                                 <img

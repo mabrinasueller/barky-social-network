@@ -47,7 +47,6 @@ export default function FindPeople() {
                 {users &&
                     users.map((user, index) => {
                         const { id, first_name, last_name, img_url } = user;
-                        console.log(user);
 
                         return (
                             <>
