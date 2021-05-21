@@ -56,7 +56,11 @@ export default class App extends Component {
                 <BrowserRouter>
                     <header>
                         <div className="logo-header-container">
-                            <img className="logo-small" src="../logo2.png" />
+                            <img
+                                className="logo-small"
+                                src="../logo2.png"
+                                alt="logout-button"
+                            />
                         </div>
                         <div className="navbar-container">
                             <Link to="/">Profile</Link>

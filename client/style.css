@@ -31,6 +31,11 @@ a {
     text-decoration: none;
 }
 
+a,
+button {
+    cursor: pointer;
+}
+
 img {
     width: 172px;
     height: auto;
@@ -165,11 +170,23 @@ img.logo-small {
     display: flex;
     flex-direction: row;
     max-width: 80% vw;
+    flex: 1;
+}
+
+.friends-container h2,
+.request-container h2 {
+    text-align: center;
+    padding: 20px;
+    font-size: 25px;
 }
 
 .other-users-information {
-    /* text-align: center; */
+    text-align: center;
     padding: 20px;
+}
+
+.other-users-information p {
+    padding: 15px 0 10px 0;
 }
 
 .other-users-information img {
@@ -177,10 +194,8 @@ img.logo-small {
     height: 200px;
     border-radius: 50%;
     object-fit: cover;
-}
-
-.other-users-information button {
-    background-color: coral;
+    border: 3px solid white;
+    box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);
 }
 
 .profile-picture-big {
@@ -193,8 +208,17 @@ img.logo-small {
 }
 
 button {
-    padding: 20px;
-    border: 1px solid black;
+    color: black;
+    display: inline-block;
+    background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+    border: 1px solid #999;
+    border-radius: 3px;
+    padding: 5px 8px;
+    outline: none;
+    white-space: nowrap;
+    text-shadow: 1px 1px #fff;
+    font-weight: 700;
+    font-size: 10pt;
 }
 
 .profile {
@@ -268,14 +292,13 @@ button {
     display: flex;
     justify-content: center;
     height: 65vh;
-    max-height: 600px;
     flex-direction: column;
     width: 70vw;
-    max-width: 800px;
+    max-width: 400px;
     position: fixed;
-    z-index: 3;
+    z-index: 5;
     background-color: white;
-    margin: 0 auto;
+    margin: 80px auto;
     border-radius: 10px;
     top: 5vh;
     left: 50%;
@@ -290,8 +313,8 @@ button {
 .modal-text-container {
     padding: 20px;
     display: flex;
-
-    flex: 2;
+    text-align: center;
+    flex: 1;
 }
 
 .inputfile {

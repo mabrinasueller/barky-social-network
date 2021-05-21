@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-// import { render } from "react-dom/cjs/react-dom.production.min";
 import { getFriendsRequests, addFriend, unfriend } from "./actions";
 import { Link } from "react-router-dom";
 
@@ -14,7 +13,6 @@ export default function Friends() {
         (state) =>
             state.users && state.users.filter((user) => user.accepted === false)
     );
-    console.log("testy is besty");
 
     useEffect(() => {
         (!friends || !requests) && dispatch(getFriendsRequests());
@@ -37,7 +35,7 @@ export default function Friends() {
                                 <>
                                     <div className="other-users-information">
                                         <Link key={index} to={`/user/${id}`}>
-                                            <div>
+                                            <div className="other-user-container">
                                                 <img
                                                     key={img_url}
                                                     src={
@@ -67,7 +65,7 @@ export default function Friends() {
             </div>
             <div className="request-container">
                 <ul>
-                    <h2>You have {requests.length} friend request</h2>
+                    <h2>You have {requests.length} friend requests</h2>
                     {requests &&
                         requests.map((user, index) => {
                             const { id, first_name, last_name, img_url } = user;

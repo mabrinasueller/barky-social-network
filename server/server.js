@@ -1,6 +1,11 @@
 const express = require("express");
 const app = express();
 module.exports.app = app;
+const server = require("http").Server(app);
+const io = require("socket.io")(server, {
+    allowRequest: (req, callback) =>
+        callback(null, req.headers.referer.startsWith("http://localhost:3000")),
+});
 
 const cookieSession = require("cookie-session");
 const compression = require("compression");
@@ -181,7 +186,6 @@ app.get("/connections/:viewedUser", async (req, res) => {
 app.post("/connections", async (req, res) => {
     const loggedInUser = req.session.userId;
     const { btnText, viewedUser } = req.body;
-    console.log(btnText);
 
     try {
         if (btnText === "Add as friend") {
@@ -216,10 +220,8 @@ app.post("/connections", async (req, res) => {
 
 app.get("/friends-requests", async (req, res) => {
     const { userId } = req.session;
-    console.log("UserId: ", userId);
     try {
         const { rows } = await getFriendsAndRequests(userId);
-        console.log("rows: ", rows);
         res.json(rows);
     } catch (error) {
         console.log("Error in /friends-requests route: ", error);
@@ -234,6 +236,26 @@ app.get("*", (req, res) => {
     }
 });
 
-app.listen(process.env.PORT || 3001, function () {
+server.listen(process.env.PORT || 3001, function () {
     console.log("Server is listening.");
+});
+
+io.on("connection", function (socket) {
+    console.log(`socket with the id ${socket.id} is now connected`);
+
+    socket.on("disconnect", function () {
+        console.log(`socket with the id ${socket.id} is now disconnected`);
+    });
+
+    socket.emit("Hello", {
+        message: "Bonjour",
+    });
+
+    socket.on("thanks", function (data) {
+        console.log(data);
+    });
+
+    socket.emit("welcome", {
+        message: "Welome. It is nice to see you",
+    });
 });
