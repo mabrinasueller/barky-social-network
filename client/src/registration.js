@@ -61,6 +61,7 @@ export default class Registration extends Component {
                                         className="form-input"
                                         name="firstName"
                                         onChange={(e) => this.handleChange(e)}
+                                        required
                                     />
                                 </div>
                                 <div className="form-group">
@@ -69,6 +70,7 @@ export default class Registration extends Component {
                                         placeholder="Last Name"
                                         className="form-input"
                                         name="lastName"
+                                        required
                                         onChange={(e) => this.handleChange(e)}
                                     />
                                 </div>
@@ -79,6 +81,7 @@ export default class Registration extends Component {
                                         placeholder="Email"
                                         className="form-input"
                                         name="email"
+                                        required
                                         onChange={(e) => this.handleChange(e)}
                                     />
                                 </div>
@@ -89,23 +92,27 @@ export default class Registration extends Component {
                                         placeholder="Password"
                                         className="form-input"
                                         name="password"
+                                        required
                                         onChange={(e) => this.handleChange(e)}
                                     />
                                 </div>
-                                <label className="terms-container">
-                                    <input type="checkbox" required />
-                                    <span>
-                                        {" "}
-                                        I agree all statements in{" "}
-                                        <a
-                                            href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-                                            target="_blank"
-                                            rel="noreferrer"
-                                        >
-                                            Terms of service
-                                        </a>
-                                    </span>
-                                </label>
+                                <div className="terms-container">
+                                    <label>
+                                        <input type="checkbox" required />
+                                        <span>
+                                            {" "}
+                                            I agree all statements in{" "}
+                                            <a
+                                                href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                                                target="_blank"
+                                                rel="noreferrer"
+                                            >
+                                                Terms of service
+                                            </a>
+                                        </span>
+                                    </label>
+                                </div>
+                                <div className="breaker"></div>
                                 <button
                                     className="form-button"
                                     type="button"
@@ -115,8 +122,10 @@ export default class Registration extends Component {
                                 </button>
                             </form>
 
-                            <p>Already have an account?</p>
-                            <Link to="/login">Sign in</Link>
+                            <p className="login-link-container">
+                                Already have an account?
+                                <Link to="/login"> Sign in</Link>
+                            </p>
                         </div>
                     </div>
                 </div>
