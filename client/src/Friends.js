@@ -14,6 +14,14 @@ export default function Friends() {
             state.users && state.users.filter((user) => user.accepted === false)
     );
 
+    // const sendRequests = useSelector(
+    //     (state) =>
+    //         state.user &&
+    //         state.users.filter(
+    //             (user) => user.accepted === false && user.id != id
+    //         )
+    // );
+
     useEffect(() => {
         (!friends || !requests) && dispatch(getFriendsRequests());
     }, []);
@@ -120,7 +128,7 @@ export default function Friends() {
                                                     dispatch(unfriend(id))
                                                 }
                                             >
-                                                Decline friend request
+                                                Decline
                                             </button>
                                         </div>
                                     </>

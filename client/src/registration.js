@@ -36,72 +36,88 @@ export default class Registration extends Component {
     }
     render() {
         return (
-            <div className="background-container">
-                <div className="logo-container">
-                    <img src="./logo-big.png" />
-                </div>
-                <div className="registration-container">
-                    <div className="registration-text-container">
-                        <h1>So glad to have you here!</h1>
-                        <h2>
-                            If you want to become part of the experience and
-                            stay in touch, please register:
-                        </h2>
+            <div className="register-background-container">
+                <div className="register-container-big">
+                    <div className="logo-container">
+                        <img src="./test2.jpeg" />
                     </div>
-                    <div className="registration-form-container">
-                        {this.state.error && (
-                            <div className="error">Something went wrong</div>
-                        )}
+                    <div className="registration-container">
+                        <div className="registration-text-container">
+                            <h1>So glad to have you here!</h1>
+                            <h2>Create new account</h2>
+                        </div>
+                        <div className="registration-form-container">
+                            {this.state.error && (
+                                <div className="error">
+                                    Something went wrong
+                                </div>
+                            )}
 
-                        <form className="form">
-                            <div className="form__group">
-                                <input
-                                    type="text"
-                                    placeholder="First Name"
-                                    className="form__input"
-                                    name="firstName"
-                                    onChange={(e) => this.handleChange(e)}
-                                />
-                            </div>
-                            <div className="form__group">
-                                <input
-                                    type="text"
-                                    placeholder="Last Name"
-                                    className="form__input"
-                                    name="lastName"
-                                    onChange={(e) => this.handleChange(e)}
-                                />
-                            </div>
+                            <form className="form">
+                                <div className="form-group">
+                                    <input
+                                        type="text"
+                                        placeholder="First Name"
+                                        className="form-input"
+                                        name="firstName"
+                                        onChange={(e) => this.handleChange(e)}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <input
+                                        type="text"
+                                        placeholder="Last Name"
+                                        className="form-input"
+                                        name="lastName"
+                                        onChange={(e) => this.handleChange(e)}
+                                    />
+                                </div>
 
-                            <div className="form__group">
-                                <input
-                                    type="email"
-                                    placeholder="Email"
-                                    className="form__input"
-                                    name="email"
-                                    onChange={(e) => this.handleChange(e)}
-                                />
-                            </div>
+                                <div className="form-group">
+                                    <input
+                                        type="email"
+                                        placeholder="Email"
+                                        className="form-input"
+                                        name="email"
+                                        onChange={(e) => this.handleChange(e)}
+                                    />
+                                </div>
 
-                            <div className="form__group">
-                                <input
-                                    type="password"
-                                    placeholder="Password"
-                                    className="form__input"
-                                    name="password"
-                                    onChange={(e) => this.handleChange(e)}
-                                />
-                            </div>
+                                <div className="form-group">
+                                    <input
+                                        type="password"
+                                        placeholder="Password"
+                                        className="form-input"
+                                        name="password"
+                                        onChange={(e) => this.handleChange(e)}
+                                    />
+                                </div>
+                                <label className="terms-container">
+                                    <input type="checkbox" required />
+                                    <span>
+                                        {" "}
+                                        I agree all statements in{" "}
+                                        <a
+                                            href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                                            target="_blank"
+                                            rel="noreferrer"
+                                        >
+                                            Terms of service
+                                        </a>
+                                    </span>
+                                </label>
+                                <button
+                                    className="form-button"
+                                    type="button"
+                                    onClick={() => this.handleSubmit()}
+                                >
+                                    Sign up
+                                </button>
+                            </form>
 
-                            <button
-                                className="form-button"
-                                type="button"
-                                onClick={() => this.handleSubmit()}
-                            >
-                                Register
-                            </button>
-                        </form>
-                        <Link to="/login">Click here to Log in!</Link>
+                            <p>Already have an account?</p>
+                            <Link to="/login">Sign in</Link>
+                        </div>
                     </div>
                 </div>
             </div>

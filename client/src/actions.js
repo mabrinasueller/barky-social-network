@@ -47,3 +47,15 @@ export async function unfriend(id) {
         console.log("Error in removing friend-action: ", error);
     }
 }
+
+// export async function cancelRequest(id) {
+//     const btnText = "Cancel friend request";
+//     try {
+//         const { data } = await axios.post("/connections", {
+//             viewedUser: id,
+//             btnText,
+//         });
+//     }catch(error){
+//         console.log("Error in ")
+//     }
+// }

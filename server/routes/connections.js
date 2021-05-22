@@ -56,7 +56,9 @@ app.post("/connections", async (req, res) => {
             btnText === "Unfriend" ||
             btnText === "Decline friend request"
         ) {
-            await deleteConnection(loggedInUser, viewedUser);
+            const { rows } = await deleteConnection(loggedInUser, viewedUser);
+            console.log("loggedInUser,", loggedInUser);
+            console.log("rows2: ", rows);
             return res.json({
                 btnText: "Add as Friend",
             });
