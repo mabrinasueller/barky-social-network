@@ -15,7 +15,8 @@ export default class Reset extends Component {
             [target.name]: target.value,
         });
     }
-    submit() {
+    submit(e) {
+        e.preventDefault();
         this.setState({
             error: null,
         });
@@ -57,76 +58,143 @@ export default class Reset extends Component {
     determineViewToRender() {
         if (this.state.view === 1) {
             return (
-                <div className="flex flex-row md:flex-1 bg-white  shadow-lg rounded-xl md: 4/5">
-                    <div className="flex  bg-pink-300 w-1/2 align-center  rounded-xl items-center ">
-                        <img src="./logo-big.png" className="max-w-md p-4" />
-                    </div>
-                    <div className="flex-1 flex-col md:flex-row w-96 justify-center items-center">
-                        <form>
-                            <div className="flex-auto mt-40 overflow-hidden shadow-xl  border-black">
-                                <input
-                                    type="email"
-                                    placeholder="Your Email"
-                                    className="opacity-1"
-                                    name="email"
-                                    required
-                                    onChange={(e) => this.handleChange(e)}
-                                />
-                            </div>
+                <div className="register-background-container">
+                    <div className="register-container-big">
+                        <div className="logo-container">
+                            <img src="./test3.jpeg" />
+                        </div>
+                        <div className="registration-container">
+                            <div className="registration-text-container">
+                                <h1 className="text-login">
+                                    Forgot your password?
+                                </h1>
 
-                            <button
-                                className="bg-black text-white border-black"
-                                type="button"
-                                onClick={() => this.submit()}
-                            >
-                                Submit
-                            </button>
-                        </form>
+                                <h4>
+                                    Please enter your email-address and check
+                                    <div className="breaker"></div>
+                                    your emails for the verification code.
+                                </h4>
+                                <h4 className="reset-text-step2">
+                                    In Step 2 you can update your password.{" "}
+                                </h4>
+                            </div>
+                            <div className="registration-form-container">
+                                {this.state.error && (
+                                    <div className="error">
+                                        Something went wrong. Please try again.
+                                    </div>
+                                )}
+
+                                <form className="form">
+                                    <div className="form-group">
+                                        <input
+                                            type="email"
+                                            placeholder="woof@example.com"
+                                            className="form-input"
+                                            name="email"
+                                            required
+                                            onChange={(e) =>
+                                                this.handleChange(e)
+                                            }
+                                        />
+                                    </div>
+                                    <div className="breaker"></div>
+                                    <button
+                                        className="form-button"
+                                        type="submit"
+                                        onClick={(e) => this.submit(e)}
+                                    >
+                                        Send verification code
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             );
         } else if (this.state.view === 2) {
             return (
-                <div>
-                    <form>
-                        <div className="form__group">
-                            <input
-                                type="text"
-                                placeholder="Verification Code"
-                                className="form__input"
-                                name="code"
-                                key=""
-                                required
-                                onChange={(e) => this.handleChange(e)}
-                            />
+                <div className="register-background-container">
+                    <div className="register-container-big">
+                        <div className="logo-container">
+                            <img src="./test5.jpeg" />
                         </div>
-                        <div className="form__group">
-                            <input
-                                type="password"
-                                placeholder="Enter new Password"
-                                className="form__input"
-                                name="password"
-                                required
-                                onChange={(e) => this.handleChange(e)}
-                            />
-                        </div>
+                        <div className="registration-container">
+                            <div className="registration-text-container">
+                                <h1 className="text-login">Step 2</h1>
 
-                        <button
-                            className="btn"
-                            type="button"
-                            onClick={() => this.submit()}
-                        >
-                            Submit
-                        </button>
-                    </form>
+                                <h4>
+                                    Please enter the verification code and set
+                                    <div className="breaker"></div>
+                                    your new password.
+                                </h4>
+                            </div>
+                            <div className="registration-form-container">
+                                {this.state.error && (
+                                    <div className="error">
+                                        Something went wrong. Please try again.
+                                    </div>
+                                )}
+
+                                <form className="form">
+                                    <div className="form-group">
+                                        <input
+                                            type="text"
+                                            placeholder="Verification code"
+                                            className="form-input"
+                                            key=""
+                                            name="code"
+                                            required
+                                            onChange={(e) =>
+                                                this.handleChange(e)
+                                            }
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <input
+                                            type="password"
+                                            placeholder="Enter new password"
+                                            className="form-input"
+                                            name="password"
+                                            required
+                                            onChange={(e) =>
+                                                this.handleChange(e)
+                                            }
+                                        />
+                                    </div>
+                                    <div className="breaker"></div>
+                                    <button
+                                        className="form-button"
+                                        type="button"
+                                        onClick={(e) => this.submit(e)}
+                                    >
+                                        Set new password
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             );
         }
         if (this.state.view === 3) {
             return (
-                <div>
-                    <h2>Password has been successfully updated!</h2>
-                    <Link to="/login">Log into your profile</Link>
+                <div className="register-background-container">
+                    <div className="register-container-big">
+                        <div className="logo-container">
+                            <img src="./test4.jpeg" />
+                        </div>
+                        <div className="registration-container">
+                            <div className="registration-text-container">
+                                <h1 className="text-login">
+                                    Password has been successfully updated!
+                                </h1>
+                            </div>
+                            <div className="registration-form-container">
+                                <Link to="/login">Click here to login</Link>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             );
         }

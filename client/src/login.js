@@ -10,8 +10,7 @@ export default class login extends Component {
             password: "",
         };
     }
-    async submit(e) {
-        e.preventDefault();
+    async submit() {
         try {
             const { data } = axios.post("/login", {
                 email: this.state.email,
@@ -61,7 +60,7 @@ export default class login extends Component {
                                     <div className="form-group">
                                         <input
                                             type="email"
-                                            placeholder="Email"
+                                            placeholder="woof@example.com"
                                             className="form-input"
                                             name="email"
                                             required
@@ -85,19 +84,22 @@ export default class login extends Component {
                                     </div>
                                     <div className="breaker"></div>
                                     <button
-                                        className="btn"
+                                        className="form-button"
                                         type="submit"
-                                        onClick={(e) => this.submit(e)}
+                                        onClick={() => this.submit()}
                                     >
                                         Log In
                                     </button>
                                 </form>
-
-                                <Link to="/">Click here to Register!</Link>
-                                <br />
-                                <Link to="/password-reset">
-                                    I forgot my password
-                                </Link>
+                                <div className="passwort-reset-link">
+                                    <Link to="/password-reset">
+                                        I forgot my password
+                                    </Link>
+                                </div>
+                                <div className="breaker"></div>
+                                <div className="link-to-register">
+                                    <Link to="/">Click here to Register</Link>
+                                </div>
                             </div>
                         </div>
                     </div>

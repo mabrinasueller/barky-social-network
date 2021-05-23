@@ -58,7 +58,7 @@ export default class App extends Component {
                         <div className="logo-header-container">
                             <img
                                 className="logo-small"
-                                src="../logo2.png"
+                                src="../logo.png"
                                 alt="logout-button"
                             />
                         </div>

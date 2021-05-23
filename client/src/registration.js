@@ -57,7 +57,7 @@ export default class Registration extends Component {
                                 <div className="form-group">
                                     <input
                                         type="text"
-                                        placeholder="First Name"
+                                        placeholder="Bark"
                                         className="form-input"
                                         name="firstName"
                                         onChange={(e) => this.handleChange(e)}
@@ -67,7 +67,7 @@ export default class Registration extends Component {
                                 <div className="form-group">
                                     <input
                                         type="text"
-                                        placeholder="Last Name"
+                                        placeholder="Twain"
                                         className="form-input"
                                         name="lastName"
                                         required
@@ -78,7 +78,7 @@ export default class Registration extends Component {
                                 <div className="form-group">
                                     <input
                                         type="email"
-                                        placeholder="Email"
+                                        placeholder="woof@example.com"
                                         className="form-input"
                                         name="email"
                                         required
@@ -103,7 +103,7 @@ export default class Registration extends Component {
                                             {" "}
                                             I agree all statements in{" "}
                                             <a
-                                                href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                                                href="https://www.youtube.com/watch?v=tuB72KcEUTw"
                                                 target="_blank"
                                                 rel="noreferrer"
                                             >

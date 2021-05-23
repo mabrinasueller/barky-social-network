@@ -30,7 +30,7 @@ module.exports.getOtherUsers = (userId) => {
 module.exports.checkVerificationCode = (email) => {
     return db.query(
         `SELECT * FROM reset_codes WHERE email = $1 AND 
-CURRENT_TIMESTAMP - created_at < INTERVAL '5 minutes'`,
+CURRENT_TIMESTAMP - created_at < INTERVAL '2 minutes'`,
         [email]
     );
 };
