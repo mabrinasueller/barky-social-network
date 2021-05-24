@@ -32,26 +32,16 @@ button {
     cursor: pointer;
 }
 
-/* img {
-    width: 172px;
-    height: auto;
-} */
+a {
+    color: black;
+}
 
 .content {
     flex: 1;
     flex-direction: row;
     display: flex;
     min-height: 0;
-    align-items: center;
-    justify-content: center;
 }
-
-/* .register-background-container {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-  
-} */
 
 .register-container-big {
     display: flex;
@@ -115,8 +105,6 @@ h1.text-login {
 
 .form-input {
     padding: 10px;
-    /* border-radius: 10px; */
-    /* box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06); */
     border-width: 0 0 2px;
     outline: 0;
     margin: 10px;
@@ -155,6 +143,7 @@ h1.text-login {
     border-radius: 50%;
     align-self: flex-end;
     object-fit: cover;
+    cursor: pointer;
 }
 
 header {
@@ -195,33 +184,75 @@ img.logo-small {
     margin-left: 20px;
 }
 
+.hamburger-navbar {
+    width: 35px;
+    height: 35px;
+    object-fit: cover;
+    flex: 0;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
 .profile-small-container {
     display: flex;
     justify-content: flex-end;
     flex: 1;
 }
 .navbar-container {
+    z-index: 7;
+    background-color: white;
+    width: 300px;
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: hidden;
+    font-size: 30px;
+    padding: 50px 0 0 30px;
+    @media screen and (max-width: 576px), (max-height: 500px) {
+        width: 95%;
+        padding: 20px;
+        margin-top: 75px;
+        min-height: initial;
+        padding-bottom: 30px;
+        max-width: 400px;
+    }
+
+    /* padding: 20px;
+    margin-left: 50px;
+    background-color: #e3e3e3;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    flex: 2;
-    padding: 20px;
-    margin-left: 50px;
+    flex: 2; */
+}
+
+/* .clicked {
+    transition-duration: 2s;
+    transform: translateX(100%);
+} */
+
+.close-navbar-button {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+}
+
+.links-navbar a:link {
+    text-decoration: none;
+    padding: 10px 0 10px 20px;
+    display: block;
+}
+
+.navbar-container span {
+    cursor: pointer;
 }
 
 .logout {
     cursor: pointer;
     width: 100px;
     height: 100px;
-}
-
-.friends-container,
-.request-container {
-    /* max-width: 300px; */
-    display: flex;
-    flex-direction: row;
-    max-width: 80% vw;
-    flex: 1;
 }
 
 .friends-container h2,
@@ -242,28 +273,19 @@ img.logo-small {
     padding: 15px 0 10px 0;
 }
 
-.other-users-information img {
+/* .other-users-information img {
     width: 200px;
     height: 200px;
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid white;
     box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);
-}
+} */
 
-.align-users {
+/* .align-users {
     display: flex;
     justify-content: space-evenly;
     flex-flow: wrap;
-}
-
-/* .profile-picture-big {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    border: 3px solid white;
-    cursor: pointer;
-    object-fit: cover;
 } */
 
 button {
@@ -281,6 +303,17 @@ button {
     margin: 5px;
 }
 
+.profile-content {
+    flex: 1;
+    flex-direction: row;
+    display: flex;
+    min-height: 0;
+    /* align-items: center; */
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
 .profile {
     display: flex;
     flex: 3;
@@ -291,6 +324,7 @@ button {
     box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);
     border-radius: 15px;
     padding: 30px;
+    flex-wrap: wrap;
     @media screen and (max-width: 576px), (max-height: 500px) {
         width: 95%;
         padding: 20px;
@@ -313,24 +347,16 @@ button {
     /* padding: 30px; */
     margin-right: 20px;
     @media screen and (max-width: 576px), (max-height: 500px) {
-        width: 95%;
+        /* width: 95%; */
         padding: 20px;
         margin-top: 75px;
-        min-height: initial;
+        /* min-height: initial; */
+        width: 290px;
+        height: 230px;
         padding-bottom: 30px;
         max-width: 400px;
     }
 }
-
-/* .profile-top {
-    display: flex;
-    align-items: flex-start;
-    position: relative;
-    z-index: 4;
-    @media screen and (max-width: 576px), (max-height: 500px) {
-        flex-wrap: wrap;
-    }
-} */
 
 .profile-picture img {
     width: 100%;
@@ -341,8 +367,7 @@ button {
     object-fit: cover;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
-
-    /* box-shadow: 0px 10px 40px 0px rgba(76, 70, 124, 0.5); */
+    cursor: pointer;
     @media screen and (max-width: 576px), (max-height: 500px) {
         margin-top: -70px;
         margin-bottom: 25px;
@@ -377,16 +402,77 @@ button {
 .profile-text-container {
     flex: 1;
     text-align: justify;
-    line-height: 20px;
+    line-height: 25px;
     padding: 20px;
+    @media screen and (max-width: 576px), (max-height: 500px) {
+        margin-top: -70px;
+        margin-bottom: 25px;
+        width: 290px;
+        height: 230px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 .profile-text-container p {
     margin-bottom: 10px;
 }
 
+.profile-picture-container p {
+    padding-top: 10px;
+}
+
 .profile-container-dog {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    justify-content: start;
+    /* justify-content: center; */
+    align-items: center;
+    @media screen and (max-width: 576px), (max-height: 500px) {
+        margin-top: -70px;
+        margin-bottom: 25px;
+        width: 290px;
+        height: 230px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.dog-image-container img {
+    flex: 1;
+    max-height: 250px;
+    width: 300px;
+    object-fit: cover;
+    /* flex-shrink: 2; */
+    border-radius: 15px;
+    margin-bottom: 20px;
+    @media screen and (max-width: 576px), (max-height: 500px) {
+        margin-top: -70px;
+        margin-bottom: 25px;
+        width: 290px;
+        height: 230px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.dog-info-container {
+    /* text-align: justify; */
+    align-self: flex-start;
+    line-height: 25px;
+    padding-left: 40px;
+    padding-right: 40px;
+    @media screen and (max-width: 576px), (max-height: 500px) {
+        margin-top: -70px;
+        margin-bottom: 25px;
+        width: 290px;
+        height: 230px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0;
+    }
 }
 
 .profile-text-container h4 {
@@ -468,7 +554,7 @@ button {
     width: 240px;
 }
 
-.main-registration {
+/* .main-registration {
     padding: 150px 0;
 }
 
@@ -531,9 +617,67 @@ figure {
 }
 .form-submit:hover {
     background: #4292dc;
+} */
+
+.find-people-content {
+    text-align: center;
 }
 
-.register-image {
-    width: 500px;
-    height: auto;
+.profile-search {
+    display: flex;
+    flex: 3;
+    text-align: center;
+    flex-direction: column;
+    background: #eef3f7;
+    width: 410px;
+    min-height: 480px;
+    flex-wrap: wrap;
+    box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);
+    border-radius: 15px;
+    padding: 30px 30px 0 30px;
+    @media screen and (max-width: 576px), (max-height: 500px) {
+        width: 95%;
+        padding: 20px;
+        margin-top: 75px;
+        min-height: initial;
+        padding-bottom: 30px;
+        max-width: 400px;
+    }
+}
+
+.profile-search-output {
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: wrap;
+}
+
+.search-text-container {
+    padding-bottom: 40px;
+}
+
+.other-profile-top {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    background: #eef3f7;
+    min-width: 200px;
+    max-width: 250px;
+    min-height: 250px;
+    box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);
+    border-radius: 15px;
+    margin-bottom: 30px;
+    /* padding: 30px; */
+    margin-right: 20px;
+    @media screen and (max-width: 576px), (max-height: 500px) {
+        width: 95%;
+        padding: 20px;
+        margin-top: 75px;
+        min-height: initial;
+        padding-bottom: 30px;
+        max-width: 400px;
+    }
+}
+
+.spacer {
+    margin: 10px;
 }

@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Link } from "react-router-dom";
 import OtherProfile from "./OtherProfile";
 import FindPeople from "./FindPeople";
 import Friends from "./Friends";
+import Menu from "./Menu";
 
 export default class App extends Component {
     constructor(props) {
@@ -17,6 +18,7 @@ export default class App extends Component {
         this.toggleUploader = this.toggleUploader.bind(this);
         this.updateProfilePic = this.updateProfilePic.bind(this);
         this.setBio = this.setBio.bind(this);
+        this.toggleMenu = this.toggleMenu.bind(this);
     }
     async componentDidMount() {
         try {
@@ -50,30 +52,25 @@ export default class App extends Component {
         });
     }
 
+    toggleMenu() {
+        console.log("Hamburger was clicked");
+    }
+
     render() {
         return (
             <div>
                 <BrowserRouter>
                     <header>
                         <div className="logo-header-container">
-                            <img
-                                className="logo-small"
-                                src="../logo.png"
-                                alt="logout-button"
-                            />
-                        </div>
-                        <div className="navbar-container">
-                            <Link to="/">Profile</Link>
-                            <Link to="/users">Find Users</Link>
-                            <Link to="/friends">Friends</Link>
-                            {/* <a href="/logout" className="logout">
-                                Logout
-                            </a> */}
+                            <Link to="/">
+                                <img
+                                    className="logo-small"
+                                    src="../logo.png"
+                                    alt="logout-button"
+                                />
+                            </Link>
                         </div>
                         <div className="profile-small-container">
-                            <a href="/logout">
-                                <img src="../logout.png" className="logout" />
-                            </a>
                             <ProfilePic
                                 id={this.state.id}
                                 firstName={this.state.firstName}
@@ -82,8 +79,8 @@ export default class App extends Component {
                                     this.state.imgUrl || "default_user.jpeg"
                                 }
                                 toggleUploader={this.toggleUploader}
-                                className=""
                             />
+                            <Menu />
                         </div>
                     </header>
 

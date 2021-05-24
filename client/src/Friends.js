@@ -31,111 +31,123 @@ export default function Friends() {
     }
 
     return (
-        <div>
-            <div className="friends-container">
-                <ul>
-                    <h2>You have {friends.length} friends</h2>
-                    <div className="align-users">
-                        {friends &&
-                            friends.map((user, index) => {
-                                const {
-                                    id,
-                                    first_name,
-                                    last_name,
-                                    img_url,
-                                } = user;
-                                console.log(user);
-                                return (
-                                    <>
-                                        <div className="other-users-information center">
-                                            <Link
-                                                key={index}
-                                                to={`/user/${id}`}
-                                            >
-                                                <div className="other-user-container">
-                                                    <img
-                                                        key={img_url}
-                                                        src={
-                                                            img_url ||
-                                                            "default_user.jpeg"
-                                                        }
-                                                        alt={`${first_name} ${last_name}`}
-                                                    />
-                                                    <p key={first_name}>
-                                                        {first_name} {last_name}
-                                                    </p>
-                                                </div>
-                                            </Link>
-                                            <button
-                                                key={unfriend}
-                                                onClick={() =>
-                                                    dispatch(unfriend(id))
-                                                }
-                                            >
-                                                Unfriend
-                                            </button>
-                                        </div>
-                                    </>
-                                );
-                            })}
-                    </div>
-                </ul>
-            </div>
-            <div className="request-container">
-                <ul>
-                    <h2>You have {requests.length} friend requests</h2>
-                    <div className="align-users">
-                        {requests &&
-                            requests.map((user, index) => {
-                                const {
-                                    id,
-                                    first_name,
-                                    last_name,
-                                    img_url,
-                                } = user;
-                                console.log(user);
-                                return (
-                                    <>
-                                        <div className="other-users-information center">
-                                            <Link
-                                                key={index}
-                                                to={`/user/${id}`}
-                                            >
-                                                <div>
-                                                    <img
-                                                        key={img_url}
-                                                        src={
-                                                            img_url ||
-                                                            "default_user.jpeg"
-                                                        }
-                                                        alt={`${first_name} ${last_name}`}
-                                                    />
-                                                    <p key={first_name}>
-                                                        {first_name} {last_name}
-                                                    </p>
-                                                </div>
-                                            </Link>
-                                            <button
-                                                key={addFriend}
-                                                onClick={() =>
-                                                    dispatch(addFriend(id))
-                                                }
-                                            >
-                                                Accept
-                                            </button>
-                                            <button
-                                                onClick={() =>
-                                                    dispatch(unfriend(id))
-                                                }
-                                            >
-                                                Decline
-                                            </button>
-                                        </div>
-                                    </>
-                                );
-                            })}
-                    </div>
-                </ul>
+        <div className="content">
+            <div className="profile-search">
+                <div className="friends-container">
+                    <ul>
+                        <h2>You have {friends.length} friends</h2>
+                        <div className="profile-search-output">
+                            {friends &&
+                                friends.map((user, index) => {
+                                    const {
+                                        id,
+                                        first_name,
+                                        last_name,
+                                        img_url,
+                                    } = user;
+                                    console.log(user);
+                                    return (
+                                        <>
+                                            <div className="other-profile-top">
+                                                <Link
+                                                    key={index}
+                                                    to={`/user/${id}`}
+                                                >
+                                                    <div className="profile-picture">
+                                                        <div className="profile-picture-container">
+                                                            <img
+                                                                key={img_url}
+                                                                src={
+                                                                    img_url ||
+                                                                    "default_user.jpeg"
+                                                                }
+                                                                alt={`${first_name} ${last_name}`}
+                                                            />
+                                                            <p key={first_name}>
+                                                                {first_name}{" "}
+                                                                {last_name}
+                                                            </p>
+                                                            <div className="spacer"></div>
+                                                        </div>
+                                                    </div>
+                                                </Link>
+                                                <button
+                                                    key={unfriend}
+                                                    onClick={() =>
+                                                        dispatch(unfriend(id))
+                                                    }
+                                                >
+                                                    Unfriend
+                                                </button>
+                                                <div className="spacer"></div>
+                                            </div>
+                                        </>
+                                    );
+                                })}
+                        </div>
+                    </ul>
+                </div>
+                <div className="request-container">
+                    <ul>
+                        <h2>You have {requests.length} friend requests</h2>
+                        <div className="profile-search-output">
+                            {requests &&
+                                requests.map((user, index) => {
+                                    const {
+                                        id,
+                                        first_name,
+                                        last_name,
+                                        img_url,
+                                    } = user;
+                                    console.log(user);
+                                    return (
+                                        <>
+                                            <div className="other-profile-top">
+                                                <Link
+                                                    key={index}
+                                                    to={`/user/${id}`}
+                                                >
+                                                    <div className="profile-picture">
+                                                        <div className="profile-picture-container">
+                                                            <img
+                                                                key={img_url}
+                                                                src={
+                                                                    img_url ||
+                                                                    "default_user.jpeg"
+                                                                }
+                                                                alt={`${first_name} ${last_name}`}
+                                                            />
+                                                            <p key={first_name}>
+                                                                {first_name}{" "}
+                                                                {last_name}
+                                                            </p>
+                                                            <div className="spacer"></div>
+                                                        </div>
+                                                    </div>
+                                                </Link>
+                                                <button
+                                                    key={addFriend}
+                                                    onClick={() =>
+                                                        dispatch(addFriend(id))
+                                                    }
+                                                >
+                                                    Accept
+                                                </button>
+                                                <button
+                                                    onClick={() =>
+                                                        dispatch(unfriend(id))
+                                                    }
+                                                >
+                                                    Decline friend request
+                                                </button>
+                                                <div className="spacer"></div>
+                                            </div>
+                                        </>
+                                    );
+                                })}
+                        </div>
+                    </ul>
+                </div>
             </div>
         </div>
     );

@@ -1,11 +1,9 @@
-import ProfilePic from "./ProfilePic";
 import BioEditor from "./Bio";
-import FriendButton from "./FriendButton";
 
 export default function Profile(props) {
     console.log("Props in Profile: ", props);
     return (
-        <div className="content">
+        <div className="profile-content">
             <div className="profile-top">
                 <div className="profile-picture">
                     <div className="profile-picture-container">
@@ -43,8 +41,36 @@ export default function Profile(props) {
                         know how to pursue pleasure rationally encounter
                         consequences that are extremely painful.{" "}
                     </p>
+                    <h4>Favorite song:</h4>
+                    <p>Who let the dogs out?</p>
+                    <h4>We are looking for:</h4>
+                    <p>
+                        a cool dog owner with another female dog to cruise the
+                        parks of Berlin
+                    </p>
                 </div>
-                <div className="profile-container-dog"></div>
+                <div className="profile-container-dog">
+                    <div className="dog-image-container">
+                        <img src="./dog-default.jpeg" />
+                    </div>
+                    <div className="dog-info-container">
+                        <h2>Hi, I am Lola!</h2>
+                        <div className="spacer"></div>
+                        <p>Height: 24 inches</p>
+                        <div className="spacer"></div>
+                        <h4>I like:</h4>
+                        <p>
+                            long walks, puddles and sleeping on the human&apos;s
+                            bed
+                        </p>
+                        <div className="spacer"></div>
+                        <h4>I don&apos;t like:</h4>
+                        <p>
+                            the vacuum, I definitely feel a sinister vibe coming
+                            from it!
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     );
