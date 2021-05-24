@@ -28,7 +28,10 @@ export default class Menu extends Component {
                 )}
                 {this.state.showMenu && (
                     <>
-                        <div className="overlay"></div>
+                        <div
+                            className="overlay"
+                            onClick={() => this.toggleMenu()}
+                        ></div>
                         <div className="navbar-container">
                             <span
                                 className="close-navbar-button clicked"
@@ -40,9 +43,10 @@ export default class Menu extends Component {
                                 className="links-navbar"
                                 onClick={() => this.toggleMenu()}
                             >
-                                <Link to="/">Profile</Link>
                                 <Link to="/users">Find Users</Link>
                                 <Link to="/friends">Friends</Link>
+                                <Link to="/">Profile</Link>
+
                                 <a href="/logout" className="logout">
                                     Logout
                                 </a>

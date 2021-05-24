@@ -45,9 +45,15 @@ export default class login extends Component {
                         </div>
                         <div className="registration-container">
                             <div className="registration-text-container">
-                                <h1 className="text-login">Back for good?</h1>
-
-                                <h2>Please sign in</h2>
+                                <div className="registration-text">
+                                    <h1 className="text-login">
+                                        Back for good?
+                                    </h1>
+                                    <h2>Please sign in</h2>
+                                </div>
+                                <div className="logo-small">
+                                    <img src="../logo2.png" />
+                                </div>
                             </div>
                             <div className="registration-form-container">
                                 {this.state.error && (

@@ -14,6 +14,9 @@ export default class Uploader extends Component {
         this.setState({
             [target.name]: target.files[0],
         });
+        if (target.files[0]) {
+            preview.src = URL.createObjectURL(target.files[0]);
+        }
     }
 
     async handleSubmit(e) {
@@ -35,24 +38,28 @@ export default class Uploader extends Component {
     render() {
         return (
             <>
-                <div className="overlay"></div>
+                <div
+                    className="overlay"
+                    onClick={this.props.toggleUploader}
+                ></div>
                 <div className="modal-container">
                     <div className="modal-text-container">
                         <h3>Update your profile picture</h3>
+                        <input
+                            type="file"
+                            name="file"
+                            className="inputfile"
+                            onChange={(e) => this.handleChange(e)}
+                        ></input>
                     </div>
 
-                    <input
-                        type="file"
-                        name="file"
-                        className="inputfile"
-                        onChange={(e) => this.handleChange(e)}
-                    ></input>
+                    <img id="preview" src="#" alt="your image" />
                     <div className="modal-buttons">
                         <button onClick={(e) => this.handleSubmit(e)}>
-                            Upload
+                            Upload Image
                         </button>
                         <button href="#" onClick={this.props.toggleUploader}>
-                            Cancel
+                            Cancel Upload
                         </button>
                     </div>
                 </div>

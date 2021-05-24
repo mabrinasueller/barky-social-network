@@ -8,6 +8,7 @@ import OtherProfile from "./OtherProfile";
 import FindPeople from "./FindPeople";
 import Friends from "./Friends";
 import Menu from "./Menu";
+// import DarkMode from "./DarkMode";
 
 export default class App extends Component {
     constructor(props) {
@@ -18,7 +19,6 @@ export default class App extends Component {
         this.toggleUploader = this.toggleUploader.bind(this);
         this.updateProfilePic = this.updateProfilePic.bind(this);
         this.setBio = this.setBio.bind(this);
-        this.toggleMenu = this.toggleMenu.bind(this);
     }
     async componentDidMount() {
         try {
@@ -52,10 +52,6 @@ export default class App extends Component {
         });
     }
 
-    toggleMenu() {
-        console.log("Hamburger was clicked");
-    }
-
     render() {
         return (
             <div>
@@ -65,12 +61,13 @@ export default class App extends Component {
                             <Link to="/">
                                 <img
                                     className="logo-small"
-                                    src="../logo.png"
-                                    alt="logout-button"
+                                    src="../logo2.png"
+                                    alt="logo"
                                 />
                             </Link>
                         </div>
                         <div className="profile-small-container">
+                            {/* <DarkMode /> */}
                             <ProfilePic
                                 id={this.state.id}
                                 firstName={this.state.firstName}

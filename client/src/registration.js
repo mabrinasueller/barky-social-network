@@ -39,12 +39,17 @@ export default class Registration extends Component {
             <div className="register-background-container">
                 <div className="register-container-big">
                     <div className="logo-container">
-                        <img src="./test2.jpeg" />
+                        <img src="./test2.jpeg" className="remove-on-mobile" />
                     </div>
                     <div className="registration-container">
                         <div className="registration-text-container">
-                            <h1>So glad to have you here!</h1>
-                            <h2>Create new account</h2>
+                            <div className="registration-text">
+                                <h1>So glad to have you here!</h1>
+                                <h2>Create new account</h2>
+                            </div>
+                            <div className="logo-small">
+                                <img src="../logo2.png" />
+                            </div>
                         </div>
                         <div className="registration-form-container">
                             {this.state.error && (
