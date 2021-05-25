@@ -30,14 +30,14 @@ export default function reducer(state = {}, action) {
     if (action.type === "LAST_MESSAGES") {
         state = {
             ...state,
-            messages: action.msgs,
+            chatMessages: action.payload,
         };
     }
 
     if (action.type === "NEW_MESSAGE") {
         state = {
             ...state,
-            messages: action.messages + action.message,
+            chatMessages: [...state.chatMessages, action.msg],
         };
     }
 

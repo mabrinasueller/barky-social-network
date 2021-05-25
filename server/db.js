@@ -125,6 +125,6 @@ module.exports.insertChatMessage = (message, userId) => {
 };
 module.exports.getLastChats = () => {
     return db.query(
-        `SELECT users.id, first_name, last_name, img_url, message, sender_id FROM chat JOIN users ON users.id = sender_id ORDER BY id DESC LIMIT 10`
+        `SELECT users.id, first_name, last_name, img_url, message, chat.created_at FROM users JOIN chat ON chat.sender_id = users.id ORDER BY chat.created_at DESC LIMIT 10`
     );
 };

@@ -64,7 +64,7 @@ export async function chatMessage(msg) {
     console.log("message", msg);
     return {
         type: "NEW_MESSAGE",
-        payload: msg,
+        msg,
     };
 }
 
@@ -75,6 +75,3 @@ export async function chatMessages(msgs) {
         payload: msgs,
     };
 }
-
-// const ChatMessages = {};
-// const ChatMessage = {};

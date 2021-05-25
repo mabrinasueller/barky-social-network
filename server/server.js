@@ -142,7 +142,18 @@ io.on("connection", function (socket) {
     const userId = socket.request.session.userId;
     console.log(userId);
 
-    socket.on("chatMessages", async (msg) => {
+    (async () => {
+        try {
+            const { rows } = await getLastChats();
+            console.log("Rows2: ", rows);
+            console.log("Test");
+            io.sockets.emit("chatMessages", rows);
+        } catch (error) {
+            console.log("Error in new Message: ", error);
+        }
+    })();
+
+    socket.on("chatMessage", async (msg) => {
         console.log("test2: ", msg);
         const message = msg;
         console.log("message: ", message);
@@ -150,11 +161,20 @@ io.on("connection", function (socket) {
         try {
             const result = await insertChatMessage(message, userId);
             console.log("Result: ", result);
+            const { rows } = await getUser(userId);
+            console.log("Rows: ", rows);
+
+            const dataForChat = {
+                message: result.rows[0].message,
+                created_at: result.rows[0].created_at,
+                first_name: rows[0].first_name,
+                last_name: rows[0].last_name,
+                img_url: rows[0].img_url,
+            };
+            console.log("all that: ", dataForChat);
+            io.sockets.emit("chatMessage", dataForChat);
         } catch (error) {
             console.log("Error at inserting chat-message: ", error);
         }
-        io.sockets.emit("muffin", message);
     });
-
-    /* ... */
 });

@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 
 export default function Chat() {
     const chatMessages = useSelector((state) => state && state.chatMessages);
+    console.log("chat: ", chatMessages);
     const elemRef = useRef();
 
     useEffect(() => {
@@ -38,7 +39,11 @@ export default function Chat() {
             <div className="chat-message-container" ref={elemRef}>
                 {chatMessages &&
                     chatMessages.map((message, index) => {
-                        return <></>;
+                        return (
+                            <>
+                                <p key={index}>{message.message}</p>
+                            </>
+                        );
                     })}
                 <textarea
                     onKeyDown={handleKeyDown}
