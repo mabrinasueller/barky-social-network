@@ -18,7 +18,7 @@ export default function Friends() {
     //     (state) =>
     //         state.user &&
     //         state.users.filter(
-    //             (user) => user.accepted === false && user.id != id
+    //             (user) => (user.accepted === false && user.id != sender_id)
     //         )
     // );
 
@@ -38,7 +38,7 @@ export default function Friends() {
                         <h2>You have {friends.length} friends</h2>
                         <div className="profile-search-output">
                             {friends &&
-                                friends.map((user, index) => {
+                                friends.map((user) => {
                                     const {
                                         id,
                                         first_name,
@@ -50,20 +50,19 @@ export default function Friends() {
                                         <>
                                             <div className="other-profile-top">
                                                 <Link
-                                                    key={index}
+                                                    key={id}
                                                     to={`/user/${id}`}
                                                 >
                                                     <div className="profile-picture">
                                                         <div className="profile-picture-container">
                                                             <img
-                                                                key={img_url}
                                                                 src={
                                                                     img_url ||
                                                                     "default_user.jpeg"
                                                                 }
                                                                 alt={`${first_name} ${last_name}`}
                                                             />
-                                                            <p key={first_name}>
+                                                            <p>
                                                                 {first_name}{" "}
                                                                 {last_name}
                                                             </p>
@@ -72,7 +71,6 @@ export default function Friends() {
                                                     </div>
                                                 </Link>
                                                 <button
-                                                    key={unfriend}
                                                     onClick={() =>
                                                         dispatch(unfriend(id))
                                                     }
@@ -92,7 +90,7 @@ export default function Friends() {
                         <h2>You have {requests.length} friend requests</h2>
                         <div className="profile-search-output">
                             {requests &&
-                                requests.map((user, index) => {
+                                requests.map((user) => {
                                     const {
                                         id,
                                         first_name,
@@ -104,20 +102,19 @@ export default function Friends() {
                                         <>
                                             <div className="other-profile-top">
                                                 <Link
-                                                    key={index}
+                                                    key={id}
                                                     to={`/user/${id}`}
                                                 >
                                                     <div className="profile-picture">
                                                         <div className="profile-picture-container">
                                                             <img
-                                                                key={img_url}
                                                                 src={
                                                                     img_url ||
                                                                     "default_user.jpeg"
                                                                 }
                                                                 alt={`${first_name} ${last_name}`}
                                                             />
-                                                            <p key={first_name}>
+                                                            <p>
                                                                 {first_name}{" "}
                                                                 {last_name}
                                                             </p>
@@ -126,7 +123,6 @@ export default function Friends() {
                                                     </div>
                                                 </Link>
                                                 <button
-                                                    key={addFriend}
                                                     onClick={() =>
                                                         dispatch(addFriend(id))
                                                     }

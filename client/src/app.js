@@ -8,6 +8,7 @@ import OtherProfile from "./OtherProfile";
 import FindPeople from "./FindPeople";
 import Friends from "./Friends";
 import Menu from "./Menu";
+import Chat from "./Chat";
 // import DarkMode from "./DarkMode";
 
 export default class App extends Component {
@@ -109,8 +110,9 @@ export default class App extends Component {
                             />
                         )}
                     />
-                    <Route path="/users" render={() => <FindPeople />} />
-                    <Route path="/friends" render={() => <Friends />} />
+                    <Route path="/users" component={FindPeople} />
+                    <Route path="/friends" component={Friends} />
+                    <Route path="/chat" component={Chat} />
                 </BrowserRouter>
                 {this.state.uploaderIsVisible && (
                     <Uploader

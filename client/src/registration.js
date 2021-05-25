@@ -44,8 +44,8 @@ export default class Registration extends Component {
                     <div className="registration-container">
                         <div className="registration-text-container">
                             <div className="registration-text">
-                                <h1>So glad to have you here!</h1>
-                                <h2>Create new account</h2>
+                                {/* <h1>Get started!</h1>
+                                <h2>Create new account</h2> */}
                             </div>
                             <div className="logo-small">
                                 <img src="../logo2.png" />

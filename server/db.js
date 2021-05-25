@@ -106,7 +106,7 @@ module.exports.deleteConnection = (user1, user2) => {
 
 module.exports.getFriendsAndRequests = (userId) => {
     return db.query(
-        `SELECT users.id, first_name, last_name, img_url, accepted
+        `SELECT users.id, first_name, last_name, img_url, accepted, sender_id
     FROM friends
     JOIN users
     ON (accepted = false AND recipient_id = $1 AND sender_id = users.id)
@@ -114,5 +114,17 @@ module.exports.getFriendsAndRequests = (userId) => {
     OR (accepted = true AND sender_id = $1 AND recipient_id = users.id)
     OR (accepted = false AND sender_id = $1 AND recipient_id = users.id)`,
         [userId]
+    );
+};
+
+module.exports.insertChatMessage = (message, userId) => {
+    return db.query(
+        `INSERT INTO chat (message, sender_id) VALUES ($1, $2) RETURNING *`,
+        [message, userId]
+    );
+};
+module.exports.getLastChats = () => {
+    return db.query(
+        `SELECT users.id, first_name, last_name, img_url, message, sender_id FROM chat JOIN users ON users.id = sender_id ORDER BY id DESC LIMIT 10`
     );
 };

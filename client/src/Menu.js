@@ -44,6 +44,7 @@ export default class Menu extends Component {
                                 onClick={() => this.toggleMenu()}
                             >
                                 <Link to="/users">Find Users</Link>
+                                <Link to="/chat">Chat</Link>
                                 <Link to="/friends">Friends</Link>
                                 <Link to="/">Profile</Link>
 

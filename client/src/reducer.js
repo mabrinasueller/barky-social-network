@@ -27,5 +27,19 @@ export default function reducer(state = {}, action) {
         };
     }
 
+    if (action.type === "LAST_MESSAGES") {
+        state = {
+            ...state,
+            messages: action.msgs,
+        };
+    }
+
+    if (action.type === "NEW_MESSAGE") {
+        state = {
+            ...state,
+            messages: action.messages + action.message,
+        };
+    }
+
     return state;
 }

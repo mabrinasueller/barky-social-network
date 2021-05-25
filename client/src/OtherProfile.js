@@ -44,3 +44,11 @@ export default class OtherProfile extends Component {
         );
     }
 }
+
+// export default function OtherProfile(){
+//     const dispatch = useDispatch();
+//     const otherProfile = useSelector(
+//         (state) => state.user
+
+//     )
+// }

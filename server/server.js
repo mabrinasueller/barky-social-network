@@ -12,7 +12,7 @@ const compression = require("compression");
 const path = require("path");
 const csurf = require("csurf");
 
-const { getUser, newImage } = require("./db");
+const { getUser, newImage, insertChatMessage, getLastChats } = require("./db");
 
 const s3 = require("./s3");
 const { s3Url } = require("./config.json");
@@ -26,12 +26,23 @@ if (process.env.COOKIE_SECRET) {
     cookieSecret = require("../secrets.json")[0].COOKIE_SECRET;
 }
 
-app.use(
-    cookieSession({
-        secret: cookieSecret,
-        maxAge: 1000 * 60 * 60 * 24 * 14,
-    })
-);
+// app.use(
+//     cookieSession({
+//         secret: cookieSecret,
+//         maxAge: 1000 * 60 * 60 * 24 * 14,
+//     })
+// );
+
+const cookieSessionMiddleware = cookieSession({
+    secret: cookieSecret,
+    maxAge: 1000 * 60 * 60 * 24 * 90,
+});
+
+app.use(cookieSessionMiddleware);
+io.use(function (socket, next) {
+    cookieSessionMiddleware(socket.request, socket.request.res, next);
+});
+
 app.use((req, res, next) => {
     res.locals.fname = req.session.fname;
     next();
@@ -123,21 +134,27 @@ server.listen(process.env.PORT || 3001, function () {
 });
 
 io.on("connection", function (socket) {
-    console.log(`socket with the id ${socket.id} is now connected`);
+    console.log(`socket with id ${socket.id} is connected`);
+    if (!socket.request.session.userId) {
+        return socket.disconnect(true);
+    }
 
-    socket.on("disconnect", function () {
-        console.log(`socket with the id ${socket.id} is now disconnected`);
+    const userId = socket.request.session.userId;
+    console.log(userId);
+
+    socket.on("chatMessages", async (msg) => {
+        console.log("test2: ", msg);
+        const message = msg;
+        console.log("message: ", message);
+
+        try {
+            const result = await insertChatMessage(message, userId);
+            console.log("Result: ", result);
+        } catch (error) {
+            console.log("Error at inserting chat-message: ", error);
+        }
+        io.sockets.emit("muffin", message);
     });
 
-    socket.emit("Hello", {
-        message: "Bonjour",
-    });
-
-    socket.on("thanks", function (data) {
-        console.log(data);
-    });
-
-    socket.emit("welcome", {
-        message: "Welome. It is nice to see you",
-    });
+    /* ... */
 });

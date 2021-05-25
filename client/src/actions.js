@@ -58,4 +58,23 @@ export async function unfriend(id) {
 //     }catch(error){
 //         console.log("Error in ")
 //     }
-// }
+// // }
+
+export async function chatMessage(msg) {
+    console.log("message", msg);
+    return {
+        type: "NEW_MESSAGE",
+        payload: msg,
+    };
+}
+
+export async function chatMessages(msgs) {
+    console.log("messages", msgs);
+    return {
+        type: "LAST_MESSAGES",
+        payload: msgs,
+    };
+}
+
+// const ChatMessages = {};
+// const ChatMessage = {};
