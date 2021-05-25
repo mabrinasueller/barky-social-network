@@ -28,7 +28,7 @@ export default function Chat() {
         if (e.key === "Enter") {
             e.preventDefault();
             console.log("user is typing: ", e.target.value);
-            socket.emit("chatMessages", e.target.value);
+            socket.emit("chatMessage", e.target.value);
             e.target.value = "";
         }
     };
@@ -42,6 +42,11 @@ export default function Chat() {
                         return (
                             <>
                                 <p key={index}>{message.message}</p>
+                                <p>
+                                    {" "}
+                                    {message.first_name} {message.last_name}
+                                </p>
+                                <img src={message.img_url} />
                             </>
                         );
                     })}

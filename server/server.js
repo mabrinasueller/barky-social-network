@@ -147,7 +147,7 @@ io.on("connection", function (socket) {
             const { rows } = await getLastChats();
             console.log("Rows2: ", rows);
             console.log("Test");
-            io.sockets.emit("chatMessages", rows);
+            io.sockets.emit("chatMessages", rows.reverse());
         } catch (error) {
             console.log("Error in new Message: ", error);
         }
