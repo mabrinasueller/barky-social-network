@@ -140,13 +140,10 @@ io.on("connection", function (socket) {
     }
 
     const userId = socket.request.session.userId;
-    console.log(userId);
 
     (async () => {
         try {
             const { rows } = await getLastChats();
-            console.log("Rows2: ", rows);
-            console.log("Test");
             io.sockets.emit("chatMessages", rows.reverse());
         } catch (error) {
             console.log("Error in new Message: ", error);
@@ -154,15 +151,11 @@ io.on("connection", function (socket) {
     })();
 
     socket.on("chatMessage", async (msg) => {
-        console.log("test2: ", msg);
         const message = msg;
-        console.log("message: ", message);
 
         try {
             const result = await insertChatMessage(message, userId);
-            console.log("Result: ", result);
             const { rows } = await getUser(userId);
-            console.log("Rows: ", rows);
 
             const dataForChat = {
                 message: result.rows[0].message,
@@ -171,7 +164,7 @@ io.on("connection", function (socket) {
                 last_name: rows[0].last_name,
                 img_url: rows[0].img_url,
             };
-            console.log("all that: ", dataForChat);
+
             io.sockets.emit("chatMessage", dataForChat);
         } catch (error) {
             console.log("Error at inserting chat-message: ", error);

@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { socket } from "./Socket";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 export default function Chat() {
     const chatMessages = useSelector((state) => state && state.chatMessages);
@@ -10,15 +11,15 @@ export default function Chat() {
     useEffect(() => {
         console.log("mounted");
 
-        console.log("elemRef.current.scrollTop: ", elemRef.current.scrollTop);
-        console.log(
-            "elemRef.current.clientHeight: ",
-            elemRef.current.clientHeight
-        );
-        console.log(
-            "elemRef.current.scrollHeight: ",
-            elemRef.current.scrollHeight
-        );
+        // console.log("elemRef.current.scrollTop: ", elemRef.current.scrollTop);
+        // console.log(
+        //     "elemRef.current.clientHeight: ",
+        //     elemRef.current.clientHeight
+        // );
+        // console.log(
+        //     "elemRef.current.scrollHeight: ",
+        //     elemRef.current.scrollHeight
+        // );
 
         elemRef.current.scrollTop =
             elemRef.current.scrollHeight - elemRef.current.clientHeight;
@@ -36,23 +37,54 @@ export default function Chat() {
     return (
         <>
             <h1>Chat Room</h1>
-            <div className="chat-message-container" ref={elemRef}>
-                {chatMessages &&
-                    chatMessages.map((message, index) => {
-                        return (
-                            <>
-                                <p key={index}>{message.message}</p>
-                                <p>
-                                    {" "}
-                                    {message.first_name} {message.last_name}
-                                </p>
-                                <img src={message.img_url} />
-                            </>
-                        );
-                    })}
+            <div className="profile">
+                <div className="chat-message-container" ref={elemRef}>
+                    {chatMessages &&
+                        chatMessages.map((message, index) => {
+                            const {
+                                first_name,
+                                last_name,
+                                img_url,
+                                created_at,
+                                id,
+                            } = message;
+                            return (
+                                <>
+                                    <div className="single-chat-container">
+                                        <div className="chat-image-container">
+                                            <Link to={`/user/${id}`}>
+                                                <img
+                                                    src={img_url}
+                                                    alt={`${first_name} ${last_name}`}
+                                                    className="chat-image"
+                                                />
+                                            </Link>
+                                        </div>
+
+                                        <div className="chat-user-container">
+                                            <div className="chat-text-container">
+                                                <p>
+                                                    {" "}
+                                                    {first_name} {last_name}{" "}
+                                                    <span className="created-at">
+                                                        {created_at}
+                                                    </span>
+                                                </p>
+
+                                                <p key={index}>
+                                                    {message.message}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </>
+                            );
+                        })}
+                </div>
                 <textarea
                     onKeyDown={handleKeyDown}
                     placeholder="Type your message here"
+                    className="chat-textarea"
                 ></textarea>
             </div>
         </>

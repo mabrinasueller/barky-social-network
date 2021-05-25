@@ -716,6 +716,31 @@ figure {
 }
 
 .chat-message-container {
-    height: 200px;
+    height: 300px;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+img.chat-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.chat-textarea {
+    width: 100%;
+}
+
+.chat-user-container {
+    display: flex;
+    flex: 1;
+}
+
+.chat-image-container {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
 }
