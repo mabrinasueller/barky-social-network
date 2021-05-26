@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 import axios from "./axios";
 
-export default function deleteUser(userId) {
+export default function deleteUser() {
     console.log("Testy is besty");
     const handleConfirm = async () => {
         console.log("Delete button got clicked");
         try {
-            await axios.get(`/delete/${userId}`);
+            const { data } = await axios.post("/delete");
+            console.log("data: ", data);
+            location.reload();
         } catch (error) {
             console.log("Error in /delete-route: ", error);
         }
@@ -20,6 +22,7 @@ export default function deleteUser(userId) {
                         <div className="registration-text-container">
                             <div className="registration-text">
                                 <h1>Testy for Delete-user</h1>
+
                                 <button onClick={handleConfirm}>
                                     Delete my account
                                 </button>

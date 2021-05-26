@@ -135,18 +135,19 @@ require("../server/routes/user-search");
 require("../server/routes/connections");
 require("../server/routes/friend-requests");
 
-app.get("/delete/:id", s3.delete, async (req, res) => {
+app.post("/delete", async (req, res) => {
     const { userId } = req.session;
     try {
         const result = await getUser(userId);
-        await s3.delete(result.rows[0].img_url);
+        result.rows[0].img_url && (await s3.delete(result.rows[0].img_url));
         await deleteUserChats(userId);
         await deleteUserConnections(userId);
         await deleteUserInfos(userId);
+        console.log("Deleted user");
         req.session = null;
         res.redirect("/welcome");
     } catch (error) {
-        console.log("Error in /delete- route");
+        console.log(("Error in /delete- route:", error));
     }
 });
 

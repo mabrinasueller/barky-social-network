@@ -13,12 +13,15 @@ export default function Friends() {
 
     const requests = useSelector(
         (state) =>
-            state.users && state.users.filter((user) => user.accepted === false)
+            state.users &&
+            state.users.filter(
+                (user) => user.accepted === false && user.wannabe
+            )
     );
 
     const sendRequests = useSelector(
         (state) =>
-            state.user &&
+            state.users &&
             state.users.filter(
                 (user) => user.wannabe === false && user.accepted === false
             )
@@ -151,10 +154,10 @@ export default function Friends() {
                 </div>
                 <div className="request-container">
                     <ul>
-                        {/* <h2>
+                        <h2>
                             You have {sendRequests.length} pending friend
                             requests
-                        </h2> */}
+                        </h2>
                         <div className="profile-search-output">
                             {sendRequests &&
                                 sendRequests.map((user) => {

@@ -12,7 +12,7 @@ export default class login extends Component {
     }
     async submit() {
         try {
-            const { data } = axios.post("/login", {
+            const { data } = await axios.post("/login", {
                 email: this.state.email,
                 password: this.state.password,
             });
@@ -62,41 +62,36 @@ export default class login extends Component {
                                     </div>
                                 )}
 
-                                <form className="form">
-                                    <div className="form-group">
-                                        <input
-                                            type="email"
-                                            placeholder="woof@example.com"
-                                            className="form-input"
-                                            name="email"
-                                            required
-                                            onChange={(e) =>
-                                                this.handleChange(e)
-                                            }
-                                        />
-                                    </div>
+                                <div className="form-group">
+                                    <input
+                                        type="email"
+                                        placeholder="woof@example.com"
+                                        className="form-input"
+                                        name="email"
+                                        required
+                                        onChange={(e) => this.handleChange(e)}
+                                    />
+                                </div>
 
-                                    <div className="form-group">
-                                        <input
-                                            type="password"
-                                            placeholder="Password"
-                                            className="form-input"
-                                            name="password"
-                                            required
-                                            onChange={(e) =>
-                                                this.handleChange(e)
-                                            }
-                                        />
-                                    </div>
-                                    <div className="breaker"></div>
-                                    <button
-                                        className="form-button"
-                                        type="submit"
-                                        onClick={() => this.submit()}
-                                    >
-                                        Log In
-                                    </button>
-                                </form>
+                                <div className="form-group">
+                                    <input
+                                        type="password"
+                                        placeholder="Password"
+                                        className="form-input"
+                                        name="password"
+                                        required
+                                        onChange={(e) => this.handleChange(e)}
+                                    />
+                                </div>
+                                <div className="breaker"></div>
+                                <button
+                                    className="form-button"
+                                    type="submit"
+                                    onClick={() => this.submit()}
+                                >
+                                    Log In
+                                </button>
+
                                 <div className="passwort-reset-link">
                                     <Link to="/password-reset">
                                         I forgot my password

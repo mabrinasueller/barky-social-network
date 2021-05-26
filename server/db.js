@@ -136,14 +136,17 @@ module.exports.getLastChats = () => {
     );
 };
 
-// module.exports.deleteUserInfos = (userId) => {
-//     return db.query(`DELETE * FROM users WHERE user_id = $1`, [userId]);
-// };
+module.exports.deleteUserInfos = (userId) => {
+    return db.query(`DELETE FROM users WHERE id = $1`, [userId]);
+};
 
-// module.exports.deleteUserConnections = (userId) => {
-//     return db.query(`DELETE * FROM friends WHERE user_id = $1`, [userId]);
-// };
+module.exports.deleteUserConnections = (userId) => {
+    return db.query(
+        `DELETE FROM friends WHERE recipient_id = $1 OR sender_id = $1`,
+        [userId]
+    );
+};
 
-// module.exports.deleteUserChats = (userId) => {
-//     return db.query(`DELETE * FROM chat WHERE user_id = $1`, [userId]);
-// };
+module.exports.deleteUserChats = (userId) => {
+    return db.query(`DELETE FROM chat WHERE sender_id = $1`, [userId]);
+};
