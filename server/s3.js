@@ -51,14 +51,3 @@ exports.delete = (imgUrl) => {
             console.log("File deleted successfully");
         });
 };
-
-// exports.delete = async (imgUrl) => {
-//     try {
-//         await s3
-//             .deleteObject({ Bucket: "mabrinasbucket", Key: imgUrl })
-//             .promise();
-//         console.log("File deleted successfully");
-//     } catch (error) {
-//         console.log("Error in deleting file: ", error);
-//     }
-// };

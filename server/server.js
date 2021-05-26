@@ -115,7 +115,6 @@ app.post("/upload", uploader.single("file"), s3.upload, async (req, res) => {
         var fullUrl = s3Url + filename;
         try {
             const result = await getUser(userId);
-            console.log("result: ", result);
             if (result.rows[0].img_url != null) {
                 await s3.delete(result.rows[0].img_url);
             } else {
@@ -143,7 +142,6 @@ app.post("/delete", async (req, res) => {
         await deleteUserChats(userId);
         await deleteUserConnections(userId);
         await deleteUserInfos(userId);
-        console.log("Deleted user");
         req.session = null;
         res.redirect("/welcome");
     } catch (error) {
