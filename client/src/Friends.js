@@ -18,7 +18,7 @@ export default function Friends() {
     //     (state) =>
     //         state.user &&
     //         state.users.filter(
-    //             (user) => (user.accepted === false && user.id != sender_id)
+    //             (user) => user.accepted === false && user.id != sender_id
     //         )
     // );
 

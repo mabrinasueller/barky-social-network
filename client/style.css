@@ -744,3 +744,27 @@ img.chat-image {
     flex-direction: row;
     flex: 1;
 }
+
+.goodbye-container {
+    display: flex;
+    width: 400px;
+    height: 100%;
+    /* margin: 10px 50px 50px 50px; */
+    flex-wrap: wrap;
+    padding: 50px;
+}
+
+.goodbye-message {
+    font-family: "Work Sans", sans-serif;
+    font-weight: bold 800;
+    font-size: 75px;
+    line-height: 90px;
+    align-self: center;
+    color: #f94144;
+    text-shadow: 1px 1px #ae2012, 2px 2px #ae2012, 3px 3px #ae2012,
+        4px 4px #ae2012, 5px 5px #bb3e03, 6px 6px #bb3e03, 7px 7px #bb3e03,
+        8px 8px #bb3e03, 9px 9px #ca6702, 10px 10px #ca6702, 11px 11px #ca6702,
+        12px 12px #ca6702, 13px 13px #e84855, 14px 14px #e84855,
+        15px 15px #e84855, 16px 16px #e84855, 17px 17px #ee9b00,
+        18px 18px #ee9b00, 19px 19px #ee9b00, 20px 20px #ee9b00;
+}

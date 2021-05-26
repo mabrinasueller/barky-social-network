@@ -48,17 +48,18 @@ export async function unfriend(id) {
     }
 }
 
-// export async function cancelRequest(id) {
-//     const btnText = "Cancel friend request";
-//     try {
-//         const { data } = await axios.post("/connections", {
-//             viewedUser: id,
-//             btnText,
-//         });
-//     }catch(error){
-//         console.log("Error in ")
-//     }
-// // }
+export async function cancelRequest(id) {
+    const btnText = "Cancel friend request";
+    try {
+        const { data } = await axios.post("/connections", {
+            viewedUser: id,
+            btnText,
+        });
+        console.log("data in cancel: ", data);
+    } catch (error) {
+        console.log("Error in cancel-route: ", error);
+    }
+}
 
 export async function chatMessage(msg) {
     console.log("message", msg);

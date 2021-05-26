@@ -51,6 +51,10 @@ export default class Menu extends Component {
                                 <a href="/logout" className="logout">
                                     Logout
                                 </a>
+
+                                <Link to="/delete-account">
+                                    Delete your account
+                                </Link>
                             </div>
                         </div>
                     </>

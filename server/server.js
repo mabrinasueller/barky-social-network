@@ -121,6 +121,15 @@ require("../server/routes/user-search");
 require("../server/routes/connections");
 require("../server/routes/friend-requests");
 
+// app.get("/delete/:id", s3.delete, async (req, res) => {
+//     const { userId } = req.session;
+//     await deleteUserInfos(userId);
+//     await deleteUserConnections(userId);
+//     await deleteUserChats(userId);
+//     req.session = null;
+//     res.redirect("/welcome");
+// });
+
 app.get("*", (req, res) => {
     if (!req.session.userId) {
         res.redirect("/welcome");

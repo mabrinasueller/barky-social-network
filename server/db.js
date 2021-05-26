@@ -56,6 +56,13 @@ module.exports.newImage = (fullUrl, userId) => {
     ]);
 };
 
+// module.exports.dogImage = (fullUrl, userId) => {
+//     return db.query(
+//         `UPDATE users SET dog_img_url = $1 WHERE id = $2 RETURNING *`,
+//         [fullUrl, userId]
+//     );
+// };
+
 module.exports.updateBio = (bio, userId) => {
     return db.query(`UPDATE users SET bio = $1 WHERE id = $2 RETURNING *`, [
         bio,
@@ -128,3 +135,15 @@ module.exports.getLastChats = () => {
         `SELECT users.id, first_name, last_name, img_url, message, chat.created_at FROM users JOIN chat ON chat.sender_id = users.id ORDER BY chat.created_at DESC LIMIT 10`
     );
 };
+
+// module.exports.deleteUserInfos = (userId) => {
+//     return db.query(`DELETE * FROM users WHERE user_id = $1`, [userId]);
+// };
+
+// module.exports.deleteUserConnections = (userId) => {
+//     return db.query(`DELETE * FROM friends WHERE user_id = $1`, [userId]);
+// };
+
+// module.exports.deleteUserChats = (userId) => {
+//     return db.query(`DELETE * FROM chat WHERE user_id = $1`, [userId]);
+// };

@@ -43,3 +43,25 @@ exports.upload = (req, res, next) => {
             res.sendStatus(404);
         });
 };
+
+exports.delete = (imgUrl) => {
+    s3.deleteObject({ Bucket: "mabrinasbucket", Key: imgUrl })
+        .promise()
+        .then(() => {
+            console.log("File deleted successfully");
+        })
+        .catch((error) => {
+            console.log("Error in deleting file: ", error);
+        });
+};
+
+// exports.delete = async (imgUrl) => {
+//     try {
+//         await s3
+//             .deleteObject({ Bucket: "mabrinasbucket", Key: imgUrl })
+//             .promise();
+//         console.log("File deleted successfully");
+//     } catch (error) {
+//         console.log("Error in deleting file: ", error);
+//     }
+// };

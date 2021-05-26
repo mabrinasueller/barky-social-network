@@ -5,22 +5,10 @@ import { Link } from "react-router-dom";
 
 export default function Chat() {
     const chatMessages = useSelector((state) => state && state.chatMessages);
-    console.log("chat: ", chatMessages);
     const elemRef = useRef();
 
     useEffect(() => {
         console.log("mounted");
-
-        // console.log("elemRef.current.scrollTop: ", elemRef.current.scrollTop);
-        // console.log(
-        //     "elemRef.current.clientHeight: ",
-        //     elemRef.current.clientHeight
-        // );
-        // console.log(
-        //     "elemRef.current.scrollHeight: ",
-        //     elemRef.current.scrollHeight
-        // );
-
         elemRef.current.scrollTop =
             elemRef.current.scrollHeight - elemRef.current.clientHeight;
     });
@@ -90,3 +78,13 @@ export default function Chat() {
         </>
     );
 }
+//logic for getting chat to always be scrolled down to newest message
+// console.log("elemRef.current.scrollTop: ", elemRef.current.scrollTop);
+// console.log(
+//     "elemRef.current.clientHeight: ",
+//     elemRef.current.clientHeight
+// );
+// console.log(
+//     "elemRef.current.scrollHeight: ",
+//     elemRef.current.scrollHeight
+// );
