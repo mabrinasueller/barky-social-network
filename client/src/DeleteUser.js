@@ -14,7 +14,6 @@ export default function deleteUser(userId) {
 
     return (
         <>
-            <Link to="/">Back to profile</Link>
             <div className="register-background-container">
                 <div className="register-container-big">
                     <div className="registration-container">
@@ -25,6 +24,9 @@ export default function deleteUser(userId) {
                                     Delete my account
                                 </button>
                             </div>
+                            <Link to="/">
+                                <button>Cancel</button>
+                            </Link>
                         </div>
                     </div>
                     <div className="logo-container">

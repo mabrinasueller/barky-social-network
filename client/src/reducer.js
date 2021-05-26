@@ -4,7 +4,9 @@ export default function reducer(state = {}, action) {
             ...state,
             users: action.users,
         };
+        console.log("users: ", action.users);
     }
+
     if (action.type === "ACCEPT_REQUEST") {
         state = {
             ...state,

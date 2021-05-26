@@ -12,7 +12,15 @@ const compression = require("compression");
 const path = require("path");
 const csurf = require("csurf");
 
-const { getUser, newImage, insertChatMessage, getLastChats } = require("./db");
+const {
+    getUser,
+    newImage,
+    insertChatMessage,
+    getLastChats,
+    deleteUserConnections,
+    deleteUserChats,
+    deleteUserInfos,
+} = require("./db");
 
 const s3 = require("./s3");
 const { s3Url } = require("./config.json");
@@ -106,8 +114,14 @@ app.post("/upload", uploader.single("file"), s3.upload, async (req, res) => {
         const { userId } = req.session;
         var fullUrl = s3Url + filename;
         try {
-            const { rows } = await newImage(fullUrl, userId);
-            res.json(rows[0]);
+            const result = await getUser(userId);
+            console.log("result: ", result);
+            if (result.rows[0].img_url != null) {
+                await s3.delete(result.rows[0].img_url);
+            } else {
+                const { rows } = await newImage(fullUrl, userId);
+                res.json(rows[0]);
+            }
         } catch (error) {
             console.log("error: ", error);
             res.status(500).json({ error: "Error in /upload/route" });
@@ -121,14 +135,20 @@ require("../server/routes/user-search");
 require("../server/routes/connections");
 require("../server/routes/friend-requests");
 
-// app.get("/delete/:id", s3.delete, async (req, res) => {
-//     const { userId } = req.session;
-//     await deleteUserInfos(userId);
-//     await deleteUserConnections(userId);
-//     await deleteUserChats(userId);
-//     req.session = null;
-//     res.redirect("/welcome");
-// });
+app.get("/delete/:id", s3.delete, async (req, res) => {
+    const { userId } = req.session;
+    try {
+        const result = await getUser(userId);
+        await s3.delete(result.rows[0].img_url);
+        await deleteUserChats(userId);
+        await deleteUserConnections(userId);
+        await deleteUserInfos(userId);
+        req.session = null;
+        res.redirect("/welcome");
+    } catch (error) {
+        console.log("Error in /delete- route");
+    }
+});
 
 app.get("*", (req, res) => {
     if (!req.session.userId) {

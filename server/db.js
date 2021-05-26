@@ -113,7 +113,7 @@ module.exports.deleteConnection = (user1, user2) => {
 
 module.exports.getFriendsAndRequests = (userId) => {
     return db.query(
-        `SELECT users.id, first_name, last_name, img_url, accepted, sender_id
+        `SELECT users.id, first_name, last_name, img_url, accepted, sender_id, (sender_id != $1) AS wannabe
     FROM friends
     JOIN users
     ON (accepted = false AND recipient_id = $1 AND sender_id = users.id)

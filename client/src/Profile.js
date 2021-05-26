@@ -1,7 +1,7 @@
 import BioEditor from "./Bio";
 
 export default function Profile(props) {
-    console.log("Props in Profile: ", props);
+    // console.log("Props in Profile: ", props);
     return (
         <div className="profile-content">
             <div className="profile-top">
@@ -41,6 +41,8 @@ export default function Profile(props) {
                         know how to pursue pleasure rationally encounter
                         consequences that are extremely painful.{" "}
                     </p>
+                    {/* <textarea></textarea>
+                    <button>Send</button> */}
                     <h4>Favorite song:</h4>
                     <p>Who let the dogs out?</p>
                     <h4>We are looking for:</h4>

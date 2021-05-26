@@ -62,7 +62,7 @@ export async function cancelRequest(id) {
 }
 
 export async function chatMessage(msg) {
-    console.log("message", msg);
+    // console.log("message", msg);
     return {
         type: "NEW_MESSAGE",
         msg,
@@ -70,7 +70,7 @@ export async function chatMessage(msg) {
 }
 
 export async function chatMessages(msgs) {
-    console.log("messages", msgs);
+    // console.log("messages", msgs);
     return {
         type: "LAST_MESSAGES",
         payload: msgs,

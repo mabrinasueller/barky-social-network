@@ -38,20 +38,17 @@ exports.upload = (req, res, next) => {
             next();
         })
         .catch((err) => {
-            // uh oh
             console.log("err in s3 upload put object: ", err);
             res.sendStatus(404);
         });
 };
 
 exports.delete = (imgUrl) => {
-    s3.deleteObject({ Bucket: "mabrinasbucket", Key: imgUrl })
+    return s3
+        .deleteObject({ Bucket: "mabrinasbucket", Key: "imgUrl" })
         .promise()
         .then(() => {
             console.log("File deleted successfully");
-        })
-        .catch((error) => {
-            console.log("Error in deleting file: ", error);
         });
 };
 
