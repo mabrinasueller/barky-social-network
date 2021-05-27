@@ -85,28 +85,24 @@ export default class Reset extends Component {
                                     </div>
                                 )}
 
-                                <form className="form">
-                                    <div className="form-group">
-                                        <input
-                                            type="email"
-                                            placeholder="woof@example.com"
-                                            className="form-input"
-                                            name="email"
-                                            required
-                                            onChange={(e) =>
-                                                this.handleChange(e)
-                                            }
-                                        />
-                                    </div>
-                                    <div className="breaker"></div>
-                                    <button
-                                        className="form-button"
-                                        type="submit"
-                                        onClick={(e) => this.submit(e)}
-                                    >
-                                        Send verification code
-                                    </button>
-                                </form>
+                                <div className="form-group">
+                                    <input
+                                        type="email"
+                                        placeholder="woof@example.com"
+                                        className="form-input"
+                                        name="email"
+                                        required
+                                        onChange={(e) => this.handleChange(e)}
+                                    />
+                                </div>
+                                <div className="breaker"></div>
+                                <button
+                                    className="form-button"
+                                    type="submit"
+                                    onClick={(e) => this.submit(e)}
+                                >
+                                    Send verification code
+                                </button>
                             </div>
                         </div>
                     </div>

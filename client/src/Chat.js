@@ -9,6 +9,7 @@ export default function Chat() {
 
     useEffect(() => {
         console.log("mounted");
+
         elemRef.current.scrollTop =
             elemRef.current.scrollHeight - elemRef.current.clientHeight;
     });

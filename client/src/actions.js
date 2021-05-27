@@ -76,3 +76,19 @@ export async function chatMessages(msgs) {
         payload: msgs,
     };
 }
+
+// export async function otherUser(id) {
+//     try {
+//         const { data } = await axios.get(`/other-user/${id}`);
+//         return {
+//             type: "OTHER_USER_BIO",
+//             firstName: data.first_name,
+//             lastName: data.last_name,
+//             imgUrl: data.img_url,
+//             bio: data.bio,
+//         };
+//     } catch (error) {
+//         console.log("error in otherUser-action: ", error);
+//         history.push("/");
+//     }
+// }

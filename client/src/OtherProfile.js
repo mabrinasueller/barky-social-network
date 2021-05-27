@@ -1,52 +1,55 @@
-import { Component } from "react";
-import axios from "axios";
+import axios from "./axios";
 import FriendButton from "./FriendButton";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+// const dispatch = useDispatch();
+// const otherProfile = useSelector((state) => state.user);
+// import { useDispatch, useSelector } from "react-redux";
 
-export default class OtherProfile extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
+export default function OtherProfile(props) {
+    const history = useHistory();
+    const [otherUser, setOtherUser] = useState();
+    const { id } = props.match.params;
 
-    async componentDidMount() {
-        const { id } = this.props.match.params;
-        try {
-            const { data } = await axios.get(`/other-user/${id}`);
-            this.setState({
-                firstName: data.first_name,
-                lastName: data.last_name,
-                imgUrl: data.img_url,
-                bio: data.bio,
-            });
-        } catch (error) {
-            console.log("error: ", error);
-            this.props.history.push("/");
-        }
-    }
+    console.log("props: ", props);
 
-    render() {
-        const { firstName, lastName, imgUrl, bio } = this.state;
+    useEffect(() => {
+        (async () => {
+            try {
+                const { data } = await axios.get(`/other-user/${id}`);
+                setOtherUser({
+                    firstName: data.first_name,
+                    lastName: data.last_name,
+                    imgUrl: data.img_url,
+                    bio: data.bio,
+                });
+            } catch (error) {
+                console.log("error: ", error);
+                props.history.push("/");
+            }
+        })();
+    }, []);
+
+    if (otherUser) {
         return (
             <>
-                <Link to={"/users"}>Back</Link>
+                <button onClick={() => history.goBack()}>Go back</button>
                 <div className="profile-content">
                     <div className="profile-top">
                         <div className="profile-picture">
                             <div className="profile-picture-container">
                                 <img
-                                    src={imgUrl}
-                                    alt={`${firstName} ${lastName}`}
+                                    src={otherUser.imgUrl}
+                                    alt={`${otherUser.firstName} ${otherUser.lastName}`}
                                 />
                             </div>
                         </div>
                         <div className="user-info-container">
                             <h3>
-                                {firstName} {lastName}
+                                {otherUser.firstName} {otherUser.lastName}
                             </h3>
-                            <p>{bio}</p>
-                            <FriendButton id={this.props.match.params.id} />
+                            <p>{otherUser.bio}</p>
+                            <FriendButton id={props.match.params.id} />
                         </div>
                     </div>
 
@@ -103,13 +106,7 @@ export default class OtherProfile extends Component {
                 </div>
             </>
         );
+    } else {
+        return null;
     }
 }
-
-// export default function OtherProfile(){
-//     const dispatch = useDispatch();
-//     const otherProfile = useSelector(
-//         (state) => state.user
-
-//     )
-// }

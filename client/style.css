@@ -25,15 +25,12 @@ main {
 
 a {
     text-decoration: none;
+    color: black;
 }
 
 a,
 button {
     cursor: pointer;
-}
-
-a {
-    color: black;
 }
 
 .content {
@@ -68,12 +65,32 @@ a {
     }
 }
 
+.register-container-big a {
+    color: blue;
+}
+
 .logo-container {
     flex: 1;
     flex-shrink: 2;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.left-container {
+    background-color: #81b29a;
+    max-width: 100%;
+    max-height: 100%;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+}
+
+.left-container h1 {
+    font-size: 50px;
+    padding: 20px;
 }
 
 .logo-container img {
@@ -112,8 +129,12 @@ img.remove-on-mobile {
     padding: 20px;
     max-width: 100%;
     font-weight: 800;
-    /* justify-content: center; */
     justify-content: flex-end;
+    align-items: center;
+}
+
+.registration-text-container h2 {
+    margin-right: 50px;
 }
 
 .registration-form-container {
@@ -210,6 +231,7 @@ img.logo-small {
     object-fit: cover;
     flex: 0;
     margin-left: 20px;
+    margin-top: 5px;
 }
 
 .logo-small img {
@@ -226,6 +248,7 @@ img.logo-small {
     flex: 0;
     margin-left: 20px;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 .profile-small-container {
@@ -267,6 +290,7 @@ img.logo-small {
     text-decoration: none;
     padding: 10px 0 10px 20px;
     display: block;
+    color: black;
 }
 
 .navbar-container span {
@@ -275,6 +299,7 @@ img.logo-small {
 
 .logout {
     font-size: 20px;
+    margin-top: 80px;
 }
 
 #preview {
@@ -600,71 +625,6 @@ button {
     height: 30px;
 }
 
-/* .main-registration {
-    padding: 150px 0;
-}
-
-.signup {
-    margin-bottom: 150px;
-}
-
-.container {
-    width: 900px;
-    background: #fff;
-    margin: 0 auto;
-    box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
-
-    border-radius: 20px;
-}
-
-.signup {
-    margin-bottom: 150px;
-}
-
-.signup-content {
-    padding: 75px 0;
-}
-
-.signup-form,
-.signup-image,
-.signin-form,
-.signin-image {
-    width: 50%;
-    overflow: hidden;
-}
-
-.signup-image {
-    margin: 0 55px;
-}
-
-.form-title {
-    margin-bottom: 33px;
-}
-
-.signup-image {
-    margin-top: 45px;
-}
-
-figure {
-    margin-bottom: 50px;
-    text-align: center;
-}
-
-.form-submit {
-    display: inline-block;
-    background: #6dabe4;
-    color: #fff;
-    border-bottom: none;
-    width: auto;
-    padding: 15px 39px;
-    border-radius: 5px;
-    margin-top: 25px;
-    cursor: pointer;
-}
-.form-submit:hover {
-    background: #4292dc;
-} */
-
 .find-people-content {
     text-align: center;
 }
@@ -780,4 +740,66 @@ img.chat-image {
         12px 12px #ca6702, 13px 13px #e84855, 14px 14px #e84855,
         15px 15px #e84855, 16px 16px #e84855, 17px 17px #ee9b00,
         18px 18px #ee9b00, 19px 19px #ee9b00, 20px 20px #ee9b00;
+}
+
+.delete-account-link {
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+.about-headline {
+    padding-top: 20px;
+}
+
+img.dog-about-image {
+    /* height: 250px;
+    width: 250px; */
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.logo-container-dogs {
+    flex: 1;
+    flex-shrink: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.dog-quote-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.dog-about-text-container p {
+    line-height: 30px;
+    text-align: justify;
+    padding: 20px 20px 20px 40px;
+}
+
+.dog-about-container {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    max-width: 100%;
+    max-height: 100vh;
+    margin: auto;
+}
+
+.registration-form-container button {
+    width: 60%;
+    border: none;
+    background: #81b29a;
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 18px;
+    color: white;
+    font-weight: 400;
+    font-family: "Montserrat", sans-serif;
 }

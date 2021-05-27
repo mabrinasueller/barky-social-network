@@ -43,5 +43,15 @@ export default function reducer(state = {}, action) {
         };
     }
 
+    // if (action.type === "OTHER_USER_BIO") {
+    //     state = {
+    //         ...state,
+    //         firstName: action.firstName,
+    //         lastName: action.lastName,
+    //         imgUrl: action.imgUrl,
+    //         bio: action.bio,
+    //     };
+    // }
+
     return state;
 }

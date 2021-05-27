@@ -9,8 +9,6 @@ export default function Friends() {
         (state) => state.users && state.users.filter((user) => user.accepted)
     );
 
-    console.log("Friends: ", friends);
-
     const requests = useSelector(
         (state) =>
             state.users &&
@@ -27,8 +25,6 @@ export default function Friends() {
             )
     );
 
-    console.log("sendRequests: ", sendRequests);
-
     useEffect(() => {
         (!friends || !requests || !sendRequests) &&
             dispatch(getFriendsRequests());
@@ -43,7 +39,7 @@ export default function Friends() {
             <div className="profile-search">
                 <div className="friends-container">
                     <ul>
-                        <h2>You have {friends.length} friends</h2>
+                        <h2>You have {friends.length} friend(s)</h2>
                         <div className="profile-search-output">
                             {friends &&
                                 friends.map((user) => {
@@ -95,7 +91,7 @@ export default function Friends() {
                 </div>
                 <div className="request-container">
                     <ul>
-                        <h2>You have {requests.length} friend requests</h2>
+                        <h2>You have {requests.length} friend request(s)</h2>
                         <div className="profile-search-output">
                             {requests &&
                                 requests.map((user) => {
@@ -156,7 +152,7 @@ export default function Friends() {
                     <ul>
                         <h2>
                             You have {sendRequests.length} pending friend
-                            requests
+                            request(s)
                         </h2>
                         <div className="profile-search-output">
                             {sendRequests &&

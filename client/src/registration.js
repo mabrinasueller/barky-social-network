@@ -38,17 +38,31 @@ export default class Registration extends Component {
         return (
             <div className="register-background-container">
                 <div className="register-container-big">
-                    <div className="logo-container">
-                        <img src="./test2.jpeg" className="remove-on-mobile" />
+                    <div className="left-container">
+                        {/* <img src="./test2.jpeg" className="remove-on-mobile" /> */}
+                        <div className="logo-small">
+                            <img src="../logo.svg" />
+                        </div>
+                        <h1>
+                            You&#39;ll never
+                            <div className="spacer"></div>
+                            walk alone
+                        </h1>
+                        <h3>
+                            Meet cool dogs and owners on <strong>Barky</strong>,
+                            the platform for dog-walking-partners in Berlin!
+                        </h3>
+                        <p>Keeping dogs busy since 2021</p>
                     </div>
                     <div className="registration-container">
                         <div className="registration-text-container">
                             <div className="registration-text">
                                 {/* <h1>Get started!</h1>
                                 <h2>Create new account</h2> */}
+                                <h2>Create new account</h2>
                             </div>
                             <div className="logo-small">
-                                <img src="../logo2.png" />
+                                <img src="../logo.svg" />
                             </div>
                         </div>
                         <div className="registration-form-container">
@@ -58,74 +72,72 @@ export default class Registration extends Component {
                                 </div>
                             )}
 
-                            <form className="form">
-                                <div className="form-group">
-                                    <input
-                                        type="text"
-                                        placeholder="Bark"
-                                        className="form-input"
-                                        name="firstName"
-                                        onChange={(e) => this.handleChange(e)}
-                                        required
-                                    />
-                                </div>
-                                <div className="form-group">
-                                    <input
-                                        type="text"
-                                        placeholder="Twain"
-                                        className="form-input"
-                                        name="lastName"
-                                        required
-                                        onChange={(e) => this.handleChange(e)}
-                                    />
-                                </div>
+                            <div className="form-group">
+                                <input
+                                    type="text"
+                                    placeholder="Bark"
+                                    className="form-input"
+                                    name="firstName"
+                                    onChange={(e) => this.handleChange(e)}
+                                    required
+                                />
+                            </div>
+                            <div className="form-group">
+                                <input
+                                    type="text"
+                                    placeholder="Twain"
+                                    className="form-input"
+                                    name="lastName"
+                                    required
+                                    onChange={(e) => this.handleChange(e)}
+                                />
+                            </div>
 
-                                <div className="form-group">
-                                    <input
-                                        type="email"
-                                        placeholder="woof@example.com"
-                                        className="form-input"
-                                        name="email"
-                                        required
-                                        onChange={(e) => this.handleChange(e)}
-                                    />
-                                </div>
+                            <div className="form-group">
+                                <input
+                                    type="email"
+                                    placeholder="woof@example.com"
+                                    className="form-input"
+                                    name="email"
+                                    required
+                                    onChange={(e) => this.handleChange(e)}
+                                />
+                            </div>
 
-                                <div className="form-group">
-                                    <input
-                                        type="password"
-                                        placeholder="Password"
-                                        className="form-input"
-                                        name="password"
-                                        required
-                                        onChange={(e) => this.handleChange(e)}
-                                    />
-                                </div>
-                                <div className="terms-container">
-                                    <label>
-                                        <input type="checkbox" required />
-                                        <span>
-                                            {" "}
-                                            I agree all statements in{" "}
-                                            <a
-                                                href="https://www.youtube.com/watch?v=tuB72KcEUTw"
-                                                target="_blank"
-                                                rel="noreferrer"
-                                            >
-                                                Terms of service
-                                            </a>
-                                        </span>
-                                    </label>
-                                </div>
-                                <div className="breaker"></div>
-                                <button
-                                    className="form-button"
-                                    type="button"
-                                    onClick={() => this.handleSubmit()}
-                                >
-                                    Sign up
-                                </button>
-                            </form>
+                            <div className="form-group">
+                                <input
+                                    type="password"
+                                    placeholder="Password"
+                                    className="form-input"
+                                    name="password"
+                                    required
+                                    onChange={(e) => this.handleChange(e)}
+                                />
+                            </div>
+                            <div className="terms-container">
+                                <label>
+                                    <input type="checkbox" required />
+                                    <span>
+                                        {" "}
+                                        I agree all statements in{" "}
+                                        <a
+                                            href="https://www.youtube.com/watch?v=tuB72KcEUTw"
+                                            target="_blank"
+                                            rel="noreferrer"
+                                        >
+                                            Terms of service
+                                        </a>
+                                    </span>
+                                </label>
+                            </div>
+                            <div className="breaker"></div>
+                            <button
+                                className="form-button"
+                                type="button"
+                                onClick={() => this.handleSubmit()}
+                            >
+                                Sign up
+                            </button>
 
                             <p className="login-link-container">
                                 Already have an account?

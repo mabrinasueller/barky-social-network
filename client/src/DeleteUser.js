@@ -2,12 +2,9 @@ import { Link } from "react-router-dom";
 import axios from "./axios";
 
 export default function deleteUser() {
-    console.log("Testy is besty");
     const handleConfirm = async () => {
-        console.log("Delete button got clicked");
         try {
-            const { data } = await axios.post("/delete");
-            console.log("data: ", data);
+            await axios.post("/delete");
             location.reload();
         } catch (error) {
             console.log("Error in /delete-route: ", error);

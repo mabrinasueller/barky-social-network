@@ -10,6 +10,7 @@ import Friends from "./Friends";
 import Menu from "./Menu";
 import Chat from "./Chat";
 import DeleteUser from "./DeleteUser";
+import About from "./About";
 // import DarkMode from "./DarkMode";
 
 export default class App extends Component {
@@ -63,7 +64,7 @@ export default class App extends Component {
                             <Link to="/">
                                 <img
                                     className="logo-small"
-                                    src="../logo2.png"
+                                    src="../logo.svg"
                                     alt="logo"
                                 />
                             </Link>
@@ -114,7 +115,8 @@ export default class App extends Component {
                     <Route path="/users" component={FindPeople} />
                     <Route path="/friends" component={Friends} />
                     <Route path="/chat" component={Chat} />
-                    <Route path="/delete-account" component={DeleteUser} />
+                    <Route path="/delete/account" component={DeleteUser} />
+                    <Route path="/about" component={About} />
                 </BrowserRouter>
                 {this.state.uploaderIsVisible && (
                     <Uploader
@@ -126,22 +128,3 @@ export default class App extends Component {
         );
     }
 }
-
-//   <div className="main-container">
-//                     <Profile
-//                         firstName={this.state.firstName}
-//                         lastName={this.state.lastName}
-//                         imgUrl={this.state.imgUrl || "default_user.jpeg"}
-//                         bio={this.state.bio}
-//                         setBio={this.setBio}
-//                         toggleUploader={this.toggleUploader}
-//                     />
-
-//                     {this.state.uploaderIsVisible && (
-//                         <Uploader
-//                             updateProfilePic={this.updateProfilePic}
-//                             toggleUploader={this.toggleUploader}
-//                         />
-//                     )}
-//                 </div>
-//             </div>

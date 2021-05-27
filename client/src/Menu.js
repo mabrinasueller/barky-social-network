@@ -47,12 +47,16 @@ export default class Menu extends Component {
                                 <Link to="/chat">Chat</Link>
                                 <Link to="/friends">Friends</Link>
                                 <Link to="/">Profile</Link>
+                                <Link to="/about">About us</Link>
 
                                 <a href="/logout" className="logout">
                                     Logout
                                 </a>
 
-                                <Link to="/delete-account">
+                                <Link
+                                    to="/delete/account"
+                                    className="delete-account-link"
+                                >
                                     Delete your account
                                 </Link>
                             </div>
