@@ -117,6 +117,8 @@ app.post("/upload", uploader.single("file"), s3.upload, async (req, res) => {
             const result = await getUser(userId);
             if (result.rows[0].img_url != null) {
                 await s3.delete(result.rows[0].img_url);
+                const { rows } = await newImage(fullUrl, userId);
+                res.json(rows[0]);
             } else {
                 const { rows } = await newImage(fullUrl, userId);
                 res.json(rows[0]);
