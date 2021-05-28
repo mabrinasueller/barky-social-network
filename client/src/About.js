@@ -4,7 +4,7 @@ export default function About() {
             <div className="register-container-big">
                 <div className="logo-container-dogs">
                     <div className="about-headline">
-                        <h1>About us</h1>
+                        <h1>About Barky</h1>
                     </div>
                     <div className="dog-quote-container">
                         <cite>

@@ -48,8 +48,11 @@ app.post("/password/reset/start", async (req, res) => {
 
 app.post("/password/reset/verify", async (req, res) => {
     const { email, password, code } = req.body;
+    console.log("req.body", req.body);
+
     try {
         const { rows } = await checkVerificationCode(email);
+        console.log("rows: ", rows[0].code);
         if (rows[0].code === code) {
             const hashedPassword = await hash(password);
             await updatePassword(hashedPassword, email);

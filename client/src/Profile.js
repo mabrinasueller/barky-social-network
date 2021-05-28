@@ -26,7 +26,7 @@ export default function Profile(props) {
 
             <div className="profile">
                 <div className="profile-text-container">
-                    <h4>About us</h4>
+                    {/* <h3>More on us</h3> */}
                     <p>
                         But I must explain to you how all this mistaken idea of
                         denouncing pleasure and praising pain was born and I

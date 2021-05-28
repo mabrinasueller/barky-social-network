@@ -30,7 +30,8 @@ app.post("/login", async (req, res) => {
             req.session.fname = rows[0].first_name;
             res.json({ success: true });
         } else {
-            console.log("error thrown");
+            console.log("error thrown: ");
+            res.json({ success: false });
         }
     } catch (error) {
         console.log("error: ", error);

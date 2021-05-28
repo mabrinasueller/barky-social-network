@@ -1,4 +1,4 @@
-* {
+t-conteha* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -75,10 +75,29 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 20px;
+}
+
+.reset-logo-container {
+    flex: 1;
+    flex-shrink: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
 
 .left-container {
-    background-color: #81b29a;
+    /* background-color: #81b29a; */
+    /* background-image: linear-gradient(
+        rgba(243, 129, 129, 0.9),
+        rgba(252, 227, 138, 0.9)
+    ); */
+    background: linear-gradient(
+        90deg,
+        rgba(255, 205, 178, 1) 0%,
+        rgba(255, 180, 162, 1) 100%
+    );
     max-width: 100%;
     max-height: 100%;
     border-top-left-radius: 15px;
@@ -86,29 +105,61 @@ button {
     flex: 1;
     padding: 20px;
     text-align: center;
+    flex-shrink: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid white;
+    margin: 20px;
+    @media screen and (max-width: 576px), (max-height: 500px) {
+        width: 95%;
+        padding: 20px;
+        margin-top: 75px;
+        min-height: initial;
+        padding-bottom: 30px;
+        max-width: 400px;
+    }
 }
 
 .left-container h1 {
-    font-size: 50px;
-    padding: 20px;
+    font-size: 60px;
+    padding: 30px 20px;
+    line-height: 50px;
+    color: #fcf9ed;
+    margin: 10px;
+}
+.left-container h3 {
+    font-weight: 500;
+    color: #161a1d;
+}
+
+.left-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
 }
 
 .logo-container img {
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
 }
 
-img.remove-on-mobile {
-    @media screen and (max-width: 576px), (max-height: 500px) {
-        /* width: 95%;
+@media screen and (max-width: 576px), (max-height: 500px) {
+    img.remove-on-mobile {
+        display: none;
+    }
+    /* width: 95%;
         padding: 20px;
         margin-top: 75px;
         min-height: initial;
         padding-bottom: 30px;
         max-width: 400px; */
-        display: none;
-    }
 }
 
 .registration-container {
@@ -130,11 +181,16 @@ img.remove-on-mobile {
     max-width: 100%;
     font-weight: 800;
     justify-content: flex-end;
+    flex-direction: column;
     align-items: center;
+    text-align: center;
 }
 
-.registration-text-container h2 {
-    margin-right: 50px;
+.registration-text {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    justify-content: center;
 }
 
 .registration-form-container {
@@ -146,6 +202,13 @@ img.remove-on-mobile {
 
 h1.text-login {
     margin-bottom: 15px;
+}
+
+.login-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-right: 30px;
 }
 
 .form-button {
@@ -345,7 +408,7 @@ button {
     display: inline-block;
     background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
     border: 1px solid #999;
-    border-radius: 3px;
+    border-radius: 5px;
     padding: 5px 8px;
     outline: none;
     white-space: nowrap;
@@ -353,6 +416,17 @@ button {
     font-weight: 700;
     font-size: 10pt;
     margin: 5px;
+
+    /* width: 60%;
+    border: none;
+ 
+    background: #ffb4a2;
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 18px;
+    color: black;
+    font-weight: 400;
+    font-family: "Montserrat", sans-serif; */
 }
 
 .profile-content {
@@ -688,6 +762,12 @@ button {
     margin: 10px;
 }
 
+.chat-content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
 .chat-message-container {
     height: 300px;
     overflow-y: auto;
@@ -699,8 +779,9 @@ img.chat-image {
     width: 50px;
     height: 50px;
     object-fit: cover;
-    border-radius: 50%;
+    border-radius: 5px;
     cursor: pointer;
+    margin-top: 15px;
 }
 
 .chat-textarea {
@@ -709,7 +790,7 @@ img.chat-image {
 
 .chat-user-container {
     display: flex;
-    flex: 1;
+    flex: 3;
 }
 
 .chat-image-container {
@@ -720,15 +801,15 @@ img.chat-image {
 
 .goodbye-container {
     display: flex;
-    width: 400px;
+    width: 500px;
     height: 100%;
-    /* margin: 10px 50px 50px 50px; */
+
     flex-wrap: wrap;
-    padding: 50px;
+    padding: 20px;
 }
 
-.goodbye-message {
-    font-family: "Work Sans", sans-serif;
+.goodbye-message img {
+    /* font-family: "Work Sans", sans-serif;
     font-weight: bold 800;
     font-size: 75px;
     line-height: 90px;
@@ -739,7 +820,15 @@ img.chat-image {
         8px 8px #bb3e03, 9px 9px #ca6702, 10px 10px #ca6702, 11px 11px #ca6702,
         12px 12px #ca6702, 13px 13px #e84855, 14px 14px #e84855,
         15px 15px #e84855, 16px 16px #e84855, 17px 17px #ee9b00,
-        18px 18px #ee9b00, 19px 19px #ee9b00, 20px 20px #ee9b00;
+        18px 18px #ee9b00, 19px 19px #ee9b00, 20px 20px #ee9b00; */
+
+    border-radius: 15px;
+    /* height: 350px;
+    width: 400px;
+    flex-shrink: 2; */
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
 
 .delete-account-link {
@@ -795,11 +884,117 @@ img.dog-about-image {
 .registration-form-container button {
     width: 60%;
     border: none;
-    background: #81b29a;
+    /* background: #81b29a; */
+    background: #ffb4a2;
     padding: 10px;
     border-radius: 20px;
     font-size: 18px;
-    color: white;
+    color: black;
     font-weight: 400;
     font-family: "Montserrat", sans-serif;
+}
+
+.delete-info-text {
+    text-align: center;
+    padding: 10px;
+    line-height: 30px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.delete-info-text p {
+    font-size: 12px;
+    padding-top: 10px;
+    font-weight: 400;
+    line-height: 25px;
+}
+
+.delete-button {
+    padding: 20px 0;
+}
+
+.delete-text {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    justify-content: center;
+    padding: 20px;
+}
+
+.delete-request-buttons button {
+    width: 100%;
+    border: none;
+    /* background: #81b29a; */
+    background: rgba(243, 129, 129, 0.9);
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 18px;
+    color: black;
+    font-weight: 400;
+    font-family: "Montserrat", sans-serif;
+    opacity: 0.8;
+}
+
+.chat-profile-container {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    background: #eef3f7;
+    width: 410px;
+    min-height: 480px;
+    box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);
+    border-radius: 15px;
+    padding: 30px 40px 10px 40px;
+    flex-wrap: wrap;
+    margin-right: 20px;
+    @media screen and (max-width: 576px), (max-height: 500px) {
+        width: 95%;
+        padding: 20px;
+        margin-top: 75px;
+        min-height: initial;
+        padding-bottom: 30px;
+        max-width: 400px;
+    }
+}
+
+.single-chat-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.user-info-chat {
+    font-size: 13px;
+    padding-bottom: 7px;
+}
+
+.chat-profile-text-container {
+    text-align: center;
+}
+
+.chat-text-rules-container {
+    display: flex;
+    flex: 2;
+    flex-direction: column;
+    background: #eef3f7;
+    width: 410px;
+    min-height: 480px;
+    box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);
+    border-radius: 15px;
+    padding: 30px 30px 10px 30px;
+    flex-wrap: wrap;
+    margin-left: 40px;
+    text-align: center;
+    @media screen and (max-width: 576px), (max-height: 500px) {
+        width: 95%;
+        padding: 20px;
+        margin-top: 75px;
+        min-height: initial;
+        padding-bottom: 30px;
+        max-width: 400px;
+    }
+}
+
+.chat-logo {
+    width: 100px;
+    height: 100px;
 }

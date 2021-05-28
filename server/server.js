@@ -161,6 +161,7 @@ server.listen(process.env.PORT || 3001, function () {
     console.log("Server is listening.");
 });
 
+const onlineUsers = {};
 io.on("connection", function (socket) {
     console.log(`socket with id ${socket.id} is connected`);
     if (!socket.request.session.userId) {
@@ -168,6 +169,10 @@ io.on("connection", function (socket) {
     }
 
     const userId = socket.request.session.userId;
+    console.log("userId: ", userId);
+    onlineUsers[socket.id] = userId;
+    console.log("onlineUsers: ", onlineUsers);
+    console.log(`User ${userId} just connected with socket ${socket.id}`);
 
     (async () => {
         try {
@@ -177,6 +182,13 @@ io.on("connection", function (socket) {
             console.log("Error in new Message: ", error);
         }
     })();
+
+    socket.on("disconnect", () => {
+        console.log(
+            `User ${userId} just disconnected with socket ${socket.id}`
+        );
+        delete onlineUsers[socket.id];
+    });
 
     socket.on("chatMessage", async (msg) => {
         const message = msg;

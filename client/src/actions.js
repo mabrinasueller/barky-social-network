@@ -86,6 +86,7 @@ export async function chatMessages(msgs) {
 //             lastName: data.last_name,
 //             imgUrl: data.img_url,
 //             bio: data.bio,
+// payload: data
 //         };
 //     } catch (error) {
 //         console.log("error in otherUser-action: ", error);

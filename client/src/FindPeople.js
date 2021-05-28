@@ -57,32 +57,30 @@ export default function FindPeople() {
                                     } = user;
 
                                     return (
-                                        <>
-                                            <div className="other-profile-top">
-                                                <Link
-                                                    key={index}
-                                                    to={`/user/${id}`}
-                                                >
-                                                    <div className="profile-picture">
-                                                        <div className="profile-picture-container">
-                                                            <img
-                                                                src={
-                                                                    img_url ||
-                                                                    "default_user.jpeg"
-                                                                }
-                                                                alt={`${first_name} ${last_name}`}
-                                                            />
-                                                        </div>
-                                                        <div className="user-info-container">
-                                                            <p key={first_name}>
-                                                                {first_name}{" "}
-                                                                {last_name}
-                                                            </p>
-                                                        </div>
+                                        <div
+                                            className="other-profile-top"
+                                            key={index}
+                                        >
+                                            <Link to={`/user/${id}`}>
+                                                <div className="profile-picture">
+                                                    <div className="profile-picture-container">
+                                                        <img
+                                                            src={
+                                                                img_url ||
+                                                                "default_user.jpeg"
+                                                            }
+                                                            alt={`${first_name} ${last_name}`}
+                                                        />
                                                     </div>
-                                                </Link>
-                                            </div>
-                                        </>
+                                                    <div className="user-info-container">
+                                                        <p>
+                                                            {first_name}{" "}
+                                                            {last_name}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </Link>
+                                        </div>
                                     );
                                 })}
                         </div>

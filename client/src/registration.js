@@ -39,7 +39,6 @@ export default class Registration extends Component {
             <div className="register-background-container">
                 <div className="register-container-big">
                     <div className="left-container">
-                        {/* <img src="./test2.jpeg" className="remove-on-mobile" /> */}
                         <div className="logo-small">
                             <img src="../logo.svg" />
                         </div>
@@ -50,20 +49,26 @@ export default class Registration extends Component {
                         </h1>
                         <h3>
                             Meet cool dogs and owners on <strong>Barky</strong>,
-                            the platform for dog-walking-partners in Berlin!
+                            <div className="breaker"></div>
+                            the platform for dog-walking-partners
+                            <div className="breaker"></div> in Berlin!
                         </h3>
-                        <p>Keeping dogs busy since 2021</p>
+                        <div className="spacer"></div>
+                        <div className="spacer"></div>
+                        <div className="spacer"></div>
+                        <p> Keeping dogs busy since 2021 </p>
                     </div>
                     <div className="registration-container">
                         <div className="registration-text-container">
+                            <div></div>
                             <div className="registration-text">
                                 {/* <h1>Get started!</h1>
                                 <h2>Create new account</h2> */}
                                 <h2>Create new account</h2>
                             </div>
-                            <div className="logo-small">
+                            {/* <div className="logo-small">
                                 <img src="../logo.svg" />
-                            </div>
+                            </div> */}
                         </div>
                         <div className="registration-form-container">
                             {this.state.error && (
@@ -150,112 +155,3 @@ export default class Registration extends Component {
         );
     }
 }
-
-//             <div className="main-registration">
-//                 <section className="signup">
-//                     <div className="container">
-//                         <div className="signup-content">
-//                             <div className="signup-form">
-//                                 <h2 className="form-title">Sign up</h2>
-//                                 <form
-//                                     method="POST"
-//                                     className="register-form"
-//                                     id="register-form"
-//                                 >
-//                                     <div className="form-group">
-//                                         <label htmlFor="name">
-//                                             <i className="zmdi zmdi-account material-icons-name"></i>
-//                                         </label>
-//                                         <input
-//                                             type="text"
-//                                             name="name"
-//                                             id="name"
-//                                             placeholder="Your Name"
-//                                         />
-//                                     </div>
-//                                     <div className="form-group">
-//                                         <label htmlFor="email">
-//                                             <i className="zmdi zmdi-email"></i>
-//                                         </label>
-//                                         <input
-//                                             type="email"
-//                                             name="email"
-//                                             id="email"
-//                                             placeholder="Your Email"
-//                                         />
-//                                     </div>
-//                                     <div className="form-group">
-//                                         <label htmlFor="pass">
-//                                             <i className="zmdi zmdi-lock"></i>
-//                                         </label>
-//                                         <input
-//                                             type="password"
-//                                             name="pass"
-//                                             id="pass"
-//                                             placeholder="Password"
-//                                         />
-//                                     </div>
-//                                     <div className="form-group">
-//                                         <label htmlFor="re-pass">
-//                                             <i className="zmdi zmdi-lock-outline"></i>
-//                                         </label>
-//                                         <input
-//                                             type="password"
-//                                             name="re_pass"
-//                                             id="re_pass"
-//                                             placeholder="Repeat your password"
-//                                         />
-//                                     </div>
-//                                     <div className="form-group">
-//                                         <input
-//                                             type="checkbox"
-//                                             name="agree-term"
-//                                             id="agree-term"
-//                                             className="agree-term"
-//                                         />
-//                                         <label
-//                                             htmlFor="agree-term"
-//                                             className="label-agree-term"
-//                                         >
-//                                             <span>
-//                                                 <span></span>
-//                                             </span>
-//                                             I agree all statements in{" "}
-//                                             <a
-//                                                 href="#"
-//                                                 className="term-service"
-//                                             >
-//                                                 Terms of service
-//                                             </a>
-//                                         </label>
-//                                     </div>
-//                                     <div className="form-group form-button">
-//                                         <input
-//                                             type="submit"
-//                                             name="signup"
-//                                             id="signup"
-//                                             className="form-submit"
-//                                             value="Register"
-//                                         />
-//                                     </div>
-//                                 </form>
-//                             </div>
-//                             <div className="signup-image">
-//                                 <figure>
-//                                     <img
-//                                         className="register-image"
-//                                         src="./register-image.png"
-//                                         alt="sing up image"
-//                                     />
-//                                 </figure>
-//                                 <a href="#" className="signup-image-link">
-//                                     I am already member
-//                                 </a>
-//                             </div>
-//                         </div>
-//                     </div>
-//                 </section>
-//             </div>
-//         );
-//     }
-// }

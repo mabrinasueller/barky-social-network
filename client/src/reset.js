@@ -60,11 +60,14 @@ export default class Reset extends Component {
             return (
                 <div className="register-background-container">
                     <div className="register-container-big">
-                        <div className="logo-container">
-                            <img src="./test3.jpeg" />
+                        <div className="reset-logo-container">
+                            <img src="./many-dogs.jpeg" />
                         </div>
                         <div className="registration-container">
                             <div className="registration-text-container">
+                                <div className="logo-small">
+                                    <img src="../logo.svg" />
+                                </div>
                                 <h1 className="text-login">
                                     Forgot your password?
                                 </h1>
@@ -72,7 +75,7 @@ export default class Reset extends Component {
                                 <h4>
                                     Please enter your email-address and check
                                     <div className="breaker"></div>
-                                    your emails for the verification code.
+                                    your emails for a verification code.
                                 </h4>
                                 <h4 className="reset-text-step2">
                                     In Step 2 you can update your password.{" "}
@@ -113,16 +116,19 @@ export default class Reset extends Component {
                 <div className="register-background-container">
                     <div className="register-container-big">
                         <div className="logo-container">
-                            <img src="./test5.jpeg" />
+                            <img src="./reset-dogs.jpeg" />
                         </div>
                         <div className="registration-container">
                             <div className="registration-text-container">
+                                <div className="logo-small">
+                                    <img src="../logo.svg" />
+                                </div>
                                 <h1 className="text-login">Step 2</h1>
 
                                 <h4>
-                                    Please enter the verification code and set
+                                    Please enter the verification code
                                     <div className="breaker"></div>
-                                    your new password.
+                                    and set your new password.
                                 </h4>
                             </div>
                             <div className="registration-form-container">
@@ -182,6 +188,9 @@ export default class Reset extends Component {
                         </div>
                         <div className="registration-container">
                             <div className="registration-text-container">
+                                <div className="logo-small">
+                                    <img src="../logo.svg" />
+                                </div>
                                 <h1 className="text-login">
                                     Password has been successfully updated!
                                 </h1>

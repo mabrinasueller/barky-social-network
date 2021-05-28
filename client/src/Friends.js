@@ -51,39 +51,37 @@ export default function Friends() {
                                     } = user;
                                     console.log(user);
                                     return (
-                                        <>
-                                            <div className="other-profile-top">
-                                                <Link
-                                                    key={id}
-                                                    to={`/user/${id}`}
-                                                >
-                                                    <div className="profile-picture">
-                                                        <div className="profile-picture-container">
-                                                            <img
-                                                                src={
-                                                                    img_url ||
-                                                                    "default_user.jpeg"
-                                                                }
-                                                                alt={`${first_name} ${last_name}`}
-                                                            />
-                                                            <p>
-                                                                {first_name}{" "}
-                                                                {last_name}
-                                                            </p>
-                                                            <div className="spacer"></div>
-                                                        </div>
+                                        <div
+                                            className="other-profile-top"
+                                            key={id}
+                                        >
+                                            <Link to={`/user/${id}`}>
+                                                <div className="profile-picture">
+                                                    <div className="profile-picture-container">
+                                                        <img
+                                                            src={
+                                                                img_url ||
+                                                                "default_user.jpeg"
+                                                            }
+                                                            alt={`${first_name} ${last_name}`}
+                                                        />
+                                                        <p>
+                                                            {first_name}{" "}
+                                                            {last_name}
+                                                        </p>
+                                                        <div className="spacer"></div>
                                                     </div>
-                                                </Link>
-                                                <button
-                                                    onClick={() =>
-                                                        dispatch(unfriend(id))
-                                                    }
-                                                >
-                                                    Unfriend
-                                                </button>
-                                                <div className="spacer"></div>
-                                            </div>
-                                        </>
+                                                </div>
+                                            </Link>
+                                            <button
+                                                onClick={() =>
+                                                    dispatch(unfriend(id))
+                                                }
+                                            >
+                                                Unfriend
+                                            </button>
+                                            <div className="spacer"></div>
+                                        </div>
                                     );
                                 })}
                         </div>
@@ -103,46 +101,44 @@ export default function Friends() {
                                     } = user;
                                     console.log(user);
                                     return (
-                                        <>
-                                            <div className="other-profile-top">
-                                                <Link
-                                                    key={id}
-                                                    to={`/user/${id}`}
-                                                >
-                                                    <div className="profile-picture">
-                                                        <div className="profile-picture-container">
-                                                            <img
-                                                                src={
-                                                                    img_url ||
-                                                                    "default_user.jpeg"
-                                                                }
-                                                                alt={`${first_name} ${last_name}`}
-                                                            />
-                                                            <p>
-                                                                {first_name}{" "}
-                                                                {last_name}
-                                                            </p>
-                                                            <div className="spacer"></div>
-                                                        </div>
+                                        <div
+                                            className="other-profile-top"
+                                            key={id}
+                                        >
+                                            <Link to={`/user/${id}`}>
+                                                <div className="profile-picture">
+                                                    <div className="profile-picture-container">
+                                                        <img
+                                                            src={
+                                                                img_url ||
+                                                                "default_user.jpeg"
+                                                            }
+                                                            alt={`${first_name} ${last_name}`}
+                                                        />
+                                                        <p>
+                                                            {first_name}{" "}
+                                                            {last_name}
+                                                        </p>
+                                                        <div className="spacer"></div>
                                                     </div>
-                                                </Link>
-                                                <button
-                                                    onClick={() =>
-                                                        dispatch(addFriend(id))
-                                                    }
-                                                >
-                                                    Accept
-                                                </button>
-                                                <button
-                                                    onClick={() =>
-                                                        dispatch(unfriend(id))
-                                                    }
-                                                >
-                                                    Decline friend request
-                                                </button>
-                                                <div className="spacer"></div>
-                                            </div>
-                                        </>
+                                                </div>
+                                            </Link>
+                                            <button
+                                                onClick={() =>
+                                                    dispatch(addFriend(id))
+                                                }
+                                            >
+                                                Accept
+                                            </button>
+                                            <button
+                                                onClick={() =>
+                                                    dispatch(unfriend(id))
+                                                }
+                                            >
+                                                Decline friend request
+                                            </button>
+                                            <div className="spacer"></div>
+                                        </div>
                                     );
                                 })}
                         </div>
@@ -165,39 +161,37 @@ export default function Friends() {
                                     } = user;
                                     console.log(user);
                                     return (
-                                        <>
-                                            <div className="other-profile-top">
-                                                <Link
-                                                    key={id}
-                                                    to={`/user/${id}`}
-                                                >
-                                                    <div className="profile-picture">
-                                                        <div className="profile-picture-container">
-                                                            <img
-                                                                src={
-                                                                    img_url ||
-                                                                    "default_user.jpeg"
-                                                                }
-                                                                alt={`${first_name} ${last_name}`}
-                                                            />
-                                                            <p>
-                                                                {first_name}{" "}
-                                                                {last_name}
-                                                            </p>
-                                                            <div className="spacer"></div>
-                                                        </div>
+                                        <div
+                                            className="other-profile-top"
+                                            key={id}
+                                        >
+                                            <Link to={`/user/${id}`}>
+                                                <div className="profile-picture">
+                                                    <div className="profile-picture-container">
+                                                        <img
+                                                            src={
+                                                                img_url ||
+                                                                "default_user.jpeg"
+                                                            }
+                                                            alt={`${first_name} ${last_name}`}
+                                                        />
+                                                        <p>
+                                                            {first_name}{" "}
+                                                            {last_name}
+                                                        </p>
+                                                        <div className="spacer"></div>
                                                     </div>
-                                                </Link>
-                                                <button
-                                                    onClick={() =>
-                                                        dispatch(unfriend(id))
-                                                    }
-                                                >
-                                                    Cancel friend request
-                                                </button>
-                                                <div className="spacer"></div>
-                                            </div>
-                                        </>
+                                                </div>
+                                            </Link>
+                                            <button
+                                                onClick={() =>
+                                                    dispatch(unfriend(id))
+                                                }
+                                            >
+                                                Cancel friend request
+                                            </button>
+                                            <div className="spacer"></div>
+                                        </div>
                                     );
                                 })}
                         </div>
