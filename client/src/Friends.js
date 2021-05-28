@@ -17,7 +17,7 @@ export default function Friends() {
             )
     );
 
-    const sendRequests = useSelector(
+    const sentRequests = useSelector(
         (state) =>
             state.users &&
             state.users.filter(
@@ -26,7 +26,7 @@ export default function Friends() {
     );
 
     useEffect(() => {
-        (!friends || !requests || !sendRequests) &&
+        (!friends || !requests || !sentRequests) &&
             dispatch(getFriendsRequests());
     }, []);
 
@@ -147,12 +147,12 @@ export default function Friends() {
                 <div className="request-container">
                     <ul>
                         <h2>
-                            You have {sendRequests.length} pending friend
+                            You have {sentRequests.length} pending friend
                             request(s)
                         </h2>
                         <div className="profile-search-output">
-                            {sendRequests &&
-                                sendRequests.map((user) => {
+                            {sentRequests &&
+                                sentRequests.map((user) => {
                                     const {
                                         id,
                                         first_name,

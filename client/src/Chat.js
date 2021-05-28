@@ -82,7 +82,7 @@ export default function Chat() {
                     <div className="breaker"></div>
                     be the kind of person your dog thinks you are
                 </h3>
-                <p>
+                <span>
                     Out motto at <strong>Barky</strong> is: ADAB - All Dogs Are
                     Beautiful. <div className="spacer"></div>And because of that
                     we want to create an environment where you can chat about
@@ -92,7 +92,7 @@ export default function Chat() {
                     your membership at <strong>Barky</strong>.
                     <div className="spacer"></div>
                     With that being said: Let&#39;s chat and have a good time!
-                </p>
+                </span>
                 <div className="logo-small">
                     <img src="../logo.svg" className="remove-on-mobile" />
                 </div>

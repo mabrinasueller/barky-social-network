@@ -1,7 +1,29 @@
 import BioEditor from "./Bio";
+import axios from "./axios";
+import { useEffect, useState, useRef } from "react";
 
 export default function Profile(props) {
-    // console.log("Props in Profile: ", props);
+    console.log("Props in Profile: ", props);
+    const elemRef = useRef();
+    const [friends, setFriends] = useState();
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const { data } = await axios.get("/friends-requests");
+                // console.log("data from friends: ", data[0].accepted);
+                // setFriends({data.})
+                const friends = data.filter((user) => user.accepted === true);
+                console.log("friends: ", friends[0].id);
+                setFriends(friends);
+            } catch (error) {
+                console.log("Error in getting friends: ", error);
+            }
+        })();
+        elemRef.current.scrollTop =
+            elemRef.current.scrollHeight - elemRef.current.clientHeight;
+    }, []);
+
     return (
         <div className="profile-content">
             <div className="profile-top">
@@ -27,7 +49,9 @@ export default function Profile(props) {
             <div className="profile">
                 <div className="profile-text-container">
                     {/* <h3>More on us</h3> */}
-                    <p>
+                    <div className="chat-message-container" ref={elemRef}></div>
+
+                    {/* <p>
                         But I must explain to you how all this mistaken idea of
                         denouncing pleasure and praising pain was born and I
                         will give you a complete account of the system, and
@@ -40,7 +64,7 @@ export default function Profile(props) {
                         because it is pleasure, but because those who do not
                         know how to pursue pleasure rationally encounter
                         consequences that are extremely painful.{" "}
-                    </p>
+                    </p> */}
                     {/* <textarea></textarea>
                     <button>Send</button> */}
                     <h4>Favorite song:</h4>
@@ -62,8 +86,7 @@ export default function Profile(props) {
                         <div className="spacer"></div>
                         <h4>I like:</h4>
                         <p>
-                            long walks, puddles and sleeping on the human&apos;s
-                            bed
+                            long walks, puddles and sleeping on the humans bed
                         </p>
                         <div className="spacer"></div>
                         <h4>I don&apos;t like:</h4>
