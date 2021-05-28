@@ -8,6 +8,7 @@ export default function FriendButton({ id }) {
         (async () => {
             try {
                 const { data } = await axios.get(`/connections/${id}`);
+                console.log("data: ", data);
                 setButtonText(data.btnText);
             } catch (error) {
                 console.log("error in friends-route: ", error);

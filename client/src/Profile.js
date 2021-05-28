@@ -1,28 +1,21 @@
 import BioEditor from "./Bio";
-import axios from "./axios";
-import { useEffect, useState, useRef } from "react";
+import { Link } from "react-router-dom";
+import { useRef } from "react";
 
 export default function Profile(props) {
     console.log("Props in Profile: ", props);
     const elemRef = useRef();
-    const [friends, setFriends] = useState();
 
-    useEffect(() => {
-        (async () => {
-            try {
-                const { data } = await axios.get("/friends-requests");
-                // console.log("data from friends: ", data[0].accepted);
-                // setFriends({data.})
-                const friends = data.filter((user) => user.accepted === true);
-                console.log("friends: ", friends[0].id);
-                setFriends(friends);
-            } catch (error) {
-                console.log("Error in getting friends: ", error);
-            }
-        })();
-        elemRef.current.scrollTop =
-            elemRef.current.scrollHeight - elemRef.current.clientHeight;
-    }, []);
+    let chatMessages;
+
+    const handleKeyDown = (e) => {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            console.log("user is typing: ", e.target.value);
+
+            e.target.value = "";
+        }
+    };
 
     return (
         <div className="profile-content">
@@ -48,8 +41,60 @@ export default function Profile(props) {
 
             <div className="profile">
                 <div className="profile-text-container">
-                    {/* <h3>More on us</h3> */}
-                    <div className="chat-message-container" ref={elemRef}></div>
+                    <div className="chat-profile-container">
+                        <div className="chat-message-container" ref={elemRef}>
+                            {chatMessages &&
+                                chatMessages.map((message) => {
+                                    const {
+                                        first_name,
+                                        last_name,
+                                        img_url,
+                                        created_at,
+                                        id,
+                                    } = message;
+                                    let date = new Date(created_at)
+                                        .toUTCString()
+                                        .replace("GMT", "");
+                                    return (
+                                        <div
+                                            className="single-chat-container"
+                                            key={id}
+                                        >
+                                            <div className="chat-image-container">
+                                                <Link to={`/user/${id}`}>
+                                                    <img
+                                                        src={img_url}
+                                                        alt={`${first_name} ${last_name}`}
+                                                        className="chat-image"
+                                                    />
+                                                </Link>
+                                            </div>
+
+                                            <div className="chat-user-container">
+                                                <div className="chat-text-container">
+                                                    <div className="user-info-chat">
+                                                        <p>
+                                                            {" "}
+                                                            {first_name}{" "}
+                                                            {last_name}{" "}
+                                                            <span className="created-at">
+                                                                {date}
+                                                            </span>
+                                                        </p>
+                                                    </div>
+                                                    <p>{message.message}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                        </div>
+                        <textarea
+                            onKeyDown={handleKeyDown}
+                            placeholder="Type your message here"
+                            className="chat-textarea"
+                        ></textarea>
+                    </div>
 
                     {/* <p>
                         But I must explain to you how all this mistaken idea of
@@ -67,13 +112,6 @@ export default function Profile(props) {
                     </p> */}
                     {/* <textarea></textarea>
                     <button>Send</button> */}
-                    <h4>Favorite song:</h4>
-                    <p>Who let the dogs out?</p>
-                    <h4>We are looking for:</h4>
-                    <p>
-                        a cool dog owner with another female dog to cruise the
-                        parks of Berlin
-                    </p>
                 </div>
                 <div className="profile-container-dog">
                     <div className="dog-image-container">
@@ -93,6 +131,13 @@ export default function Profile(props) {
                         <p>
                             the vacuum, I definitely feel a sinister vibe coming
                             from it!
+                        </p>
+                        <h4>Favorite song:</h4>
+                        <p>Who let the dogs out?</p>
+                        <h4>We are looking for:</h4>
+                        <p>
+                            a cool dog owner with another female dog to cruise
+                            the parks of Berlin
                         </p>
                     </div>
                 </div>

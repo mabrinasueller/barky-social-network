@@ -1,6 +1,6 @@
 import axios from "./axios";
 import FriendButton from "./FriendButton";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useHistory } from "react-router-dom";
 // const dispatch = useDispatch();
 // const otherProfile = useSelector((state) => state.user);
@@ -9,6 +9,8 @@ import { useHistory } from "react-router-dom";
 export default function OtherProfile(props) {
     const history = useHistory();
     const [otherUser, setOtherUser] = useState();
+    const [friends, setFriends] = useState();
+    const elemRef = useRef();
     const { id } = props.match.params;
 
     console.log("props: ", props);
@@ -29,6 +31,28 @@ export default function OtherProfile(props) {
             }
         })();
     }, []);
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const { data } = await axios.get("/friends-requests");
+                // console.log("data from friends: ", data[0].accepted);
+                // setFriends({data.})
+                const friends = data.filter((user) => user.accepted === true);
+                console.log("friends: ", friends[0].id);
+                setFriends(friends);
+            } catch (error) {
+                console.log("Error in getting friends: ", error);
+            }
+        })();
+    }, []);
+
+    // useEffect(() => {
+    //     console.log("mounted");
+
+    //     elemRef.current.scrollTop =
+    //         elemRef.current.scrollHeight - elemRef.current.clientHeight;
+    // });
 
     if (otherUser) {
         return (
@@ -55,7 +79,10 @@ export default function OtherProfile(props) {
 
                     <div className="profile">
                         <div className="profile-text-container">
-                            <h4>About us</h4>
+                            {/* <div
+                                className="chat-message-container"
+                                ref={elemRef}
+                            ></div> */}
                             <p>
                                 But I must explain to you how all this mistaken
                                 idea of denouncing pleasure and praising pain

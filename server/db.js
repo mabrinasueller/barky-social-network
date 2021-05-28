@@ -150,3 +150,7 @@ module.exports.deleteUserConnections = (userId) => {
 module.exports.deleteUserChats = (userId) => {
     return db.query(`DELETE FROM chat WHERE sender_id = $1`, [userId]);
 };
+
+// module.exports.getFriendsOfOtherUsers = (userId) => {
+//     return db.query(`SELECT`)
+// }

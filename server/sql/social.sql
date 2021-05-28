@@ -1,7 +1,9 @@
+DROP TABLE IF EXISTS wall_post;
 DROP TABLE IF EXISTS chat;
 DROP TABLE IF EXISTS friends;
-DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS reset_codes;
+DROP TABLE IF EXISTS users;
+
 
 CREATE TABLE users (
     id            SERIAL PRIMARY KEY,
@@ -32,5 +34,13 @@ CREATE TABLE friends(
     id SERIAL PRIMARY KEY,
     sender_id INT REFERENCES users(id) NOT NULL,
     message TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  )
+
+  CREATE TABLE wall_post(
+    id SERIAL PRIMARY KEY,
+    sender_id INT REFERENCES users(id) NOT NULL,
+    recipient_id INT REFERENCES users(id) NOT NULL,
+    post TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   )

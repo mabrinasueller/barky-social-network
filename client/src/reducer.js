@@ -46,10 +46,10 @@ export default function reducer(state = {}, action) {
     // if (action.type === "OTHER_USER_BIO") {
     //     state = {
     //         ...state,
-    //         firstName: action.firstName,
-    //         lastName: action.lastName,
-    //         imgUrl: action.imgUrl,
-    //         bio: action.bio,
+    //         firstName: action.data.firstName,
+    //         lastName: action.data.lastName,
+    //         imgUrl: action.data.imgUrl,
+    //         bio: action.data.bio,
     //     };
     // }
 

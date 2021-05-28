@@ -12,22 +12,22 @@ app.get("/connections/:viewedUser", async (req, res) => {
     const { rows } = await getConnection(loggedInUser, viewedUser);
 
     if (rows.length === 0) {
-        return res.status(200).json({
+        return res.json({
             btnText: "Add as friend",
         });
     }
     if (rows[0].accepted) {
-        return res.status(200).json({
+        return res.json({
             btnText: "Unfriend",
         });
     }
     if (!rows[0].accepted) {
         if (rows[0].recipient_id === loggedInUser) {
-            return res.status(200).json({
+            return res.json({
                 btnText: "Accept",
             });
         } else {
-            return res.status(200).json({
+            return res.json({
                 btnText: "Cancel friend request",
             });
         }
@@ -56,9 +56,7 @@ app.post("/connections", async (req, res) => {
             btnText === "Unfriend" ||
             btnText === "Decline friend request"
         ) {
-            const { rows } = await deleteConnection(loggedInUser, viewedUser);
-            console.log("loggedInUser,", loggedInUser);
-            console.log("rows2: ", rows);
+            await deleteConnection(loggedInUser, viewedUser);
             return res.json({
                 btnText: "Add as Friend",
             });
