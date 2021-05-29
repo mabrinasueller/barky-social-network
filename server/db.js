@@ -151,6 +151,20 @@ module.exports.deleteUserChats = (userId) => {
     return db.query(`DELETE FROM chat WHERE sender_id = $1`, [userId]);
 };
 
+module.exports.insertWallPost = (user1, user2, post) => {
+    return db.query(
+        `INSERT INTO wall_post (sender_id, recipient_id, post) VALUES ($1, $2, $3) RETURNING *`,
+        [user1, user2, post]
+    );
+};
+
+module.exports.getWallPosts = (userId) => {
+    return db.query(
+        `SELECT wall_post.id, first_name, last_name, img_url, post, wall_post.created_at FROM users JOIN wall_post ON wall_post.recipient_id = users.id`,
+        [userId]
+    );
+};
+
 // module.exports.getFriendsOfOtherUsers = (userId) => {
 //     return db.query(`SELECT`)
 // }

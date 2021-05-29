@@ -2,6 +2,7 @@ import axios from "./axios";
 import FriendButton from "./FriendButton";
 import { useEffect, useState, useRef } from "react";
 import { useHistory } from "react-router-dom";
+import Wallposts from "./Wallposts";
 // const dispatch = useDispatch();
 // const otherProfile = useSelector((state) => state.user);
 // import { useDispatch, useSelector } from "react-redux";
@@ -83,7 +84,7 @@ export default function OtherProfile(props) {
                                 className="chat-message-container"
                                 ref={elemRef}
                             ></div> */}
-                            <p>
+                            {/* <p>
                                 But I must explain to you how all this mistaken
                                 idea of denouncing pleasure and praising pain
                                 was born and I will give you a complete account
@@ -98,14 +99,8 @@ export default function OtherProfile(props) {
                                 those who do not know how to pursue pleasure
                                 rationally encounter consequences that are
                                 extremely painful.{" "}
-                            </p>
-                            <h4>Favorite song:</h4>
-                            <p>Who let the dogs out?</p>
-                            <h4>We are looking for:</h4>
-                            <p>
-                                a cool dog owner with another female dog to
-                                cruise the parks of Berlin
-                            </p>
+                            </p> */}
+                            <Wallposts id={props.match.params.id} />
                         </div>
                         <div className="profile-container-dog">
                             <div className="dog-image-container">
@@ -119,13 +114,20 @@ export default function OtherProfile(props) {
                                 <h4>I like:</h4>
                                 <p>
                                     long walks, puddles and sleeping on the
-                                    human&apos;s bed
+                                    humans bed
                                 </p>
                                 <div className="spacer"></div>
                                 <h4>I don&apos;t like:</h4>
                                 <p>
                                     the vacuum, I definitely feel a sinister
                                     vibe coming from it!
+                                </p>
+                                <h4>Favorite song:</h4>
+                                <p>Who let the dogs out?</p>
+                                <h4>We are looking for:</h4>
+                                <p>
+                                    a cool dog owner with another female dog to
+                                    cruise the parks of Berlin
                                 </p>
                             </div>
                         </div>

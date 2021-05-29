@@ -77,6 +77,15 @@ export async function chatMessages(msgs) {
     };
 }
 
+export async function getProfilePosts() {
+    try {
+        const { data } = await axios.get("/profile/wallposts");
+        console.log("data: ", data);
+    } catch (error) {
+        console.log("error: ", error);
+    }
+}
+
 // export async function otherUser(id) {
 //     try {
 //         const { data } = await axios.get(`/other-user/${id}`);

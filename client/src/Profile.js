@@ -1,21 +1,9 @@
 import BioEditor from "./Bio";
-import { Link } from "react-router-dom";
-import { useRef } from "react";
+
+import Wallposts from "./Wallposts";
 
 export default function Profile(props) {
     console.log("Props in Profile: ", props);
-    const elemRef = useRef();
-
-    let chatMessages;
-
-    const handleKeyDown = (e) => {
-        if (e.key === "Enter") {
-            e.preventDefault();
-            console.log("user is typing: ", e.target.value);
-
-            e.target.value = "";
-        }
-    };
 
     return (
         <div className="profile-content">
@@ -41,61 +29,7 @@ export default function Profile(props) {
 
             <div className="profile">
                 <div className="profile-text-container">
-                    <div className="chat-profile-container">
-                        <div className="chat-message-container" ref={elemRef}>
-                            {chatMessages &&
-                                chatMessages.map((message) => {
-                                    const {
-                                        first_name,
-                                        last_name,
-                                        img_url,
-                                        created_at,
-                                        id,
-                                    } = message;
-                                    let date = new Date(created_at)
-                                        .toUTCString()
-                                        .replace("GMT", "");
-                                    return (
-                                        <div
-                                            className="single-chat-container"
-                                            key={id}
-                                        >
-                                            <div className="chat-image-container">
-                                                <Link to={`/user/${id}`}>
-                                                    <img
-                                                        src={img_url}
-                                                        alt={`${first_name} ${last_name}`}
-                                                        className="chat-image"
-                                                    />
-                                                </Link>
-                                            </div>
-
-                                            <div className="chat-user-container">
-                                                <div className="chat-text-container">
-                                                    <div className="user-info-chat">
-                                                        <p>
-                                                            {" "}
-                                                            {first_name}{" "}
-                                                            {last_name}{" "}
-                                                            <span className="created-at">
-                                                                {date}
-                                                            </span>
-                                                        </p>
-                                                    </div>
-                                                    <p>{message.message}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    );
-                                })}
-                        </div>
-                        <textarea
-                            onKeyDown={handleKeyDown}
-                            placeholder="Type your message here"
-                            className="chat-textarea"
-                        ></textarea>
-                    </div>
-
+                    <Wallposts />
                     {/* <p>
                         But I must explain to you how all this mistaken idea of
                         denouncing pleasure and praising pain was born and I
