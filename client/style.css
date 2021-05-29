@@ -998,3 +998,64 @@ img.dog-about-image {
     width: 100px;
     height: 100px;
 }
+
+.img-landing-container img {
+    height: auto;
+    width: 80%;
+
+    object-fit: cover;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.img-landing-container {
+    flex: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.landing-container-big {
+    display: flex;
+    flex-direction: row;
+    max-height: 100%;
+    max-width: 100%;
+    align-items: flex;
+    justify-content: center;
+    margin-top: 20px;
+    /* padding: 20px; */
+}
+
+.landing-text-big {
+    flex: 1;
+    text-align: left;
+    max-height: 100%;
+    max-width: 100%;
+    flex-direction: column;
+
+    align-items: flex-start;
+    display: flex;
+    justify-content: center;
+}
+
+.landing-text-big h1 {
+    font-size: 80px;
+}
+
+.header {
+    justify-content: flex-end;
+    height: 80px;
+}
+
+.landing-text-big button {
+    align-self: center;
+}
+
+.landing-page-container button {
+    border-radius: 15px;
+    background: #ffb4a2;
+    border: none;
+    width: 200px;
+    padding: 10px;
+}
