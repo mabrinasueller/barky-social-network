@@ -45,7 +45,7 @@ exports.upload = (req, res, next) => {
 
 exports.delete = (imgUrl) => {
     return s3
-        .deleteObject({ Bucket: "mabrinasbucket", Key: "imgUrl" })
+        .deleteObject({ Bucket: "mabrinasbucket", Key: `${imgUrl}` })
         .promise()
         .then(() => {
             console.log("File deleted successfully");

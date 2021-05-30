@@ -165,6 +165,9 @@ module.exports.getWallPosts = (userId) => {
     );
 };
 
-// module.exports.getFriendsOfOtherUsers = (userId) => {
-//     return db.query(`SELECT`)
-// }
+module.exports.getFriendsOfOtherUsers = (user2) => {
+    return db.query(
+        `SELECT users.id, first_name, last_name, img_url, accepted FROM friends JOIN users ON (accepted = true AND recipient_id = $1 AND sender_id = users.id) OR (accepted = true AND sender_id = $1 AND recipient_id = users.id)`,
+        [user2]
+    );
+};

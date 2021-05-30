@@ -38,7 +38,7 @@ export default class Registration extends Component {
         return (
             <div className="landing-page-container">
                 <header className="header">
-                    <Link path="/login">
+                    <Link to="/login">
                         <button>Login</button>
                     </Link>
                 </header>
@@ -47,7 +47,7 @@ export default class Registration extends Component {
                         <h1>
                             You&#39;ll never
                             <div className="breaker"></div>
-                            walk alone
+                            bark alone
                         </h1>
                         <div className="spacer"></div>
                         <h3>

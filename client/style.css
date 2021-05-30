@@ -1054,8 +1054,21 @@ img.dog-about-image {
 
 .landing-page-container button {
     border-radius: 15px;
-    background: #ffb4a2;
+    background: #f2cbbd;
     border: none;
     width: 200px;
     padding: 10px;
+}
+
+#map {
+    height: 100%;
+    width: 400px;
+}
+
+.spotify-player iframe {
+    border-radius: 15px;
+}
+
+.spotify-player {
+    margin-right: 30px;
 }

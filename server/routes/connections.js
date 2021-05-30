@@ -68,3 +68,14 @@ app.post("/connections", async (req, res) => {
         });
     }
 });
+
+app.get("/connection/:viewedUser", async (req, res) => {
+    const loggedInUser = req.session.userId;
+    const { viewedUser } = req.params;
+    try {
+        const { rows } = await getConnection(loggedInUser, viewedUser);
+        return res.json({ success: rows[0].accepted });
+    } catch (error) {
+        console.log("error again: ", error);
+    }
+});
