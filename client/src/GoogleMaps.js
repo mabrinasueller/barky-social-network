@@ -60,6 +60,34 @@ export default function Maps() {
     const [lat, setLat] = useState(52.52);
     const [zoom, setZoom] = useState(15);
 
+    var geojson = {
+        type: "FeatureCollection",
+        features: [
+            {
+                type: "Feature",
+                geometry: {
+                    type: "Point",
+                    coordinates: [13.402763, 52.543506],
+                },
+                properties: {
+                    title: "Mapbox",
+                    description: "Mauerpark",
+                },
+            },
+            {
+                type: "Feature",
+                geometry: {
+                    type: "Point",
+                    coordinates: [13.436393, 52.528035],
+                },
+                properties: {
+                    title: "Mapbox",
+                    description: "Volkspark Friedrichshain",
+                },
+            },
+        ],
+    };
+
     useEffect(() => {
         if (map.current) return; // initialize map only once
         map.current = new mapboxgl.Map({
@@ -69,6 +97,17 @@ export default function Maps() {
             zoom: zoom,
         });
     });
+
+    // geojson.features.forEach(function (marker) {
+    //     // create a HTML element for each feature
+    //     var el = document.createElement("div");
+    //     el.className = "marker";
+
+    //     // make a marker for each feature and add to the map
+    //     new mapboxgl.Marker(el)
+    //         .setLngLat(marker.geometry.coordinates)
+    //         .addTo(map);
+    // });
 
     useEffect(() => {
         if (!map.current) return; // wait for map to initialize
@@ -81,10 +120,11 @@ export default function Maps() {
 
     return (
         <div>
-            <div className="sidebar">
-                Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
+            <div ref={mapContainer} className="map-container">
+                <div className="sidebar">
+                    Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
+                </div>
             </div>
-            <div ref={mapContainer} className="map-container" />
         </div>
     );
 }

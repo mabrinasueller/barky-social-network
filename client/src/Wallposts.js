@@ -33,6 +33,11 @@ export default function WallPosts({ id }) {
         }, []);
     }
 
+    useEffect(() => {
+        elemRef.current.scrollTop =
+            elemRef.current.scrollHeight - elemRef.current.clientHeight;
+    });
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {

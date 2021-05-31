@@ -375,7 +375,7 @@ img.logo-small {
 }
 
 .dark:root {
-    --dog-info-container: #343a40;
+    background: #343a40;
 }
 
 .moon-symbol {
@@ -1076,6 +1076,15 @@ img.dog-about-image {
     left: 0;
     margin: 12px;
     border-radius: 4px;
+}
+
+.marker {
+    background-image: url("../client/public/logo.svg");
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
 }
 
 .spotify-player iframe {

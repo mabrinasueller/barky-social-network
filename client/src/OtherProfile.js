@@ -111,6 +111,7 @@ export default function OtherProfile(props) {
                                 </h3>
                                 <p>{otherUser.bio}</p>
                                 <FriendButton id={props.match.params.id} />
+                                <button>Send Message</button>
                             </div>
                             <div className="friends-profile-container">
                                 <p>Friends of user:</p>

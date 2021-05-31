@@ -11,7 +11,8 @@ import Menu from "./Menu";
 import Chat from "./Chat";
 import DeleteUser from "./DeleteUser";
 import About from "./About";
-// import DarkMode from "./DarkMode";
+import DarkMode from "./DarkMode";
+import EditProfile from "./EditProfile";
 
 export default class App extends Component {
     constructor(props) {
@@ -38,6 +39,7 @@ export default class App extends Component {
         }
     }
 
+    // toggleUploader(imgToChange)
     toggleUploader() {
         this.setState({ uploaderIsVisible: !this.state.uploaderIsVisible });
     }
@@ -70,7 +72,7 @@ export default class App extends Component {
                             </Link>
                         </div>
                         <div className="profile-small-container">
-                            {/* <DarkMode /> */}
+                            <DarkMode />
                             <ProfilePic
                                 id={this.state.id}
                                 firstName={this.state.firstName}
@@ -117,6 +119,7 @@ export default class App extends Component {
                     <Route path="/chat" component={Chat} />
                     <Route path="/delete/account" component={DeleteUser} />
                     <Route path="/about" component={About} />
+                    <Route path="/edit" component={EditProfile} />
                 </BrowserRouter>
                 {this.state.uploaderIsVisible && (
                     <Uploader

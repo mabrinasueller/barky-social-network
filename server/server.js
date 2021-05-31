@@ -104,6 +104,7 @@ app.get("/user", async (req, res) => {
     const { userId } = req.session;
     try {
         const { rows } = await getUser(userId);
+        console.log("rows: ", rows);
         res.json(rows[0]);
     } catch (error) {
         console.log("error: ", error);
