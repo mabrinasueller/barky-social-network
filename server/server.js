@@ -168,20 +168,31 @@ app.post("/wall/posts", async (req, res) => {
 });
 
 app.get("/profile/wallposts/:viewedUser", async (req, res) => {
-    const { userId } = req.session;
     const { viewedUser } = req.params;
-    console.log("req.params", req.params);
 
     try {
         const { rows } = await getWallPosts(viewedUser);
         console.log("rows from getting wallpost: ", rows);
-        res.json(rows[0].reverse());
+        res.json(rows.reverse());
+    } catch (error) {
+        console.log("Error in /profile/wallposts: ", error);
+    }
+});
+
+app.get("/profile/wallposts", async (req, res) => {
+    const { userId } = req.session;
+
+    try {
+        const { rows } = await getWallPosts(userId);
+        console.log("rows from getting wallpost: ", rows);
+        res.json(rows.reverse());
     } catch (error) {
         console.log("Error in /profile/wallposts: ", error);
     }
 });
 
 app.get("*", (req, res) => {
+    console.log("req.url: ", req.url);
     if (!req.session.userId) {
         res.redirect("/welcome");
     } else {

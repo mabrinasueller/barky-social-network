@@ -112,10 +112,7 @@ export default function OtherProfile(props) {
                                 <p>{otherUser.bio}</p>
                                 <FriendButton id={props.match.params.id} />
                             </div>
-                        </div>
-
-                        <div className="profile">
-                            <div className="profile-text-container">
+                            <div className="friends-profile-container">
                                 <p>Friends of user:</p>
                                 {friends &&
                                     friends.map((friend) => {
@@ -144,7 +141,11 @@ export default function OtherProfile(props) {
                                             </div>
                                         );
                                     })}
+                            </div>
+                        </div>
 
+                        <div className="profile">
+                            <div className="profile-text-container">
                                 <div
                                     className="chat-message-container"
                                     ref={elemRef}

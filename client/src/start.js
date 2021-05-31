@@ -4,6 +4,7 @@ import App from "./app";
 import { io } from "socket.io-client";
 import { Provider } from "react-redux";
 import reducer from "./reducer";
+import "mapbox-gl/dist/mapbox-gl.css";
 import { createStore, applyMiddleware } from "redux";
 import reduxPromise from "redux-promise";
 import { composeWithDevTools } from "redux-devtools-extension";

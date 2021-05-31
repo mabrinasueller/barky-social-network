@@ -30,7 +30,7 @@ export default function Profile(props) {
 
                 <div className="profile">
                     <div className="profile-text-container">
-                        {/* <Wallposts /> */}
+                        <Wallposts />
                         {/* <p>
                         But I must explain to you how all this mistaken idea of
                         denouncing pleasure and praising pain was born and I

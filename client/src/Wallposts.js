@@ -7,27 +7,39 @@ export default function WallPosts({ id }) {
     const [newWallPost, setNewWallPost] = useState();
     const [allWallPosts, setAllWallPosts] = useState([]);
 
-    useEffect(() => {
-        (async () => {
-            try {
-                const { data } = await axios.get(`/profile/wallposts/${id}`);
-                console.log("data from getting all posts: ", data);
-                setAllWallPosts(data);
-            } catch (error) {
-                console.log("error in allMessages: ", error);
-            }
-        })();
-    }, []);
+    if (id) {
+        useEffect(() => {
+            (async () => {
+                try {
+                    const { data } = await axios.get(
+                        `/profile/wallposts/${id}`
+                    );
+                    setAllWallPosts(data);
+                } catch (error) {
+                    console.log("error in allMessages: ", error);
+                }
+            })();
+        }, []);
+    } else {
+        useEffect(() => {
+            (async () => {
+                try {
+                    const { data } = await axios.get(`/profile/wallposts`);
+                    setAllWallPosts(data);
+                } catch (error) {
+                    console.log("error in allMessages: ", error);
+                }
+            })();
+        }, []);
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Submit was clicked!");
         try {
             const { data } = await axios.post("/wall/posts", {
                 viewedUser: id,
                 post: newWallPost,
             });
-            console.log("data from sending post: ", data.post);
             let newWallPosts = [data, ...allWallPosts];
             setAllWallPosts(newWallPosts);
             setNewWallPost(data.post);
@@ -36,15 +48,10 @@ export default function WallPosts({ id }) {
         }
     };
 
-    const onChange = ({ target }) => {
-        setNewWallPost(target.value);
-        console.log("target.value", target.value);
-    };
-
     return (
         <div className="chat-profile-container">
             <div className="chat-message-container" ref={elemRef}>
-                {/* {allWallPosts &&
+                {allWallPosts &&
                     allWallPosts.map((post) => {
                         const {
                             first_name,
@@ -85,11 +92,10 @@ export default function WallPosts({ id }) {
                                 </div>
                             </div>
                         );
-                    })} */}
+                    })}
             </div>
             <textarea
-                // onChange={(e) => setNewWallPost(e.target.value)}
-                onChange={onChange}
+                onChange={(e) => setNewWallPost(e.target.value)}
                 placeholder="Type your message here"
                 className="chat-textarea"
             ></textarea>
@@ -97,11 +103,3 @@ export default function WallPosts({ id }) {
         </div>
     );
 }
-
-//   if (allWallPosts.length === 0){" "}
-//                                         {
-//                                             <p>
-//                                                 No posts yet. Be the first to
-//                                                 write a post!
-//                                             </p>
-//                                         } else{}
