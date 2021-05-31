@@ -1,6 +1,11 @@
 const { app } = require("../server");
 const { hash, compare } = require("../bc");
-const { createUser, registeredUser } = require("../db");
+const {
+    createUser,
+    registeredUser,
+    updateUser,
+    updatePassword,
+} = require("../db");
 
 app.post("/registration", async (req, res) => {
     const { firstName, lastName, email, password } = req.body;
@@ -38,6 +43,25 @@ app.post("/login", async (req, res) => {
         res.status(500).json({
             error: "Error thrown in login-route",
         });
+    }
+});
+
+app.post("/edit", async (req, res) => {
+    const { userId } = req.session;
+    const { firstName, lastName, email, password } = req.body;
+
+    try {
+        if (password.length !== 0) {
+            const hashedPassword = await hash(password);
+            const { rows } = await updatePassword(hashedPassword, email);
+            await updateUser(firstName, lastName, email, userId);
+            console.log("rows from pw-update: ", rows);
+            res.json(rows[0]);
+        } else {
+            await updateUser(firstName, lastName, email, userId);
+        }
+    } catch (error) {
+        console.log("Error in inserting updated user: ", error);
     }
 });
 
