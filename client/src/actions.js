@@ -86,6 +86,18 @@ export async function chatMessages(msgs) {
 //     }
 // }
 
+// export async function setWallPosts(id, post) {
+//     try {
+//         const { data } = await axios.post("/wall/posts", {
+//             viewedUser: id,
+//             post,
+//         });
+//         console.log("data from setting post: ", data);
+//     } catch (error) {
+//         console.log("Error in sending post: ", error);
+//     }
+// }
+
 // export async function otherUser(id) {
 //     try {
 //         const { data } = await axios.get(`/other-user/${id}`);

@@ -4,9 +4,6 @@ import { useEffect, useState, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import Wallposts from "./Wallposts";
 import { Link } from "react-router-dom";
-// const dispatch = useDispatch();
-// const otherProfile = useSelector((state) => state.user);
-// import { useDispatch, useSelector } from "react-redux";
 
 export default function OtherProfile(props) {
     const history = useHistory();
@@ -67,7 +64,34 @@ export default function OtherProfile(props) {
     // });
 
     if (otherUser) {
-        if (connection) {
+        if (!connection) {
+            return (
+                <>
+                    <button onClick={() => history.goBack()}>Go back</button>
+                    <div className="profile-content">
+                        <div className="profile-top">
+                            <div className="profile-picture">
+                                <div className="profile-picture-container">
+                                    <img
+                                        src={otherUser.imgUrl}
+                                        alt={`${otherUser.firstName} ${otherUser.lastName}`}
+                                    />
+                                </div>
+                            </div>
+                            <div className="user-info-container">
+                                <h3>
+                                    {otherUser.firstName} {otherUser.lastName}
+                                </h3>
+                                <p>{otherUser.bio}</p>
+                                <FriendButton id={props.match.params.id} />
+                            </div>
+                        </div>
+                        <div className="profile"></div>
+                        <div className="profile-text-container"></div>
+                    </div>
+                </>
+            );
+        } else {
             return (
                 <>
                     <button onClick={() => history.goBack()}>Go back</button>
@@ -120,6 +144,13 @@ export default function OtherProfile(props) {
                                             </div>
                                         );
                                     })}
+
+                                <div
+                                    className="chat-message-container"
+                                    ref={elemRef}
+                                >
+                                    <Wallposts id={props.match.params.id} />
+                                </div>
                             </div>
                             <div className="profile-container-dog">
                                 <div className="dog-image-container">
@@ -154,43 +185,12 @@ export default function OtherProfile(props) {
                     </div>
                 </>
             );
-        } else {
-            return (
-                <>
-                    <button onClick={() => history.goBack()}>Go back</button>
-                    <div className="profile-content">
-                        <div className="profile-top">
-                            <div className="profile-picture">
-                                <div className="profile-picture-container">
-                                    <img
-                                        src={otherUser.imgUrl}
-                                        alt={`${otherUser.firstName} ${otherUser.lastName}`}
-                                    />
-                                </div>
-                            </div>
-                            <div className="user-info-container">
-                                <h3>
-                                    {otherUser.firstName} {otherUser.lastName}
-                                </h3>
-                                <p>{otherUser.bio}</p>
-                                <FriendButton id={props.match.params.id} />
-                            </div>
-                        </div>
-                    </div>
-                </>
-            );
         }
     } else {
         return null;
     }
 }
 
-{
-    /* <div
-                                className="chat-message-container"
-                                ref={elemRef}
-                            ></div> */
-}
 {
     /* <p>
                                 But I must explain to you how all this mistaken
@@ -208,7 +208,4 @@ export default function OtherProfile(props) {
                                 rationally encounter consequences that are
                                 extremely painful.{" "}
                             </p> */
-}
-{
-    /* <Wallposts id={props.match.params.id} /> */
 }

@@ -160,7 +160,7 @@ module.exports.insertWallPost = (user1, user2, post) => {
 
 module.exports.getWallPosts = (userId) => {
     return db.query(
-        `SELECT wall_post.id, first_name, last_name, img_url, post, wall_post.created_at FROM users JOIN wall_post ON wall_post.recipient_id = users.id`,
+        `SELECT wall_post.id, first_name, last_name, img_url, post, wall_post.created_at FROM users JOIN wall_post ON wall_post.sender_id = users.id WHERE wall_post.recipient_id = $1 ORDER BY wall_post.created_at`,
         [userId]
     );
 };

@@ -20,6 +20,8 @@ const {
     deleteUserConnections,
     deleteUserChats,
     deleteUserInfos,
+    insertWallPost,
+    getWallPosts,
 } = require("./db");
 
 const s3 = require("./s3");
@@ -148,6 +150,34 @@ app.post("/delete", async (req, res) => {
         res.redirect("/welcome");
     } catch (error) {
         console.log(("Error in /delete- route:", error));
+    }
+});
+
+app.post("/wall/posts", async (req, res) => {
+    const { userId } = req.session;
+    const { viewedUser, post } = req.body;
+    console.log("req.body", req.body);
+
+    try {
+        const { rows } = await insertWallPost(userId, viewedUser, post);
+        console.log("rows from inserting wallpost: ", rows);
+        res.json(rows[0]);
+    } catch (error) {
+        console.log("Error in /wall/posts-route: ", error);
+    }
+});
+
+app.get("/profile/wallposts/:viewedUser", async (req, res) => {
+    const { userId } = req.session;
+    const { viewedUser } = req.params;
+    console.log("req.params", req.params);
+
+    try {
+        const { rows } = await getWallPosts(viewedUser);
+        console.log("rows from getting wallpost: ", rows);
+        res.json(rows[0].reverse());
+    } catch (error) {
+        console.log("Error in /profile/wallposts: ", error);
     }
 });
 
