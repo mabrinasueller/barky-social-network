@@ -22,6 +22,7 @@ export default function Chat() {
             e.target.value = "";
         }
     };
+
     console.log("chatmessages: ", chatMessages);
     return (
         <div className="chat-content">
@@ -58,7 +59,7 @@ export default function Chat() {
                                                     {" "}
                                                     {first_name} {last_name}{" "}
                                                     <span className="created-at">
-                                                        {date}
+                                                        on {date}
                                                     </span>
                                                 </p>
                                             </div>

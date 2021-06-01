@@ -22,6 +22,7 @@ const {
     deleteUserInfos,
     insertWallPost,
     getWallPosts,
+    insertPrivateMessage,
 } = require("./db");
 
 const s3 = require("./s3");
@@ -192,6 +193,21 @@ app.get("/profile/wallposts", async (req, res) => {
     }
 });
 
+app.post("/message", async (req, res) => {
+    const { userId } = req.session;
+    const { viewedUser, message } = req.body;
+    try {
+        const { rows } = await insertPrivateMessage(
+            userId,
+            viewedUser,
+            message
+        );
+        console.log("rows in inserting message: ", rows);
+    } catch (error) {
+        console.log("Error in inserting message: ", error);
+    }
+});
+
 app.get("*", (req, res) => {
     console.log("req.url: ", req.url);
     if (!req.session.userId) {
@@ -217,6 +233,8 @@ io.on("connection", function (socket) {
     onlineUsers[socket.id] = userId;
     console.log("onlineUsers: ", onlineUsers);
     console.log(`User ${userId} just connected with socket ${socket.id}`);
+    const uniqueUsers = [...new Set(Object.values(onlineUsers))];
+    console.log("uniqueUsers: ", uniqueUsers);
 
     (async () => {
         try {

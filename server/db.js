@@ -167,7 +167,7 @@ module.exports.getWallPosts = (userId) => {
 
 module.exports.getFriendsOfOtherUsers = (user2) => {
     return db.query(
-        `SELECT users.id, first_name, last_name, img_url, accepted FROM friends JOIN users ON (accepted = true AND recipient_id = $1 AND sender_id = users.id) OR (accepted = true AND sender_id = $1 AND recipient_id = users.id)`,
+        `SELECT users.id, first_name, last_name, img_url, accepted FROM friends JOIN users ON (accepted = true AND recipient_id = $1 AND sender_id = users.id) OR (accepted = true AND sender_id = $1 AND recipient_id = users.id) LIMIT 4`,
         [user2]
     );
 };
@@ -176,5 +176,19 @@ module.exports.updateUser = (firstName, lastName, email, userId) => {
     return db.query(
         `UPDATE users SET first_name = $1, last_name = $2, email = $3 WHERE id = $4`,
         [firstName, lastName, email, userId]
+    );
+};
+
+module.exports.insertPrivateMessage = (user1, user2, message) => {
+    return db.query(
+        `INSERT INTO chats (sender_id, recipient_id, message) VALUES ($1, $2, $3) RETURNING *`,
+        [user1, user2, message]
+    );
+};
+
+module.exports.getPrivateMessages = (user1, user2) => {
+    return db.query(
+        `SELECT chat.id, first_name, last_name, img_url, chat.created_at from users JOIN chat ON chat.sender_id = users.id WHERE chat.recipient_id = $1 AND WHERE chat.sender_id = $2`,
+        [user1, user2]
     );
 };

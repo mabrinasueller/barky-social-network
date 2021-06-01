@@ -33,6 +33,7 @@ CREATE TABLE friends(
   CREATE TABLE chat(
     id SERIAL PRIMARY KEY,
     sender_id INT REFERENCES users(id) NOT NULL,
+    recipient_id INT REFERENCES users(id),
     message TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   )

@@ -11,6 +11,7 @@ export default function EditProfile() {
                 const { data } = await axios.get("/user");
                 console.log("data from editUser: ", data);
                 setProfile(data);
+                setUpdatedProfile(data);
             } catch (error) {
                 console.log("Error in edit Profile: ", error);
             }
@@ -19,16 +20,14 @@ export default function EditProfile() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        async () => {
-            try {
-                const { data } = await axios.post("/edit", {
-                    updatedProfile,
-                });
-                console.log("data: ", data);
-            } catch (error) {
-                console.log("Error in updating user: ", error);
-            }
-        };
+        console.log("submit was clicked");
+        try {
+            const { data } = await axios.post("/edit", updatedProfile);
+            console.log("data from editedUser: ", data);
+            location.replace("/");
+        } catch (error) {
+            console.log("Error in updating user: ", error);
+        }
     };
 
     return (
@@ -38,11 +37,12 @@ export default function EditProfile() {
                     <div key={profile.id}>
                         <input
                             name="firstName"
-                            value={profile.first_name}
+                            defaultValue={profile.first_name}
                             type="text"
                             className="form-input"
                             onChange={(e) =>
                                 setUpdatedProfile({
+                                    ...updatedProfile,
                                     [e.target.name]: e.target.value,
                                 })
                             }
@@ -50,25 +50,40 @@ export default function EditProfile() {
                         <label htmlFor="firstName">First Name</label>
                         <input
                             name="lastName"
-                            value={profile.last_name}
+                            defaultValue={profile.last_name}
                             type="text"
                             className="form-input"
-                            onChange={(e) => setUpdatedProfile(e.target.value)}
+                            onChange={(e) =>
+                                setUpdatedProfile({
+                                    ...updatedProfile,
+                                    [e.target.name]: e.target.value,
+                                })
+                            }
                         ></input>
                         <label htmlFor="lastName">Last Name</label>
                         <input
                             name="email"
-                            value={profile.email}
+                            defaultValue={profile.email}
                             type="email"
                             className="form-input"
-                            onChange={(e) => setUpdatedProfile(e.target.value)}
+                            onChange={(e) =>
+                                setUpdatedProfile({
+                                    ...updatedProfile,
+                                    [e.target.name]: e.target.value,
+                                })
+                            }
                         ></input>
                         <label htmlFor="email">Email</label>
                         <input
                             name={profile.password}
                             type="password"
                             className="form-input"
-                            onChange={(e) => setUpdatedProfile(e.target.value)}
+                            onChange={(e) =>
+                                setUpdatedProfile({
+                                    ...updatedProfile,
+                                    [e.target.name]: e.target.value,
+                                })
+                            }
                         ></input>
                         <label htmlFor="password">Password</label>
                     </div>

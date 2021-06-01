@@ -13,6 +13,7 @@ import DeleteUser from "./DeleteUser";
 import About from "./About";
 import DarkMode from "./DarkMode";
 import EditProfile from "./EditProfile";
+import Messages from "./Messages";
 
 export default class App extends Component {
     constructor(props) {
@@ -120,6 +121,7 @@ export default class App extends Component {
                     <Route path="/delete/account" component={DeleteUser} />
                     <Route path="/about" component={About} />
                     <Route path="/edit" component={EditProfile} />
+                    <Route path="/messages" component={Messages} />
                 </BrowserRouter>
                 {this.state.uploaderIsVisible && (
                     <Uploader

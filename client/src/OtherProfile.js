@@ -4,16 +4,22 @@ import { useEffect, useState, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import Wallposts from "./Wallposts";
 import { Link } from "react-router-dom";
+import Messenger from "./Messenger";
 
 export default function OtherProfile(props) {
     const history = useHistory();
     const [otherUser, setOtherUser] = useState();
     const [friends, setFriends] = useState();
     const [connection, setConnection] = useState();
+    const [isShowing, setIsShowing] = useState(false);
     const elemRef = useRef();
     const { id } = props.match.params;
 
     console.log("props: ", props);
+
+    function toggle() {
+        setIsShowing(!isShowing);
+    }
 
     useEffect(() => {
         (async () => {
@@ -86,8 +92,21 @@ export default function OtherProfile(props) {
                                 <FriendButton id={props.match.params.id} />
                             </div>
                         </div>
-                        <div className="profile"></div>
-                        <div className="profile-text-container"></div>
+                        <div className="profile">
+                            <div className="profile-text-container">
+                                <h1>Hold up!</h1>
+                                <h2>
+                                    Looks like you are not friends yet. Become
+                                    friends with {otherUser.firstName} to see
+                                    the profile
+                                </h2>
+                            </div>
+                            <div className="profile-container-dog">
+                                <div className="dog-profile-image-container">
+                                    <img src="../Wauz4.png" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </>
             );
@@ -111,7 +130,16 @@ export default function OtherProfile(props) {
                                 </h3>
                                 <p>{otherUser.bio}</p>
                                 <FriendButton id={props.match.params.id} />
-                                <button>Send Message</button>
+                                <div>
+                                    <button onClick={toggle}>
+                                        Send Message
+                                    </button>
+                                    <Messenger
+                                        isShowing={isShowing}
+                                        toggle={toggle}
+                                        id={props.match.params.id}
+                                    />
+                                </div>
                             </div>
                             <div className="friends-profile-container">
                                 <p>Friends of user:</p>

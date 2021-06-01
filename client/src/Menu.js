@@ -45,6 +45,7 @@ export default class Menu extends Component {
                             >
                                 <Link to="/users">Find Users</Link>
                                 <Link to="/chat">Chat</Link>
+                                <Link to="/messages">Messages</Link>
                                 <Link to="/friends">Friends</Link>
                                 <Link to="/">Profile</Link>
                                 <Link to="/edit">Edit Profile</Link>

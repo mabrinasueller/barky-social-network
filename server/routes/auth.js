@@ -48,17 +48,33 @@ app.post("/login", async (req, res) => {
 
 app.post("/edit", async (req, res) => {
     const { userId } = req.session;
-    const { firstName, lastName, email, password } = req.body;
+    console.log("userId", userId);
+    const {
+        firstName,
+        first_name,
+        lastName,
+        last_name,
+        email,
+        password,
+    } = req.body;
+
+    console.log("req.body", req.body);
 
     try {
-        if (password.length !== 0) {
+        if (password) {
             const hashedPassword = await hash(password);
             const { rows } = await updatePassword(hashedPassword, email);
             await updateUser(firstName, lastName, email, userId);
             console.log("rows from pw-update: ", rows);
             res.json(rows[0]);
         } else {
-            await updateUser(firstName, lastName, email, userId);
+            const { rows } = await updateUser(
+                firstName || first_name,
+                lastName || last_name,
+                email,
+                userId
+            );
+            res.json(rows[0]);
         }
     } catch (error) {
         console.log("Error in inserting updated user: ", error);
