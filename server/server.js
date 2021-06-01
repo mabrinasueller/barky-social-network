@@ -203,6 +203,7 @@ app.post("/message", async (req, res) => {
             message
         );
         console.log("rows in inserting message: ", rows);
+        res.json(rows[0]);
     } catch (error) {
         console.log("Error in inserting message: ", error);
     }

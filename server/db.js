@@ -181,7 +181,7 @@ module.exports.updateUser = (firstName, lastName, email, userId) => {
 
 module.exports.insertPrivateMessage = (user1, user2, message) => {
     return db.query(
-        `INSERT INTO chats (sender_id, recipient_id, message) VALUES ($1, $2, $3) RETURNING *`,
+        `INSERT INTO chat (sender_id, recipient_id, message) VALUES ($1, $2, $3) RETURNING *`,
         [user1, user2, message]
     );
 };

@@ -24,6 +24,7 @@ export default function messenger({ id, isShowing, toggle }) {
     }, [isShowing]);
 
     const onChange = ({ target }) => {
+        console.log("target.value: ", target.value);
         setMessage(target.value);
     };
 
