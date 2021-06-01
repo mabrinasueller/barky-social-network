@@ -23,11 +23,6 @@ export default function messenger({ id, isShowing, toggle }) {
         console.log("isShowing: ", isShowing);
     }, [isShowing]);
 
-    const onChange = ({ target }) => {
-        console.log("target.value: ", target.value);
-        setMessage(target.value);
-    };
-
     return (
         <>
             {isShowing && (
@@ -38,13 +33,19 @@ export default function messenger({ id, isShowing, toggle }) {
                             <h3>Send your message:</h3>
                             <textarea
                                 placeholder="Type your message here"
-                                // onChange={(e) => setMessage(e.target.value)}
-                                onChange={onChange}
+                                onChange={(e) => setMessage(e.target.value)}
                             ></textarea>
                         </div>
 
                         <div className="modal-buttons">
-                            <button onClick={handleSubmit}>Send message</button>
+                            <button
+                                onClick={(e) => {
+                                    handleSubmit(e);
+                                    toggle();
+                                }}
+                            >
+                                Send message
+                            </button>
                             <button href="#" onClick={toggle}>
                                 Cancel
                             </button>

@@ -63,8 +63,6 @@ export default function OtherProfile(props) {
     }, []);
 
     // useEffect(() => {
-    //     console.log("mounted");
-
     //     elemRef.current.scrollTop =
     //         elemRef.current.scrollHeight - elemRef.current.clientHeight;
     // });

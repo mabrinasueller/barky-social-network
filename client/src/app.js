@@ -13,7 +13,7 @@ import DeleteUser from "./DeleteUser";
 import About from "./About";
 import DarkMode from "./DarkMode";
 import EditProfile from "./EditProfile";
-import Messages from "./Messages";
+import Messages from "./AllMessages";
 
 export default class App extends Component {
     constructor(props) {
