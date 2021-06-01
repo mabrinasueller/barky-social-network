@@ -43,7 +43,7 @@ export default class login extends Component {
                 <div className="register-background-container">
                     <div className="register-container-big">
                         <div className="logo-container">
-                            <img src="./test1.jpeg" />
+                            <img src="./Wauz7.png" />
                         </div>
                         <div className="registration-container">
                             <div className="registration-text-container">

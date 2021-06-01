@@ -338,7 +338,7 @@ img.logo-small {
     top: 0;
     bottom: 0;
     overflow: hidden;
-    font-size: 30px;
+    font-size: 25px;
     padding: 50px 0 0 30px;
     transition: all 2s ease-in-out;
 
@@ -1117,4 +1117,21 @@ img.dog-about-image {
 
 .spotify-player {
     margin-right: 30px;
+}
+
+.profile-text-container-not-friends {
+    flex: 1;
+    text-align: center;
+    line-height: 30px;
+    padding: 20px;
+    align-self: center;
+
+    @media screen and (max-width: 576px), (max-height: 500px) {
+        margin-top: -70px;
+        margin-bottom: 25px;
+        width: 290px;
+        height: 230px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }

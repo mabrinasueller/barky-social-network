@@ -38,6 +38,13 @@ export default class Registration extends Component {
         return (
             <div className="landing-page-container">
                 <header className="header">
+                    <div className="logo-header-container">
+                        <img
+                            className="logo-small"
+                            src="../logo.svg"
+                            alt="logo"
+                        />
+                    </div>
                     <Link to="/login">
                         <button>Login</button>
                     </Link>

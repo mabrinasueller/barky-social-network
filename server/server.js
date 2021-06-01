@@ -23,6 +23,7 @@ const {
     insertWallPost,
     getWallPosts,
     insertPrivateMessage,
+    getAllMessageInfo,
 } = require("./db");
 
 const s3 = require("./s3");
@@ -206,6 +207,18 @@ app.post("/message", async (req, res) => {
         res.json(rows[0]);
     } catch (error) {
         console.log("Error in inserting message: ", error);
+    }
+});
+
+app.get("/all/messages", async (req, res) => {
+    const { userId } = req.session;
+    try {
+        const { rows } = await getAllMessageInfo(userId);
+        console.log("rows from all messagen: ", rows);
+        res.json(rows);
+    } catch (error) {
+        console.log("error in getting all messages: ", error);
+        res.status(500).json;
     }
 });
 
