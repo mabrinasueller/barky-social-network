@@ -183,6 +183,48 @@ button {
     margin: auto;
 }
 
+.registration-middle-left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.registration-middle-left img {
+    height: auto;
+    width: 80%;
+    object-fit: cover;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.registration-middle-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.small-middle-container {
+    max-width: 300px;
+    max-height: 400px;
+    background-color: #f2cbbd;
+    padding: 40px 20px;
+    text-align: center;
+    border-radius: 15px;
+    margin: 150px 0;
+    font-size: 20px;
+    @media screen and (max-width: 576px), (max-height: 500px) {
+        width: 95%;
+        padding: 20px;
+        margin-top: 75px;
+        min-height: initial;
+        padding-bottom: 30px;
+        max-width: 400px;
+    }
+}
+
 .registration-text-container {
     margin-top: 30px;
     display: flex;

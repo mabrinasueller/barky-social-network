@@ -189,7 +189,7 @@ module.exports.insertPrivateMessage = (user1, user2, message) => {
 module.exports.getAllMessageInfo = (userId) => {
     return db.query(
         `SELECT chat.id,  first_name, last_name, img_url, message, chat.created_at, chat.recipient_id, chat.sender_id from users JOIN chat ON (recipient_id = $1 AND sender_id = users.id)
-    OR (sender_id = $1 AND recipient_id = users.id)`,
+    OR (sender_id = $1 AND recipient_id = users.id) ORDER BY chat.created_at DESC`,
         [userId]
     );
 };

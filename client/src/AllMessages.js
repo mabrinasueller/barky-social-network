@@ -4,6 +4,7 @@ import { useState, useEffect, elemRef } from "react";
 export default function Messages() {
     const [allMessages, setAllMessages] = useState([]);
     const [singleThread, setSingleThread] = useState([]);
+    const lastMessagesByUser = [];
 
     useEffect(() => {
         console.log("component did mount!");
@@ -29,11 +30,15 @@ export default function Messages() {
         }
     };
 
+    // console.log("allMessages: ", allMessages);
+    // const filteredMessages = allMessages.forEach()
+
     return (
         <>
             <div className="profile-content">
                 <div className="profile">
                     <div className="profile-text-container">
+                        <h3>All messages</h3>
                         <div className="chat-message-container" ref={elemRef}>
                             {allMessages &&
                                 allMessages.map((message) => {
@@ -85,11 +90,11 @@ export default function Messages() {
                         </div>
                     </div>
                 </div>
-                <div className="profile">
-                    <div className="profile-text-container">
-                        {/* {allMessages && allMessages.map((message) => )} */}
-                    </div>
-                </div>
+                {/* <div className="profile">
+                    <div className="profile-text-container"> */}
+                {/* {allMessages && allMessages.map((message) => )} */}
+                {/* </div>
+                </div> */}
             </div>
         </>
     );
