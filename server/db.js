@@ -132,7 +132,7 @@ module.exports.insertChatMessage = (message, userId) => {
 };
 module.exports.getLastChats = () => {
     return db.query(
-        `SELECT chat.id, first_name, last_name, img_url, message, chat.created_at FROM users JOIN chat ON chat.sender_id = users.id ORDER BY chat.created_at DESC LIMIT 10`
+        `SELECT chat.id, first_name, last_name, img_url, message, chat.created_at, chat.sender_id FROM users JOIN chat ON chat.sender_id = users.id ORDER BY chat.created_at DESC LIMIT 10`
     );
 };
 
@@ -160,7 +160,7 @@ module.exports.insertWallPost = (user1, user2, post) => {
 
 module.exports.getWallPosts = (userId) => {
     return db.query(
-        `SELECT wall_post.id, first_name, last_name, img_url, post, wall_post.created_at FROM users JOIN wall_post ON wall_post.sender_id = users.id WHERE wall_post.recipient_id = $1 ORDER BY wall_post.created_at`,
+        `SELECT wall_post.id, first_name, last_name, img_url, post, wall_post.created_at, wall_post.sender_id FROM users JOIN wall_post ON wall_post.sender_id = users.id WHERE wall_post.recipient_id = $1 ORDER BY wall_post.created_at`,
         [userId]
     );
 };
@@ -188,7 +188,7 @@ module.exports.insertPrivateMessage = (user1, user2, message) => {
 
 module.exports.getAllMessageInfo = (userId) => {
     return db.query(
-        `SELECT chat.id,  first_name, last_name, img_url, message, chat.created_at, chat.recipient_id, chat.sender_id from users JOIN chat ON (recipient_id = $1 AND sender_id = users.id)
+        `SELECT chat.id, first_name, last_name, img_url, message, chat.created_at, chat.recipient_id, chat.sender_id from users JOIN chat ON (recipient_id = $1 AND sender_id = users.id)
     OR (sender_id = $1 AND recipient_id = users.id) ORDER BY chat.created_at DESC`,
         [userId]
     );

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function Chat() {
     const chatMessages = useSelector((state) => state && state.chatMessages);
+    console.log("chatmessages: ", chatMessages);
     const elemRef = useRef();
 
     useEffect(() => {
@@ -36,6 +37,7 @@ export default function Chat() {
                                 img_url,
                                 created_at,
                                 id,
+                                sender_id,
                             } = message;
                             let date = new Date(created_at)
                                 .toUTCString()
@@ -43,7 +45,7 @@ export default function Chat() {
                             return (
                                 <div className="single-chat-container" key={id}>
                                     <div className="chat-image-container">
-                                        <Link to={`/user/${id}`}>
+                                        <Link to={`/user/${sender_id}`}>
                                             <img
                                                 src={img_url}
                                                 alt={`${first_name} ${last_name}`}
@@ -77,25 +79,29 @@ export default function Chat() {
                 ></textarea>
             </div>
             <div className="chat-text-rules-container">
-                <div className="chat-profile-text-container"></div>
-                <h3>
-                    First Rule of Chat Club:
-                    <div className="breaker"></div>
-                    be the kind of person your dog thinks you are
-                </h3>
-                <span>
-                    Out motto at <strong>Barky</strong> is: ADAB - All Dogs Are
-                    Beautiful. <div className="spacer"></div>And because of that
-                    we want to create an environment where you can chat about
-                    your dog, your life and basically anything, as long as what
-                    you&#39;re sharing isn&#39;t racist, sexist, homophobic, or
-                    transphobic. Otherwise we will have to part ways and end
-                    your membership at <strong>Barky</strong>.
+                <div className="chat-profile-text-container">
+                    <h3>
+                        First Rule of Chat Club:
+                        <div className="spacer"></div>
+                        be the kind of person your dog thinks you are
+                    </h3>
                     <div className="spacer"></div>
-                    With that being said: Let&#39;s chat and have a good time!
-                </span>
-                <div className="logo-small">
-                    <img src="../logo.svg" className="remove-on-mobile" />
+                    <span>
+                        Out motto at <strong>Barky</strong> is: ADAB - All Dogs
+                        Are Beautiful <div className="spacer"></div>And because
+                        of that we want to create an environment where you can
+                        chat about your dog, your life and basically anything,
+                        as long as what you&#39;re sharing isn&#39;t racist,
+                        sexist, homophobic, or transphobic. Otherwise we will
+                        have to part ways and end your membership at{" "}
+                        <strong>Barky</strong>.<div className="spacer"></div>
+                        With that being said: Let&#39;s chat and have a good
+                        time!
+                    </span>
+                    <div className="spacer"></div>
+                    <div className="logo-small">
+                        <img src="../logo.svg" className="remove-on-mobile" />
+                    </div>
                 </div>
             </div>
         </div>

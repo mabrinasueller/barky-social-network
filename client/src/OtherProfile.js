@@ -98,7 +98,7 @@ export default function OtherProfile(props) {
                                     Looks like you are not friends yet.
                                     <div className="spacer"></div>
                                     Become friends with {otherUser.firstName} to
-                                    see profile.
+                                    see the profile.
                                 </h2>
                             </div>
                             <div className="profile-container-dog">

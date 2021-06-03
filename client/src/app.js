@@ -121,7 +121,21 @@ export default class App extends Component {
                     <Route path="/delete/account" component={DeleteUser} />
                     <Route path="/about" component={About} />
                     <Route path="/edit" component={EditProfile} />
-                    <Route path="/messages" component={Messages} />
+                    <Route
+                        path="/messages"
+                        render={() => (
+                            <Messages
+                                activeUser={{
+                                    id: this.state.id,
+                                    first_name: this.state.firstName,
+                                    last_name: this.state.lastName,
+                                    img_url:
+                                        this.state.imgUrl ||
+                                        "default_user.jpeg",
+                                }}
+                            />
+                        )}
+                    />
                 </BrowserRouter>
                 {this.state.uploaderIsVisible && (
                     <Uploader

@@ -64,6 +64,7 @@ export default function WallPosts({ id }) {
                             img_url,
                             created_at,
                             id,
+                            sender_id,
                         } = post;
                         let date = new Date(created_at)
                             .toUTCString()
@@ -72,7 +73,7 @@ export default function WallPosts({ id }) {
                         return (
                             <div className="single-chat-container" key={id}>
                                 <div className="chat-image-container">
-                                    <Link to={`/user/${id}`}>
+                                    <Link to={`/user/${sender_id}`}>
                                         <img
                                             src={img_url}
                                             alt={`${first_name} ${last_name}`}
