@@ -3,7 +3,7 @@ import { useState, useEffect, elemRef } from "react";
 
 export default function Messages({ activeUser }) {
     const [allMessages, setAllMessages] = useState([]);
-
+    const [privateMsg, setPrivateMsg] = useState([]);
     const [singleThreads, setSingleThreads] = useState([]);
 
     useEffect(() => {
@@ -46,123 +46,167 @@ export default function Messages({ activeUser }) {
     };
     console.log("singleThreads: ", singleThreads);
 
+    // const handleSubmit = async (e) => {
+    //     console.log("submit got clicked");
+    //     console.log("privateMsg: ", privateMsg);
+    //     e.preventDefault();
+    //     try {
+    //         const { data } = await axios.post("/message", {
+    //             viewedUser: otherUserId,
+    //             privateMsg,
+    //         });
+    //         console.log("data from sent message: ", data);
+    //     } catch (error) {
+    //         console.log("Error in sending message: ", error);
+    //     }
+    // };
+
     return (
         <>
-            <div className="profile-content">
-                <div className="profile">
-                    <div className="profile-text-container">
-                        <h3 className="all-messages-text">All messages</h3>
-                        <div className="chat-message-container" ref={elemRef}>
-                            {lastMessagesByUser?.map((message) => {
-                                const {
-                                    first_name,
-                                    last_name,
-                                    img_url,
-                                    created_at,
-                                    id,
-                                    sender_id,
-                                    recipient_id,
-                                } = message;
-                                let date = new Date(created_at)
-                                    .toUTCString()
-                                    .replace("GMT", "");
+            <div className="chat-content">
+                <div className="chat-profile-container">
+                    <div className="chat-message-container-new">
+                        <h3 className="all-messages-text">All messages </h3>{" "}
+                        <p>
+                            (click on single message to get individual messages
+                            with user)
+                        </p>
+                        {lastMessagesByUser?.map((message) => {
+                            const {
+                                first_name,
+                                last_name,
+                                img_url,
+                                created_at,
+                                id,
+                                sender_id,
+                                recipient_id,
+                            } = message;
+                            let date = new Date(created_at).toLocaleString(
+                                "de-DE",
+                                {
+                                    timeZone: "Europe/Berlin",
+                                }
+                            );
 
-                                return (
-                                    <div
-                                        className="single-chat-container"
-                                        key={id}
-                                        onClick={() => {
-                                            const otherUserId = [
-                                                sender_id,
-                                                recipient_id,
-                                            ].find((i) => i !== activeUser.id);
+                            return (
+                                <div
+                                    className="single-message-container"
+                                    key={id}
+                                    onClick={() => {
+                                        const otherUserId = [
+                                            sender_id,
+                                            recipient_id,
+                                        ].find((i) => i !== activeUser.id);
 
-                                            singleThreadMessages(otherUserId);
-                                        }}
-                                    >
-                                        <div className="chat-image-container">
-                                            <img
-                                                src={img_url}
-                                                alt={`${first_name} ${last_name}`}
-                                                className="chat-image"
-                                            />
-                                        </div>
+                                        singleThreadMessages(otherUserId);
+                                    }}
+                                >
+                                    <div className="chat-image-container">
+                                        <img
+                                            src={img_url}
+                                            alt={`${first_name} ${last_name}`}
+                                            className="chat-image"
+                                        />
+                                    </div>
 
-                                        <div className="chat-user-container">
-                                            <div className="chat-text-container">
-                                                <div className="user-info-chat">
-                                                    <p>
-                                                        {" "}
-                                                        {first_name} {last_name}{" "}
-                                                        <span className="created-at">
-                                                            on {date}
-                                                        </span>
-                                                    </p>
-                                                </div>
-                                                <p>{message.message}</p>
+                                    <div className="chat-user-container">
+                                        <div className="chat-text-container">
+                                            <div className="user-info-chat">
+                                                <p>
+                                                    {" "}
+                                                    {first_name} {last_name}{" "}
+                                                    <span className="created-at">
+                                                        on {date}
+                                                    </span>
+                                                </p>
                                             </div>
+                                            <p>{message.private_text}</p>
                                         </div>
                                     </div>
-                                );
-                            })}
-                        </div>
+                                </div>
+                            );
+                        })}
                     </div>
-                    <div className="breaker"></div>
-                    <div className="profile-text-container">
-                        <h3 className="all-messages-text">Single messages</h3>
-                        <div className="chat-message-container" ref={elemRef}>
-                            {singleThreads?.map((message) => {
-                                const messageSent =
-                                    message.sender_id === activeUser.id;
-                                const { created_at, id } = message;
+                    {/* <div className="profile-text-container">
+                        <h3 className="all-messages-text">Single messages</h3> */}
 
-                                const {
-                                    first_name,
-                                    last_name,
-                                    img_url,
-                                } = messageSent ? activeUser : message;
-                                let date = new Date(created_at)
-                                    .toUTCString()
-                                    .replace("GMT", "");
-                                return (
-                                    <div
-                                        className={
-                                            "single-chat-container " +
-                                            messageSent
-                                                ? "sent"
-                                                : "received"
-                                        }
-                                        key={"a" + id}
-                                    >
-                                        <div className="chat-image-container">
-                                            <img
-                                                src={img_url}
-                                                alt={`${first_name} ${last_name}`}
-                                                className="chat-image"
-                                            />
-                                        </div>
+                    <div className="chat-message-container-new">
+                        {singleThreads?.map((message) => {
+                            const messageSent =
+                                message.sender_id === activeUser.id;
+                            const otherUserId = [
+                                message.sender_id,
+                                message.recipient_id,
+                            ].find((i) => i !== activeUser.id);
+                            console.log("vla: ", otherUserId);
+                            const { created_at, id } = message;
 
-                                        <div className="chat-user-container">
-                                            <div className="chat-text-container">
-                                                <div className="user-info-chat">
-                                                    <p>
-                                                        {" "}
-                                                        {first_name} {last_name}{" "}
-                                                        <span className="created-at">
-                                                            on {date}
-                                                        </span>
-                                                    </p>
-                                                </div>
-                                                <p>{message.message}</p>
+                            const {
+                                first_name,
+                                last_name,
+                                img_url,
+                            } = messageSent ? activeUser : message;
+                            let date = new Date(created_at).toLocaleString(
+                                "de-DE",
+                                {
+                                    timeZone: "Europe/Berlin",
+                                }
+                            );
+
+                            return (
+                                <div
+                                    className={
+                                        "single-message-container " &&
+                                        messageSent
+                                            ? "sent"
+                                            : "received"
+                                    }
+                                    key={"a" + id}
+                                >
+                                    <div className="chat-image-container">
+                                        <img
+                                            src={img_url}
+                                            alt={`${first_name} ${last_name}`}
+                                            className="chat-image"
+                                        />
+                                    </div>
+
+                                    <div className="chat-user-container">
+                                        <div className="chat-text-container">
+                                            <div className="user-info-chat">
+                                                <p>
+                                                    {" "}
+                                                    {first_name} {last_name}{" "}
+                                                    <span className="created-at">
+                                                        on {date}
+                                                    </span>
+                                                </p>
                                             </div>
+                                            <p>{message.private_text}</p>
                                         </div>
                                     </div>
-                                );
-                            })}
-                        </div>
+                                </div>
+                            );
+                        })}
                     </div>
+                    {/* </div> */}
                 </div>
             </div>
         </>
     );
 }
+
+//   <div className="answer-message">
+//       <textarea
+//           placeholder="Type your message here"
+//           onChange={(e) => setPrivateMsg(e.target.value)}
+//       ></textarea>
+//       <button
+//           onClick={(e) => {
+//               singleThreadMessages(otherUserId);
+//               handleSubmit(e);
+//           }}
+//       >
+//           Send
+//       </button>
+//   </div>;

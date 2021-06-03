@@ -35,6 +35,7 @@ CREATE TABLE friends(
     sender_id INT REFERENCES users(id) NOT NULL,
     recipient_id INT REFERENCES users(id),
     message TEXT,
+    private_text TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   )
 
@@ -45,3 +46,4 @@ CREATE TABLE friends(
     post TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   )
+

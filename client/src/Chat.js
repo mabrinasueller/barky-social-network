@@ -39,9 +39,12 @@ export default function Chat() {
                                 id,
                                 sender_id,
                             } = message;
-                            let date = new Date(created_at)
-                                .toUTCString()
-                                .replace("GMT", "");
+                            let date = new Date(created_at).toLocaleString(
+                                "de-DE",
+                                {
+                                    timeZone: "Europe/Berlin",
+                                }
+                            );
                             return (
                                 <div className="single-chat-container" key={id}>
                                     <div className="chat-image-container">

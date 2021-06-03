@@ -136,6 +136,9 @@ export default class App extends Component {
                             />
                         )}
                     />
+                    <footer className="footer">
+                        © Barky - Keeping dogs busy since 2021
+                    </footer>
                 </BrowserRouter>
                 {this.state.uploaderIsVisible && (
                     <Uploader

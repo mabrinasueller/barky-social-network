@@ -20,7 +20,7 @@ export default class Menu extends Component {
             <>
                 {!this.state.showMenu && (
                     <img
-                        src="../hamburgermenu.png"
+                        src="../hamburgermenu.svg"
                         alt="NavBar-Hamburger"
                         className="hamburger-navbar clicked"
                         onClick={() => this.toggleMenu()}

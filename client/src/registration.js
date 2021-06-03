@@ -88,13 +88,13 @@ export default class Registration extends Component {
                         </p>
                     </div>
                 </div>
-                <div className="registration-container">
+                <div className="registration-container-new">
                     <div className="registration-middle-left">
                         <img src="../Wauz6.png" />
                     </div>
 
                     <div className="registration-form-container">
-                        <div className="profile">
+                        <div className="profile-new">
                             <div className="registration-text-container">
                                 <div className="registration-text">
                                     <h2>Create new account</h2>
@@ -176,6 +176,9 @@ export default class Registration extends Component {
                     </div>
                 </div>
                 <div className="small-last-container"></div>
+                <footer className="footer">
+                    © Barky - Keeping dogs busy since 2021
+                </footer>
             </>
         );
     }

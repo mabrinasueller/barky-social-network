@@ -132,7 +132,13 @@ module.exports.insertChatMessage = (message, userId) => {
 };
 module.exports.getLastChats = () => {
     return db.query(
-        `SELECT chat.id, first_name, last_name, img_url, message, chat.created_at, chat.sender_id FROM users JOIN chat ON chat.sender_id = users.id ORDER BY chat.created_at DESC LIMIT 10`
+        `SELECT chat.id, first_name, last_name, img_url, message, chat.created_at, chat.sender_id 
+        FROM users 
+        JOIN chat 
+        ON chat.sender_id = users.id 
+        WHERE private_text IS NULL
+        ORDER BY chat.created_at 
+        DESC LIMIT 10`
     );
 };
 
@@ -179,16 +185,16 @@ module.exports.updateUser = (firstName, lastName, email, userId) => {
     );
 };
 
-module.exports.insertPrivateMessage = (user1, user2, message) => {
+module.exports.insertPrivateMessage = (user1, user2, privateMsg) => {
     return db.query(
-        `INSERT INTO chat (sender_id, recipient_id, message) VALUES ($1, $2, $3) RETURNING *`,
-        [user1, user2, message]
+        `INSERT INTO chat (sender_id, recipient_id, private_text) VALUES ($1, $2, $3) RETURNING *`,
+        [user1, user2, privateMsg]
     );
 };
 
 module.exports.getAllMessageInfo = (userId) => {
     return db.query(
-        `SELECT chat.id, first_name, last_name, img_url, message, chat.created_at, chat.recipient_id, chat.sender_id from users JOIN chat ON (recipient_id = $1 AND sender_id = users.id)
+        `SELECT chat.id, first_name, last_name, img_url, private_text, chat.created_at, chat.recipient_id, chat.sender_id from users JOIN chat ON (recipient_id = $1 AND sender_id = users.id)
     OR (sender_id = $1 AND recipient_id = users.id) ORDER BY chat.created_at DESC`,
         [userId]
     );

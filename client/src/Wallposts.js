@@ -66,10 +66,12 @@ export default function WallPosts({ id }) {
                             id,
                             sender_id,
                         } = post;
-                        let date = new Date(created_at)
-                            .toUTCString()
-                            .replace("GMT", "");
-
+                        let date = new Date(created_at).toLocaleString(
+                            "de-DE",
+                            {
+                                timeZone: "Europe/Berlin",
+                            }
+                        );
                         return (
                             <div className="single-chat-container" key={id}>
                                 <div className="chat-image-container">
@@ -88,7 +90,7 @@ export default function WallPosts({ id }) {
                                                 {" "}
                                                 {first_name} {last_name}{" "}
                                                 <span className="created-at">
-                                                    {date}
+                                                    on {date}
                                                 </span>
                                             </p>
                                         </div>

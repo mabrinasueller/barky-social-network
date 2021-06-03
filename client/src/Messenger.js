@@ -2,15 +2,16 @@ import { useState, useEffect } from "react";
 import axios from "./axios";
 
 export default function messenger({ id, isShowing, toggle }) {
-    const [message, setMessage] = useState([]);
+    const [privateMsg, setPrivateMsg] = useState([]);
 
     const handleSubmit = async (e) => {
         console.log("submit got clicked");
+        console.log("privateMsg: ", privateMsg);
         e.preventDefault();
         try {
             const { data } = await axios.post("/message", {
                 viewedUser: id,
-                message,
+                privateMsg,
             });
             console.log("data from sent message: ", data);
         } catch (error) {
@@ -33,7 +34,7 @@ export default function messenger({ id, isShowing, toggle }) {
                             <h3>Send your message:</h3>
                             <textarea
                                 placeholder="Type your message here"
-                                onChange={(e) => setMessage(e.target.value)}
+                                onChange={(e) => setPrivateMsg(e.target.value)}
                             ></textarea>
                         </div>
 

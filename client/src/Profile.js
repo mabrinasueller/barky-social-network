@@ -31,22 +31,6 @@ export default function Profile(props) {
                 <div className="profile">
                     <div className="profile-text-container">
                         <Wallposts />
-                        {/* <p>
-                        But I must explain to you how all this mistaken idea of
-                        denouncing pleasure and praising pain was born and I
-                        will give you a complete account of the system, and
-                        expound the actual teachings of the great explorer of
-                        the truth, the master-builder of human happiness.
-                    </p>
-                    <div className="breaker"></div>
-                    <p>
-                        No one rejects, dislikes, or avoids pleasure itself,
-                        because it is pleasure, but because those who do not
-                        know how to pursue pleasure rationally encounter
-                        consequences that are extremely painful.{" "}
-                    </p> */}
-                        {/* <textarea></textarea>
-                    <button>Send</button> */}
                     </div>
                     <div className="profile-container-dog">
                         <div className="dog-image-container">
@@ -68,8 +52,6 @@ export default function Profile(props) {
                                 the vacuum cleaner, I definitely feel a sinister
                                 vibe coming from it!
                             </p>
-                            <h4>Favorite song:</h4>
-                            <p>Who let the dogs out?</p>
                             <h4>We are looking for:</h4>
                             <p>
                                 a cool dog owner with another female dog to
@@ -80,8 +62,9 @@ export default function Profile(props) {
                 </div>
             </div>
             <div className="profile-content">
-                <div className="profile">
+                <div className="profile-two">
                     <div className="spotify-player">
+                        <h4>I really love this song right now:</h4>
                         <iframe
                             src="https://open.spotify.com/embed/track/5BQHyj5Pb3dUY8W6TSjeTF"
                             width="300"
@@ -91,7 +74,19 @@ export default function Profile(props) {
                             allow="encrypted-media"
                         ></iframe>
                     </div>
+
                     <Maps />
+                    <div className="location-container">
+                        <h4>
+                            These are a few of our
+                            <div className="breaker"></div>
+                            favorite places:
+                        </h4>
+                        <p>Mauerpark</p>
+                        <p>Volkspark Friedrichshain</p>
+                        <p>Teufelsberg</p>
+                        <p>Tegler See</p>
+                    </div>
                 </div>
             </div>
         </>

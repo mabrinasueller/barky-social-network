@@ -12,7 +12,6 @@ export default function OtherProfile(props) {
     const [friends, setFriends] = useState();
     const [connection, setConnection] = useState();
     const [isShowing, setIsShowing] = useState(false);
-    const elemRef = useRef();
     const { id } = props.match.params;
 
     console.log("props: ", props);
@@ -62,16 +61,16 @@ export default function OtherProfile(props) {
         })();
     }, []);
 
-    // useEffect(() => {
-    //     elemRef.current.scrollTop =
-    //         elemRef.current.scrollHeight - elemRef.current.clientHeight;
-    // });
-
     if (otherUser) {
         if (!connection) {
             return (
                 <>
-                    <button onClick={() => history.goBack()}>Go back</button>
+                    <button
+                        className="back-button"
+                        onClick={() => history.goBack()}
+                    >
+                        Go back
+                    </button>
                     <div className="profile-content">
                         <div className="profile-top">
                             <div className="profile-picture">
@@ -175,10 +174,7 @@ export default function OtherProfile(props) {
 
                         <div className="profile">
                             <div className="profile-text-container">
-                                <div
-                                    className="chat-message-container"
-                                    ref={elemRef}
-                                >
+                                <div className="chat-message-container">
                                     <Wallposts id={props.match.params.id} />
                                 </div>
                             </div>

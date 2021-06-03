@@ -196,12 +196,14 @@ app.get("/profile/wallposts", async (req, res) => {
 
 app.post("/message", async (req, res) => {
     const { userId } = req.session;
-    const { viewedUser, message } = req.body;
+    const { viewedUser, privateMsg } = req.body;
+    console.log("req.body", req.body);
+
     try {
         const { rows } = await insertPrivateMessage(
             userId,
             viewedUser,
-            message
+            privateMsg
         );
         console.log("rows in inserting message: ", rows);
         res.json(rows[0]);

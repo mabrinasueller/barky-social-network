@@ -32,62 +32,64 @@ export default function EditProfile() {
 
     return (
         <>
-            <div className="profile">
-                <div className="profile-text-container">
-                    <div key={profile.id}>
-                        <input
-                            name="firstName"
-                            defaultValue={profile.first_name}
-                            type="text"
-                            className="form-input"
-                            onChange={(e) =>
-                                setUpdatedProfile({
-                                    ...updatedProfile,
-                                    [e.target.name]: e.target.value,
-                                })
-                            }
-                        ></input>
-                        <label htmlFor="firstName">First Name</label>
-                        <input
-                            name="lastName"
-                            defaultValue={profile.last_name}
-                            type="text"
-                            className="form-input"
-                            onChange={(e) =>
-                                setUpdatedProfile({
-                                    ...updatedProfile,
-                                    [e.target.name]: e.target.value,
-                                })
-                            }
-                        ></input>
-                        <label htmlFor="lastName">Last Name</label>
-                        <input
-                            name="email"
-                            defaultValue={profile.email}
-                            type="email"
-                            className="form-input"
-                            onChange={(e) =>
-                                setUpdatedProfile({
-                                    ...updatedProfile,
-                                    [e.target.name]: e.target.value,
-                                })
-                            }
-                        ></input>
-                        <label htmlFor="email">Email</label>
-                        <input
-                            name={profile.password}
-                            type="password"
-                            className="form-input"
-                            onChange={(e) =>
-                                setUpdatedProfile({
-                                    ...updatedProfile,
-                                    [e.target.name]: e.target.value,
-                                })
-                            }
-                        ></input>
-                        <label htmlFor="password">Password</label>
+            <div className="padding">
+                <div className="profile">
+                    <div className="profile-edit-container">
+                        <div key={profile.id}>
+                            <input
+                                name="firstName"
+                                defaultValue={profile.first_name}
+                                type="text"
+                                className="form-input"
+                                onChange={(e) =>
+                                    setUpdatedProfile({
+                                        ...updatedProfile,
+                                        [e.target.name]: e.target.value,
+                                    })
+                                }
+                            ></input>
+                            <label htmlFor="firstName">First Name</label>
+                            <input
+                                name="lastName"
+                                defaultValue={profile.last_name}
+                                type="text"
+                                className="form-input"
+                                onChange={(e) =>
+                                    setUpdatedProfile({
+                                        ...updatedProfile,
+                                        [e.target.name]: e.target.value,
+                                    })
+                                }
+                            ></input>
+                            <label htmlFor="lastName">Last Name</label>
+                            <input
+                                name="email"
+                                defaultValue={profile.email}
+                                type="email"
+                                className="form-input"
+                                onChange={(e) =>
+                                    setUpdatedProfile({
+                                        ...updatedProfile,
+                                        [e.target.name]: e.target.value,
+                                    })
+                                }
+                            ></input>
+                            <label htmlFor="email">Email</label>
+                            <input
+                                name={profile.password}
+                                type="password"
+                                className="form-input"
+                                onChange={(e) =>
+                                    setUpdatedProfile({
+                                        ...updatedProfile,
+                                        [e.target.name]: e.target.value,
+                                    })
+                                }
+                            ></input>
+                            <label htmlFor="password">Password</label>
+                        </div>
+                        <button onClick={handleSubmit}>Update profile</button>
                     </div>
-                    <button onClick={handleSubmit}>Update profile</button>
                 </div>
             </div>
         </>

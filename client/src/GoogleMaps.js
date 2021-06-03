@@ -21,8 +21,13 @@ export default function Maps() {
         .then(() => {
             new google.maps.Map(document.getElementById("map"), {
                 center: { lat: 52.520008, lng: 13.404954 },
-                zoom: 8,
+                zoom: 15,
             });
+            // new google.maps.Marker({
+            //     position: center,
+            //     map,
+            //     title: "Hello World!",
+            // });
         })
         .catch((error) => {
             console.log("error: ", error);

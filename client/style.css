@@ -18,17 +18,35 @@ body {
 
 .dark-theme {
     --background: #343a40;
+    --color-primary: ivory;
+    --profile-background: #495057;
+    --footer-background: #495057;
+    --chat-container: #6c757d;
+}
+
+.dark-theme .logo-small {
+    filter: invert(80%);
+}
+
+.dark-theme .hamburger-navbar {
+    filter: invert(100%);
+}
+
+.dark-theme .moon-symbol {
+    filter: invert(0%);
 }
 
 .light-theme {
     --background: #f5f3f4;
+    --color-primary: black;
+    --profile-background: #eef3f7;
+    --footer-background: #f2cbbd;
 }
 
 main {
     display: flex;
     flex: 1;
     height: 100vh;
-    padding: 20px;
     flex-direction: column;
     overflow: hidden;
 }
@@ -49,6 +67,11 @@ button {
     display: flex;
     min-height: 0;
     margin: 0 auto;
+    padding: 20px;
+}
+
+.padding {
+    padding: 20px;
 }
 
 .register-background-container {
@@ -59,12 +82,14 @@ button {
 .register-container-big {
     display: flex;
     flex-direction: row;
-    background-color: white;
+    background: var(--profile-background);
+    color: var(--color-primary);
     border-radius: 20px;
     box-shadow: -1px 1px 5px 9px rgba(0, 0, 0, 0.04);
     margin: 0 auto;
     max-width: 100%;
     max-height: 100%;
+    padding: 20px;
     @media screen and (max-width: 576px), (max-height: 500px) {
         width: 95%;
         padding: 20px;
@@ -181,6 +206,18 @@ button {
     max-width: 100%;
     max-height: 100vh;
     margin: auto;
+    padding: 20px;
+}
+.registration-container-new {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+
+    justify-content: center;
+    max-width: 100%;
+    max-height: 100vh;
+    margin: auto;
+    padding: 20px;
 }
 
 .registration-middle-left {
@@ -189,11 +226,11 @@ button {
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+    padding: 20px;
 }
 
 .registration-middle-left img {
     height: auto;
-    width: 80%;
     object-fit: cover;
     max-height: 100%;
     max-width: 100%;
@@ -218,7 +255,8 @@ button {
     @media screen and (max-width: 576px), (max-height: 500px) {
         width: 95%;
         padding: 20px;
-        margin-top: 75px;
+        margin-top: 50px;
+        margin-bottom: 50px;
         min-height: initial;
         padding-bottom: 30px;
         max-width: 400px;
@@ -314,16 +352,19 @@ header {
     flex: 0;
     height: 120px;
     display: flex;
-    /* flex-direction: column; */
-    /* justify-content: space-between; */
-    /* align-items: center; */
     flex-wrap: wrap;
+    padding: 20px;
 }
-/* 
-header * {
-    display: inline;
-} */
 
+.footer {
+    flex: 0;
+    font-family: "Montserrat", sans-serif;
+    padding: 30px 0 10px 10px;
+    font-size: 13px;
+    width: 100%;
+    background: var(--footer-background);
+    color: var(--color-primary);
+}
 header li {
     margin: 20px;
 }
@@ -332,9 +373,6 @@ header li a {
     text-decoration: none;
     color: black;
 }
-
-/* header.logo {
-} */
 
 .logo-header-container {
     flex: 1;
@@ -345,7 +383,6 @@ img.logo-small {
     height: 100px;
     object-fit: cover;
     flex: 0;
-    margin-left: 20px;
     margin-top: 5px;
 }
 
@@ -357,13 +394,12 @@ img.logo-small {
 }
 
 .hamburger-navbar {
-    width: 35px;
-    height: 35px;
+    width: 75px;
+    height: 75px;
     object-fit: cover;
     flex: 0;
-    margin-left: 20px;
+    margin-top: -25px;
     cursor: pointer;
-    margin-top: 10px;
 }
 
 .profile-small-container {
@@ -427,10 +463,11 @@ img.logo-small {
 }
 
 .moon-symbol {
-    height: 50px;
-    width: 50px;
+    height: 75px;
+    width: 75px;
     object-fit: cover;
     cursor: pointer;
+    padding-bottom: 25px;
 }
 
 .friends-container h2,
@@ -438,6 +475,7 @@ img.logo-small {
     text-align: center;
     padding: 20px;
     font-size: 25px;
+    color: var(--color-primary);
 }
 
 .other-users-information {
@@ -486,13 +524,16 @@ button {
     justify-content: center;
     flex-wrap: wrap;
     align-items: flex-start;
+    padding: 20px;
 }
 
 .profile {
     display: flex;
     flex: 3;
     flex-direction: row;
-    background: #eef3f7;
+    background: var(--profile-background);
+    color: var(--color-primary);
+    /* background: #eef3f7; */
     width: 410px;
     min-height: 480px;
     box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);
@@ -513,7 +554,8 @@ button {
     display: flex;
     flex: 1;
     flex-direction: column;
-    background: #eef3f7;
+    background: var(--profile-background);
+    color: var(--color-primary);
     width: 150px;
     min-height: 480px;
     box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);
@@ -530,6 +572,45 @@ button {
         padding-bottom: 30px;
         max-width: 400px;
     }
+}
+
+.profile-two {
+    display: flex;
+    flex: 3;
+    flex-direction: row;
+    background: var(--profile-background);
+    color: var(--color-primary);
+    width: 410px;
+    min-height: 480px;
+    box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);
+    border-radius: 15px;
+    padding: 30px;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+    @media screen and (max-width: 576px), (max-height: 500px) {
+        width: 95%;
+        padding: 20px;
+        margin-top: 75px;
+        min-height: initial;
+        padding-bottom: 30px;
+        max-width: 400px;
+    }
+}
+
+.profile-two h4 {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.profile-two p {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.location-container {
+    align-self: baseline;
+    padding-top: 20px;
 }
 
 .profile-picture img {
@@ -552,6 +633,34 @@ button {
     }
 }
 
+.profile-new {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    justify-content: center;
+    background: var(--profile-background);
+    /* background: #eef3f7; */
+    color: var(--color-primary);
+    width: 410px;
+    min-height: 480px;
+    box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);
+    border-radius: 15px;
+    padding: 30px;
+    flex-wrap: wrap;
+    @media screen and (max-width: 576px), (max-height: 500px) {
+        width: 95%;
+        padding: 20px;
+        margin-top: 75px;
+        min-height: initial;
+        padding-bottom: 30px;
+        max-width: 400px;
+    }
+}
+
+.profile-new a {
+    color: blue;
+}
+
 .profile-picture-container {
     flex: 0;
 }
@@ -561,6 +670,7 @@ button {
     overflow-y: auto;
     padding: 10px 30px 10px 30px;
     font-size: 20px;
+    color: var(--color-primary);
 }
 .user-info-container h2 {
     font-size: 30px;
@@ -588,12 +698,32 @@ button {
     }
 }
 
+.profile-edit-container {
+    flex: 1;
+
+    line-height: 25px;
+    padding: 20px;
+    @media screen and (max-width: 576px), (max-height: 500px) {
+        margin-top: -70px;
+        margin-bottom: 25px;
+        width: 290px;
+        height: 230px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.profile-edit-container label {
+    padding-left: 10px;
+}
+
 .profile-text-container p {
     margin-bottom: 10px;
 }
 
 .profile-picture-container p {
     padding-top: 10px;
+    color: var(--color-primary);
 }
 
 .profile-container-dog {
@@ -711,6 +841,11 @@ button {
     text-align: center;
     flex: 1;
 }
+
+.modal-text-container textarea {
+    margin: 20px;
+    min-width: 250px;
+}
 .overlay {
     position: fixed;
     top: 0;
@@ -774,7 +909,8 @@ button {
     flex: 3;
     text-align: center;
     flex-direction: column;
-    background: #eef3f7;
+    background: var(--profile-background);
+    /* background: #eef3f7; */
     width: 410px;
     min-height: 480px;
     flex-wrap: wrap;
@@ -799,13 +935,15 @@ button {
 
 .search-text-container {
     padding-bottom: 40px;
+    color: var(--color-primary);
 }
 
 .other-profile-top {
     display: flex;
     flex: 1;
     flex-direction: column;
-    background: #eef3f7;
+
+    background: var(--profile-background);
     min-width: 200px;
     max-width: 250px;
     min-height: 250px;
@@ -832,6 +970,7 @@ button {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    padding: 20px;
 }
 
 .chat-message-container {
@@ -841,17 +980,36 @@ button {
     flex-direction: column;
 }
 
+.chat-message-container-new {
+    height: 300px;
+    overflow-y: auto;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.chat-message-container-new h3,
+p {
+    color: var(--color-primary);
+}
+
+.single-chat-container p {
+    color: black;
+}
+
 img.chat-image {
     width: 50px;
     height: 50px;
     object-fit: cover;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 15px;
 }
 
 .chat-textarea {
     width: 100%;
+    align-self: flex-end;
+    height: 80px;
 }
 
 .chat-user-container {
@@ -951,7 +1109,7 @@ img.dog-about-image {
     width: 60%;
     border: none;
     /* background: #81b29a; */
-    background: #ffb4a2;
+    background: #f2cbbd;
     padding: 10px;
     border-radius: 20px;
     font-size: 18px;
@@ -991,7 +1149,7 @@ img.dog-about-image {
     width: 100%;
     border: none;
     /* background: #81b29a; */
-    background: rgba(243, 129, 129, 0.9);
+    background: #f2cbbd;
     padding: 10px;
     border-radius: 20px;
     font-size: 18px;
@@ -1005,14 +1163,14 @@ img.dog-about-image {
     display: flex;
     flex: 1;
     flex-direction: row;
-    background: #eef3f7;
+    background: var(--chat-container);
+    /* background: #eef3f7; */
     width: 410px;
     min-height: 480px;
     box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);
     border-radius: 15px;
     padding: 30px 40px 10px 40px;
     flex-wrap: wrap;
-    margin-right: 20px;
     @media screen and (max-width: 576px), (max-height: 500px) {
         width: 95%;
         padding: 20px;
@@ -1032,6 +1190,16 @@ img.dog-about-image {
     padding: 10px;
 }
 
+.single-message-container {
+    display: flex;
+    flex-direction: row;
+    background-color: #f2cbbd;
+    margin: 10px 0;
+    border-radius: 15px;
+    padding: 10px;
+    max-width: 70%;
+}
+
 .user-info-chat {
     font-size: 13px;
     padding-bottom: 7px;
@@ -1046,7 +1214,8 @@ img.dog-about-image {
     display: flex;
     flex: 2;
     flex-direction: column;
-    background: #eef3f7;
+    background: var(--profile-background);
+    color: var(--color-primary);
     width: 410px;
     min-height: 480px;
     box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);
@@ -1195,4 +1364,44 @@ img.dog-about-image {
 
 textarea {
     max-height: 100px;
+    min-height: 70px;
+}
+
+.back-button {
+    margin-left: 20px;
+    margin-top: 20px;
+    border: none;
+    /* background: #81b29a; */
+    background: #f2cbbd;
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 18px;
+    color: black;
+    font-weight: 400;
+    font-family: "Montserrat", sans-serif;
+    opacity: 0.8;
+}
+
+.sent {
+    display: flex;
+    flex-direction: row;
+    background-color: #f2c094;
+    margin: 10px 0;
+    border-radius: 15px;
+    padding: 10px;
+    max-width: 70%;
+}
+
+.received {
+    display: flex;
+    flex-direction: row;
+    background-color: #d99f7e;
+    margin: 10px 0;
+    border-radius: 15px;
+    padding: 10px;
+    max-width: 70%;
+}
+
+.chat-profile-container button {
+    height: 30px;
 }
