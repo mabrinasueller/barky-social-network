@@ -85,7 +85,7 @@ export default function Profile(props) {
                         <p>Mauerpark</p>
                         <p>Volkspark Friedrichshain</p>
                         <p>Teufelsberg</p>
-                        <p>Tegler See</p>
+                        <p>Tegeler See</p>
                     </div>
                 </div>
             </div>

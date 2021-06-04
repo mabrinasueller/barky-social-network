@@ -1,3 +1,9 @@
+:root {
+    --menu: #f5f3f4;
+    --messages: #f2cbbd;
+    --message-font: black;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -22,6 +28,17 @@ body {
     --profile-background: #495057;
     --footer-background: #495057;
     --chat-container: #6c757d;
+    --menu: #495057;
+    --messages: white;
+    --message-font: black;
+}
+
+.light-theme {
+    --background: #f5f3f4;
+    --color-primary: black;
+    --profile-background: #eef3f7;
+    --footer-background: #f2cbbd;
+    --messages: #f2cbbd;
 }
 
 .dark-theme .logo-small {
@@ -36,13 +53,6 @@ body {
     filter: invert(0%);
 }
 
-.light-theme {
-    --background: #f5f3f4;
-    --color-primary: black;
-    --profile-background: #eef3f7;
-    --footer-background: #f2cbbd;
-}
-
 main {
     display: flex;
     flex: 1;
@@ -53,7 +63,7 @@ main {
 
 a {
     text-decoration: none;
-    color: black;
+    color: var(--color-primary);
 }
 
 a,
@@ -217,6 +227,7 @@ button {
     max-width: 100%;
     max-height: 100vh;
     margin: auto;
+    margin-bottom: 50px;
     padding: 20px;
 }
 
@@ -241,17 +252,42 @@ button {
     flex-direction: row;
     justify-content: space-around;
     flex-wrap: wrap;
+    margin: 150px 0;
+    background: #f2cbbd;
 }
 
-.small-middle-container {
-    max-width: 300px;
-    max-height: 400px;
-    background-color: #f2cbbd;
-    padding: 40px 20px;
+.middle-text-container {
+    background: white;
+    line-height: 35px;
+    justify-content: center;
     text-align: center;
-    border-radius: 15px;
-    margin: 150px 0;
-    font-size: 20px;
+    font-size: 22px;
+    max-width: 100%;
+    font-weight: 500;
+    border: 1px solid black;
+    padding: 20px;
+    position: relative;
+    top: -50px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.middle-text-container span {
+    font-family: "Scada", sans-serif;
+}
+
+.dog-testimonials p {
+    font-family: "Scada", sans-serif;
+}
+
+.small-middle-container img {
+    padding-bottom: 30px;
+}
+
+img.floating-dog-head {
+    max-width: 350px;
+    max-height: auto;
+    display: flex;
+
     @media screen and (max-width: 576px), (max-height: 500px) {
         width: 95%;
         padding: 20px;
@@ -288,6 +324,17 @@ button {
     padding: 20px;
     text-align: center;
     max-width: 100%;
+}
+
+.registration-form-container-landing {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+    max-width: 100%;
+    margin: auto;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
 }
 
 h1.text-login {
@@ -378,6 +425,14 @@ header li a {
     flex: 1;
 }
 
+.logo-header-container-landing {
+    flex: 1;
+}
+
+.logo-header-container-landing img {
+    margin-left: 20px;
+}
+
 img.logo-small {
     width: 100px;
     height: 100px;
@@ -408,8 +463,9 @@ img.logo-small {
     flex: 1;
 }
 .navbar-container {
-    z-index: 7;
-    background-color: white;
+    z-index: 8;
+    background-color: var(--menu);
+    color: var(--color-primary);
     width: 300px;
     position: fixed;
     right: 0;
@@ -441,7 +497,7 @@ img.logo-small {
     text-decoration: none;
     padding: 10px 0 10px 20px;
     display: block;
-    color: black;
+    color: var(--color-primary);
 }
 
 .navbar-container span {
@@ -663,6 +719,10 @@ button {
 
 .profile-picture-container {
     flex: 0;
+}
+
+.this-button {
+    margin-left: 10px;
 }
 
 .user-info-container {
@@ -955,7 +1015,7 @@ button {
     flex: 1;
     flex-direction: column;
 
-    background: var(--profile-background);
+    background: var(--chat-container);
     min-width: 200px;
     max-width: 250px;
     min-height: 250px;
@@ -972,6 +1032,11 @@ button {
         padding-bottom: 30px;
         max-width: 400px;
     }
+}
+
+.other-profile-top button {
+    max-width: 80%;
+    align-self: center;
 }
 
 .spacer {
@@ -999,11 +1064,28 @@ button {
     flex: 1;
     flex-direction: column;
     align-items: stretch;
+    padding: 20px;
+    margin-top: 10px;
+}
+
+.chat-message-container-new textarea {
+    max-width: 60%;
+    min-width: 250px;
+    margin-right: 20px;
 }
 
 .chat-message-container-new h3,
 p {
     color: var(--color-primary);
+}
+
+p.click-ind-messages {
+    padding-bottom: 20px;
+}
+
+p.message-bold {
+    font-weight: 500;
+    color: var(--message-font);
 }
 
 .single-chat-container p {
@@ -1196,7 +1278,7 @@ img.dog-about-image {
 .single-chat-container {
     display: flex;
     flex-direction: row;
-    background-color: #f2cbbd;
+    background-color: var(--messages);
     margin: 10px 0;
     border-radius: 15px;
     padding: 10px;
@@ -1205,7 +1287,8 @@ img.dog-about-image {
 .single-message-container {
     display: flex;
     flex-direction: row;
-    background-color: #f2cbbd;
+    background: var(--messages);
+    color: var(--message-font);
     margin: 10px 0;
     border-radius: 15px;
     padding: 10px;
@@ -1285,7 +1368,7 @@ img.dog-about-image {
     max-height: 100%;
     max-width: 100%;
     flex-direction: column;
-
+    padding-left: 60px;
     align-items: flex-start;
     display: flex;
     justify-content: center;
@@ -1310,6 +1393,15 @@ img.dog-about-image {
     border: none;
     width: 200px;
     padding: 10px;
+    align-self: flex-start;
+}
+
+.header button {
+    border-radius: 15px;
+    background: #f2cbbd;
+    border: none;
+    width: 150px;
+    padding: 10px;
 }
 
 .map-container {
@@ -1322,7 +1414,7 @@ img.dog-about-image {
     width: 400px;
 }
 
-.sidebar {
+/* .sidebar {
     background-color: rgba(35, 55, 75, 0.9);
     color: #ffffff;
     padding: 6px 12px;
@@ -1333,7 +1425,7 @@ img.dog-about-image {
     left: 0;
     margin: 12px;
     border-radius: 4px;
-}
+} */
 
 .marker {
     background-image: url("../client/public/logo.svg");
@@ -1377,6 +1469,8 @@ img.dog-about-image {
 textarea {
     max-height: 100px;
     min-height: 70px;
+    border-radius: 5px;
+    padding: 5px;
 }
 
 .back-button {
@@ -1443,6 +1537,42 @@ textarea {
     margin-left: 10px;
 }
 
-.user-info-container button {
-    margin-left: 10px;
+.single-dog-testimonials {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.dog-testimonials {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background: #f2cbbd;
+}
+
+.dog-testimonials p {
+    text-align: center;
+    font-size: 22px;
+    padding: 0 20px 0 20px;
+    font-weight: 700;
+}
+
+.click-container {
+    flex: 1;
+}
+
+span.created-at {
+    color: var(--message-font);
+}
+
+.user-info-chat p {
+    color: var(--message-font);
+}
+
+.register-button {
+    border-radius: 15px;
+    background: #f2cbbd;
+    border: none;
+    width: 150px;
+    padding: 10px;
 }

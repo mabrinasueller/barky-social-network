@@ -68,7 +68,9 @@ export default function Chat() {
                                                     </span>
                                                 </p>
                                             </div>
-                                            <p>{message.message}</p>
+                                            <p className="message-bold">
+                                                {message.message}
+                                            </p>
                                         </div>
                                     </div>
                                 </div>

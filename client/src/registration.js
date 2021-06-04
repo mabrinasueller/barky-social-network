@@ -39,7 +39,7 @@ export default class Registration extends Component {
             <>
                 <div className="landing-page-container">
                     <header className="header">
-                        <div className="logo-header-container">
+                        <div className="logo-header-container-landing">
                             <img
                                 className="logo-small"
                                 src="../logo.svg"
@@ -72,20 +72,44 @@ export default class Registration extends Component {
                     </div>
                 </div>
                 <div className="registration-middle-container">
-                    <div className="small-middle-container">
-                        <p>
+                    <div className="middle-text-container">
+                        <span>
                             Find like minded dog owners and explore new routes
                             with them!
-                        </p>
+                            <div className="breaker"></div>
+                            Show other members your favorite spots in Berlin and
+                            <div className="breaker"></div>
+                            interact with them through messages and our open
+                            chat.
+                        </span>
                     </div>
-                    <div className="small-middle-container">
-                        <p>Show other members your favorite spots in Berlin!</p>
-                    </div>
-                    <div className="small-middle-container">
+                    <div className="dog-testimonials">
                         <p>
-                            Interact with other members through messages and our
-                            open chat
+                            Not yet convinced? Just look at what members have to
+                            say about <strong>Barky</strong>!
                         </p>
+                        <div className="landing-dog-testimonials">
+                            <div className="single-dog-testimonials">
+                                <div className="small-middle-container">
+                                    <img
+                                        className="floating-dog-head"
+                                        src="../46.png"
+                                    />
+                                </div>
+                                <div className="small-middle-container">
+                                    <img
+                                        className="floating-dog-head"
+                                        src="../45.png"
+                                    />
+                                </div>
+                                <div className="small-middle-container">
+                                    <img
+                                        className="floating-dog-head"
+                                        src="../44.png"
+                                    />
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className="registration-container-new">
@@ -93,7 +117,7 @@ export default class Registration extends Component {
                         <img src="../Wauz6.png" />
                     </div>
 
-                    <div className="registration-form-container">
+                    <div className="registration-form-container-landing">
                         <div className="profile-new">
                             <div className="registration-text-container">
                                 <div className="registration-text">
@@ -166,7 +190,7 @@ export default class Registration extends Component {
                             </div>
                             <div className="breaker"></div>
                             <button
-                                className="form-button"
+                                className="register-button"
                                 type="button"
                                 onClick={() => this.handleSubmit()}
                             >

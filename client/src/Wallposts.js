@@ -45,6 +45,7 @@ export default function WallPosts({ id }) {
                 viewedUser: id,
                 post: newWallPost,
             });
+            console.log("data from new wallpost: ", data);
             let newWallPosts = [data, ...allWallPosts];
             setAllWallPosts(newWallPosts);
             setNewWallPost(data.post);

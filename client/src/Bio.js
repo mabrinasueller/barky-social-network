@@ -47,9 +47,11 @@ export default class BioEditor extends Component {
             <div>
                 {!this.state.showTextArea &&
                     (this.props.bio ? (
-                        <button onClick={(e) => this.toggleBio(e)}>
-                            Edit Bio
-                        </button>
+                        <div className="this-button">
+                            <button onClick={(e) => this.toggleBio(e)}>
+                                Edit Bio
+                            </button>
+                        </div>
                     ) : (
                         <button onClick={(e) => this.toggleBio(e)}>
                             Add Bio
