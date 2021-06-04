@@ -1,10 +1,11 @@
 import axios from "./axios";
 import FriendButton from "./FriendButton";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Wallposts from "./Wallposts";
 import { Link } from "react-router-dom";
 import Messenger from "./Messenger";
+import Maps from "./GoogleMaps";
 
 export default function OtherProfile(props) {
     const history = useHistory();
@@ -112,7 +113,12 @@ export default function OtherProfile(props) {
         } else {
             return (
                 <>
-                    <button onClick={() => history.goBack()}>Go back</button>
+                    <button
+                        className="back-button"
+                        onClick={() => history.goBack()}
+                    >
+                        Go back
+                    </button>
                     <div className="profile-content">
                         <div className="profile-top">
                             <div className="profile-picture">
@@ -140,43 +146,40 @@ export default function OtherProfile(props) {
                                     />
                                 </div>
                             </div>
+
                             <div className="friends-profile-container">
                                 <p>Friends of user:</p>
-                                {friends &&
-                                    friends.map((friend) => {
-                                        const {
-                                            id,
-                                            first_name,
-                                            last_name,
-                                            img_url,
-                                        } = friend;
-                                        return (
-                                            <div key={id}>
-                                                <Link to={`/user/${id}`}>
-                                                    <img
-                                                        src={
-                                                            img_url ||
-                                                            "default_user.jpeg"
-                                                        }
-                                                        alt={`${first_name} ${last_name}`}
-                                                        className="chat-image"
-                                                    />
-                                                </Link>
-
-                                                <p>
-                                                    {first_name} {last_name}
-                                                </p>
-                                            </div>
-                                        );
-                                    })}
+                                <div className="friends-small">
+                                    {friends &&
+                                        friends.map((friend) => {
+                                            const {
+                                                id,
+                                                first_name,
+                                                last_name,
+                                                img_url,
+                                            } = friend;
+                                            return (
+                                                <div key={id}>
+                                                    <Link to={`/user/${id}`}>
+                                                        <img
+                                                            src={
+                                                                img_url ||
+                                                                "default_user.jpeg"
+                                                            }
+                                                            alt={`${first_name} ${last_name}`}
+                                                            className="chat-image"
+                                                        />
+                                                    </Link>
+                                                </div>
+                                            );
+                                        })}
+                                </div>
                             </div>
                         </div>
 
                         <div className="profile">
                             <div className="profile-text-container">
-                                <div className="chat-message-container">
-                                    <Wallposts id={props.match.params.id} />
-                                </div>
+                                <Wallposts id={props.match.params.id} />
                             </div>
                             <div className="profile-container-dog">
                                 <div className="dog-image-container">
@@ -198,14 +201,41 @@ export default function OtherProfile(props) {
                                         the vacuum, I definitely feel a sinister
                                         vibe coming from it!
                                     </p>
-                                    <h4>Favorite song:</h4>
-                                    <p>Who let the dogs out?</p>
+
                                     <h4>We are looking for:</h4>
                                     <p>
                                         a cool dog owner with another female dog
                                         to cruise the parks of Berlin
                                     </p>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="profile-content">
+                        <div className="profile-two">
+                            <div className="spotify-player">
+                                <h4>I really love this song right now ⬇ </h4>
+                                <iframe
+                                    src="https://open.spotify.com/embed/track/5BQHyj5Pb3dUY8W6TSjeTF"
+                                    width="300"
+                                    height="380"
+                                    frameBorder="0"
+                                    allowtransparency="true"
+                                    allow="encrypted-media"
+                                ></iframe>
+                            </div>
+
+                            <Maps />
+                            <div className="location-container">
+                                <h4>
+                                    These are a few of our
+                                    <div className="breaker"></div>
+                                    favorite places:
+                                </h4>
+                                <p>Mauerpark</p>
+                                <p>Volkspark Friedrichshain</p>
+                                <p>Teufelsberg</p>
+                                <p>Tegler See</p>
                             </div>
                         </div>
                     </div>

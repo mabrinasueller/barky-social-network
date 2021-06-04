@@ -62,15 +62,17 @@ export default class BioEditor extends Component {
                             name="draftbio"
                             defaultValue={this.props.bio}
                         ></textarea>
-                        <button
-                            type="submit"
-                            onClick={(e) => this.handleSubmit(e)}
-                        >
-                            Save
-                        </button>
-                        <button onClick={(e) => this.toggleBio(e)}>
-                            Cancel
-                        </button>
+                        <div className="bio-buttons">
+                            <button
+                                type="submit"
+                                onClick={(e) => this.handleSubmit(e)}
+                            >
+                                Save
+                            </button>
+                            <button onClick={(e) => this.toggleBio(e)}>
+                                Cancel
+                            </button>
+                        </div>
                     </>
                 )}
             </div>

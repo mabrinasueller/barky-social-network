@@ -46,20 +46,20 @@ export default function Messages({ activeUser }) {
     };
     console.log("singleThreads: ", singleThreads);
 
-    // const handleSubmit = async (e) => {
-    //     console.log("submit got clicked");
-    //     console.log("privateMsg: ", privateMsg);
-    //     e.preventDefault();
-    //     try {
-    //         const { data } = await axios.post("/message", {
-    //             viewedUser: otherUserId,
-    //             privateMsg,
-    //         });
-    //         console.log("data from sent message: ", data);
-    //     } catch (error) {
-    //         console.log("Error in sending message: ", error);
-    //     }
-    // };
+    const handleSubmit = async (e) => {
+        console.log("submit got clicked");
+        console.log("privateMsg: ", privateMsg);
+        e.preventDefault();
+        try {
+            const { data } = await axios.post("/message", {
+                viewedUser: otherUserId,
+                privateMsg,
+            });
+            console.log("data from sent message: ", data);
+        } catch (error) {
+            console.log("Error in sending message: ", error);
+        }
+    };
 
     return (
         <>
@@ -189,7 +189,32 @@ export default function Messages({ activeUser }) {
                             );
                         })}
                     </div>
-                    {/* </div> */}
+                    <div className="chat-message-container-new">
+                        {singleThreads.filter((message) => {
+                            [message.sender_id, message.recipient_id].find(
+                                (i) => i !== activeUser.id
+                            );
+                            console.log("vla: ", otherUserId);
+                            return (
+                                <div className="answer-message">
+                                    <textarea
+                                        placeholder="Type your message here"
+                                        onChange={(e) =>
+                                            setPrivateMsg(e.target.value)
+                                        }
+                                    ></textarea>
+                                    <button
+                                        onClick={(e) => {
+                                            singleThreadMessages(otherUserId);
+                                            handleSubmit(e);
+                                        }}
+                                    >
+                                        Send
+                                    </button>
+                                </div>
+                            );
+                        })}
+                    </div>
                 </div>
             </div>
         </>

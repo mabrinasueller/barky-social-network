@@ -18,7 +18,7 @@ body {
 
 .dark-theme {
     --background: #343a40;
-    --color-primary: ivory;
+    --color-primary: #f8f9fa;
     --profile-background: #495057;
     --footer-background: #495057;
     --chat-container: #6c757d;
@@ -501,18 +501,18 @@ button {
     text-shadow: 1px 1px #fff;
     font-weight: 700;
     font-size: 10pt;
-    margin: 5px;
-
-    /* width: 60%;
+    margin: 5px 0;
+    /* max-width: 300px;
     border: none;
- 
-    background: #ffb4a2;
+    /* background: #81b29a; */
+    /* background: #f2cbbd;
     padding: 10px;
     border-radius: 20px;
     font-size: 18px;
     color: black;
     font-weight: 400;
-    font-family: "Montserrat", sans-serif; */
+    font-family: "Montserrat", sans-serif;
+    margin: 5px;  */
 }
 
 .profile-content {
@@ -898,6 +898,18 @@ button {
 
 .modal-buttons button {
     height: 30px;
+    color: black;
+    display: inline-block;
+    background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+    border: 1px solid #999;
+    border-radius: 5px;
+    padding: 5px 8px;
+    outline: none;
+    white-space: nowrap;
+    text-shadow: 1px 1px #fff;
+    font-weight: 700;
+    font-size: 10pt;
+    margin: 5px;
 }
 
 .find-people-content {
@@ -1404,4 +1416,33 @@ textarea {
 
 .chat-profile-container button {
     height: 30px;
+}
+
+.friends-profile-container {
+    padding: 10px;
+}
+.friends-profile-container p {
+    margin-left: 10px;
+}
+
+.friends-small {
+    display: flex;
+    flex-direction: row;
+}
+
+.friends-small img {
+    margin: 10px;
+}
+
+.bio-buttons button {
+    margin-right: 5px;
+    margin-left: 10px;
+}
+
+.user-info-container textarea {
+    margin-left: 10px;
+}
+
+.user-info-container button {
+    margin-left: 10px;
 }
