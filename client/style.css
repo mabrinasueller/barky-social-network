@@ -507,7 +507,7 @@ img.logo-small {
 
 .logout {
     font-size: 20px;
-    margin-top: 80px;
+    margin-top: 15px;
 }
 
 #preview {
@@ -642,8 +642,8 @@ button {
     box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);
     border-radius: 15px;
     padding: 30px;
-    /* justify-content: space-around;
-    flex-wrap: wrap; */
+    /* justify-content: space-around; */
+    flex-wrap: wrap;
     align-items: center;
     @media screen and (max-width: 576px), (max-height: 500px) {
         width: 95%;
@@ -668,6 +668,7 @@ button {
 .location-container {
     align-self: baseline;
     padding-top: 20px;
+    margin: auto;
 }
 
 .profile-picture img {
