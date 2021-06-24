@@ -86,7 +86,7 @@ export default function OtherProfile(props) {
                                 <h3>
                                     {otherUser.firstName} {otherUser.lastName}
                                 </h3>
-                                <p>{otherUser.bio}</p>
+                                <p className="distance">{otherUser.bio}</p>
                                 <FriendButton id={props.match.params.id} />
                             </div>
                         </div>
@@ -133,7 +133,7 @@ export default function OtherProfile(props) {
                                 <h3>
                                     {otherUser.firstName} {otherUser.lastName}
                                 </h3>
-                                <p>{otherUser.bio}</p>
+                                <p className="distance">{otherUser.bio}</p>
                                 <FriendButton id={props.match.params.id} />
                                 <div>
                                     <button onClick={toggle}>
@@ -225,13 +225,13 @@ export default function OtherProfile(props) {
                                 ></iframe>
                             </div>
 
+                            <h4>
+                                These are a few of our
+                                <div className="breaker"></div>
+                                favorite places:
+                            </h4>
                             <Maps />
                             <div className="location-container">
-                                <h4>
-                                    These are a few of our
-                                    <div className="breaker"></div>
-                                    favorite places:
-                                </h4>
                                 <p>Mauerpark</p>
                                 <p>Volkspark Friedrichshain</p>
                                 <p>Teufelsberg</p>

@@ -254,6 +254,7 @@ button {
     flex-wrap: wrap;
     margin: 150px 0;
     background: #f2cbbd;
+    border-radius: 10px;
 }
 
 .middle-text-container {
@@ -268,7 +269,7 @@ button {
     padding: 20px;
     position: relative;
     top: -50px;
-    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 5px;
 }
 
 .middle-text-container span {
@@ -641,8 +642,8 @@ button {
     box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);
     border-radius: 15px;
     padding: 30px;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    /* justify-content: space-around;
+    flex-wrap: wrap; */
     align-items: center;
     @media screen and (max-width: 576px), (max-height: 500px) {
         width: 95%;
@@ -844,7 +845,7 @@ button {
     /* text-align: justify; */
     align-self: flex-start;
     line-height: 25px;
-    padding-left: 40px;
+    padding-left: 10px;
     padding-right: 40px;
     @media screen and (max-width: 576px), (max-height: 500px) {
         margin-top: -70px;
@@ -1259,7 +1260,7 @@ img.dog-about-image {
     flex-direction: row;
     background: var(--chat-container);
     /* background: #eef3f7; */
-    width: 410px;
+    /* width: 410px; */
     min-height: 480px;
     box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);
     border-radius: 15px;
@@ -1405,13 +1406,13 @@ img.dog-about-image {
 }
 
 .map-container {
-    height: 400px;
-    width: 400px;
+    height: 350px;
+    width: 350px;
 }
 
 #map {
-    height: 400px;
-    width: 400px;
+    height: 350px;
+    width: 350px;
 }
 
 /* .sidebar {
@@ -1441,7 +1442,7 @@ img.dog-about-image {
 }
 
 .spotify-player {
-    margin-right: 30px;
+    margin-right: 20px;
 }
 
 .profile-text-container-not-friends {
@@ -1575,4 +1576,8 @@ span.created-at {
     border: none;
     width: 150px;
     padding: 10px;
+}
+
+.distance {
+    margin-bottom: 10px;
 }
