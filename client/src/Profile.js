@@ -5,6 +5,10 @@ import Maps from "./GoogleMaps";
 export default function Profile(props) {
     console.log("Props in Profile: ", props);
 
+    const toggleName = () => {
+        console.log("Button was clicked");
+    };
+
     return (
         <>
             <div className="profile-content">
@@ -37,7 +41,12 @@ export default function Profile(props) {
                             <img src="./dog-default.jpeg" />
                         </div>
                         <div className="dog-info-container">
-                            <h2>Hi, I am Lola!</h2>
+                            <h2>
+                                Hi, I am {name}!{" "}
+                                <button onClick={toggleName}>
+                                    Change Name
+                                </button>
+                            </h2>
                             <div className="spacer"></div>
                             <p>Height: 24 inches</p>
                             <div className="spacer"></div>

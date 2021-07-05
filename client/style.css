@@ -642,7 +642,7 @@ button {
     box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);
     border-radius: 15px;
     padding: 30px;
-    /* justify-content: space-around; */
+    justify-content: space-around;
     flex-wrap: wrap;
     align-items: center;
     @media screen and (max-width: 576px), (max-height: 500px) {
@@ -669,6 +669,7 @@ button {
     align-self: baseline;
     padding-top: 20px;
     margin: auto;
+    flex: 1;
 }
 
 .profile-picture img {
@@ -1283,7 +1284,7 @@ img.dog-about-image {
     background-color: var(--messages);
     margin: 10px 0;
     border-radius: 15px;
-    padding: 10px;
+    padding: 20px;
 }
 
 .single-message-container {
@@ -1409,6 +1410,7 @@ img.dog-about-image {
 .map-container {
     height: 350px;
     width: 350px;
+    flex: 1;
 }
 
 #map {
@@ -1444,6 +1446,7 @@ img.dog-about-image {
 
 .spotify-player {
     margin-right: 20px;
+    flex: 1;
 }
 
 .profile-text-container-not-friends {
