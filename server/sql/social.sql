@@ -47,3 +47,12 @@ CREATE TABLE friends(
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   )
 
+  CREATE TABLE dog_info(
+    id SERIAL PRIMARY KEY,
+    dog_name TEXT,
+    dog_like TEXT,
+    dog_dislike TEXT,
+    dog_looking TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  )
+

@@ -1,13 +1,29 @@
 import BioEditor from "./Bio";
 import Wallposts from "./Wallposts";
 import Maps from "./GoogleMaps";
+import { useEffect, useState } from "react";
+import axios from "./axios";
 
 export default function Profile(props) {
     console.log("Props in Profile: ", props);
+    const [textAreaIsShowing, setTextAreaIsShowing] = useState(false);
+    const [dogName, setDogName] = useState();
 
-    const toggleName = () => {
-        console.log("Button was clicked");
-    };
+    function toggleName() {
+        setTextAreaIsShowing(!textAreaIsShowing);
+    }
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const { data } = await axios.get("/dogname");
+                console.log("data from connection: ", data.dog_name);
+                setDogName(data.dog_name);
+            } catch (error) {
+                console.log("error in connection: ", error);
+            }
+        })();
+    }, []);
 
     return (
         <>
@@ -41,12 +57,30 @@ export default function Profile(props) {
                             <img src="./dog-default.jpeg" />
                         </div>
                         <div className="dog-info-container">
-                            <h2>
-                                Hi, I am {name}!{" "}
-                                <button onClick={toggleName}>
-                                    Change Name
-                                </button>
-                            </h2>
+                            <h2>Hi, I am {dogName}! </h2>
+                            {!textAreaIsShowing && (
+                                <button onClick={toggleName}>Edit Name</button>
+                            )}
+                            {textAreaIsShowing && (
+                                <>
+                                    <textarea
+                                        onChange={(e) => handleNameChange(e)}
+                                        defaultValue={dogName}
+                                    ></textarea>
+                                    <div className="edit-buttons">
+                                        <button
+                                            type="submit"
+                                            onClick={(e) => handleSubmit(e)}
+                                        >
+                                            Save
+                                        </button>
+                                        <button onClick={(e) => toggleName(e)}>
+                                            Cancel
+                                        </button>
+                                    </div>
+                                </>
+                            )}
+
                             <div className="spacer"></div>
                             <p>Height: 24 inches</p>
                             <div className="spacer"></div>

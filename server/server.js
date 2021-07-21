@@ -24,6 +24,8 @@ const {
     getWallPosts,
     insertPrivateMessage,
     getAllMessageInfo,
+    getDogName,
+    insertDogName,
 } = require("./db");
 
 const s3 = require("./s3");
@@ -220,6 +222,28 @@ app.get("/all/messages", async (req, res) => {
         res.json(rows);
     } catch (error) {
         console.log("error in getting all messages: ", error);
+        res.status(500).json;
+    }
+});
+
+app.get("/dogname", async (req, res) => {
+    const { userId } = req.session;
+    try {
+        const { rows } = await getDogName(userId);
+        console.log("rows from dog: ", rows);
+    } catch (error) {
+        console.log("error in getting dogname: ", error);
+        res.status(500).json;
+    }
+});
+
+app.post("/dogname", async (req, res) => {
+    const { userId } = req.session;
+    try {
+        const { rows } = await insertDogName(userId);
+        console.log("rows from inserting dog: ", rows);
+    } catch (error) {
+        console.log("error in getting dogname: ", error);
         res.status(500).json;
     }
 });

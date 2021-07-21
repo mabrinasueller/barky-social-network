@@ -1,5 +1,5 @@
 import axios from "./axios";
-import { useState, useEffect, elemRef } from "react";
+import { useState, useEffect } from "react";
 
 export default function Messages({ activeUser }) {
     const [allMessages, setAllMessages] = useState([]);
