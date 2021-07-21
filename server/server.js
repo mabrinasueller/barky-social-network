@@ -239,8 +239,9 @@ app.get("/dogname", async (req, res) => {
 
 app.post("/dogname", async (req, res) => {
     const { userId } = req.session;
+    const { newDogName } = req.body;
     try {
-        const { rows } = await insertDogName(userId);
+        const { rows } = await insertDogName(userId, newDogName);
         console.log("rows from inserting dog: ", rows);
     } catch (error) {
         console.log("error in getting dogname: ", error);

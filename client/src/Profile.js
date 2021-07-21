@@ -8,6 +8,7 @@ export default function Profile(props) {
     console.log("Props in Profile: ", props);
     const [textAreaIsShowing, setTextAreaIsShowing] = useState(false);
     const [dogName, setDogName] = useState();
+    const [newDogName, setNewDogName] = useState();
 
     function toggleName() {
         setTextAreaIsShowing(!textAreaIsShowing);
@@ -24,6 +25,18 @@ export default function Profile(props) {
             }
         })();
     }, []);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const { data } = await axios.post("/dogname", {
+                newDogName,
+            });
+            console.log("data from new dog name: ", data);
+        } catch (error) {
+            console.log("Error in sending new dog name: ", error);
+        }
+    };
 
     return (
         <>
@@ -64,7 +77,9 @@ export default function Profile(props) {
                             {textAreaIsShowing && (
                                 <>
                                     <textarea
-                                        onChange={(e) => handleNameChange(e)}
+                                        onChange={(e) =>
+                                            setNewDogName(e.target.value)
+                                        }
                                         defaultValue={dogName}
                                     ></textarea>
                                     <div className="edit-buttons">
