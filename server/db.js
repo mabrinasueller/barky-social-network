@@ -208,12 +208,19 @@ module.exports.getPrivateMessages = (user1, user2) => {
 };
 
 module.exports.getDogName = (userId) => {
-    return db.query((`SELECT dog_name WHERE user_id = $1`, [userId]));
+    return db.query(`SELECT * FROM dog_info WHERE user_id = $1`, [userId]);
 };
 
 module.exports.insertDogName = (userId, newDogName) => {
     return db.query(
-        `INSERT into dog_info (user_id, dog_name) VALUES ($1, $2) RETURNING *`,
+        `INSERT into dog_info (user_id, name) VALUES ($1, $2) RETURNING *`,
         [userId, newDogName]
+    );
+};
+
+module.exports.updateDogName = (newDogName, userId) => {
+    return db.query(
+        `UPDATE dog_info SET name = $1 WHERE user_id = $2 RETURNING *`,
+        [newDogName, userId]
     );
 };

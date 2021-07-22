@@ -26,6 +26,7 @@ const {
     getAllMessageInfo,
     getDogName,
     insertDogName,
+    updateDogName,
 } = require("./db");
 
 const s3 = require("./s3");
@@ -231,18 +232,33 @@ app.get("/dogname", async (req, res) => {
     try {
         const { rows } = await getDogName(userId);
         console.log("rows from dog: ", rows);
+        if (rows != undefined) {
+            res.json(rows);
+        } else {
+            res.statusCode(500).json;
+        }
     } catch (error) {
         console.log("error in getting dogname: ", error);
         res.status(500).json;
     }
 });
 
-app.post("/dogname", async (req, res) => {
+app.post("/new/dogname", async (req, res) => {
     const { userId } = req.session;
+    console.log("testtest: ", userId);
     const { newDogName } = req.body;
+    console.log("dog: ", newDogName);
     try {
-        const { rows } = await insertDogName(userId, newDogName);
-        console.log("rows from inserting dog: ", rows);
+        const result = getDogName(userId);
+        if (result.rows[0].name != null) {
+            const { rows } = await updateDogName(userId, newDogName);
+            console.log("rows from updating dog: ", rows[0]);
+            res.json(rows[0]);
+        } else {
+            const { rows } = await insertDogName(userId, newDogName);
+            console.log("rows from inserting dog: ", rows[0]);
+            res.json(rows[0]);
+        }
     } catch (error) {
         console.log("error in getting dogname: ", error);
         res.status(500).json;

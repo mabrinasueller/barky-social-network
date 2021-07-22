@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "./axios";
 
 export default function Profile(props) {
-    console.log("Props in Profile: ", props);
+    // console.log("Props in Profile: ", props);
     const [textAreaIsShowing, setTextAreaIsShowing] = useState(false);
     const [dogName, setDogName] = useState();
     const [newDogName, setNewDogName] = useState();
@@ -15,24 +15,31 @@ export default function Profile(props) {
     }
 
     useEffect(() => {
+        getDogName();
+    });
+
+    function getDogName() {
+        console.log("component did mount!");
         (async () => {
             try {
                 const { data } = await axios.get("/dogname");
                 console.log("data from connection: ", data.dog_name);
                 setDogName(data.dog_name);
             } catch (error) {
-                console.log("error in connection: ", error);
+                console.log("Error in connection: ", error);
             }
         })();
-    }, []);
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log("newdogname", newDogName);
         try {
-            const { data } = await axios.post("/dogname", {
+            const { data } = await axios.post("/new/dogname", {
                 newDogName,
             });
-            console.log("data from new dog name: ", data);
+            console.log("data to new dog name: ", data);
+            // getDogName();
         } catch (error) {
             console.log("Error in sending new dog name: ", error);
         }
