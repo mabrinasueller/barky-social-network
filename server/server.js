@@ -233,7 +233,7 @@ app.get("/dogname", async (req, res) => {
         const { rows } = await getDogName(userId);
         console.log("rows from dog: ", rows);
         if (rows != undefined) {
-            res.json(rows);
+            res.json(rows[0]);
         } else {
             res.statusCode(500).json;
         }
@@ -250,7 +250,7 @@ app.post("/new/dogname", async (req, res) => {
     console.log("dog: ", newDogName);
     try {
         const result = getDogName(userId);
-        if (result.rows[0].name != null) {
+        if (result.rows != null) {
             const { rows } = await updateDogName(userId, newDogName);
             console.log("rows from updating dog: ", rows[0]);
             res.json(rows[0]);

@@ -23,8 +23,8 @@ export default function Profile(props) {
         (async () => {
             try {
                 const { data } = await axios.get("/dogname");
-                console.log("data from connection: ", data.dog_name);
-                setDogName(data.dog_name);
+                console.log("data from connection: ", data.name);
+                setDogName(data.name);
             } catch (error) {
                 console.log("Error in connection: ", error);
             }
@@ -34,12 +34,13 @@ export default function Profile(props) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("newdogname", newDogName);
+        console.log("button was clicked");
         try {
             const { data } = await axios.post("/new/dogname", {
                 newDogName,
             });
-            console.log("data to new dog name: ", data);
-            // getDogName();
+            console.log("data to new dog name: ", data.name);
+            getDogName();
         } catch (error) {
             console.log("Error in sending new dog name: ", error);
         }
