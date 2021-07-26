@@ -75,10 +75,17 @@ export default function Profile(props) {
                             <img src="./dog-default.jpeg" />
                         </div>
                         <div className="dog-info-container">
-                            <h2>Hi, I am {dogName}! </h2>
-                            {!textAreaIsShowing && (
-                                <button onClick={toggleName}>Edit Name</button>
-                            )}
+                            <h2>
+                                Hi, I am&nbsp;
+                                {!textAreaIsShowing && (
+                                    <>
+                                        {dogName}!&nbsp;
+                                        <button onClick={toggleName}>
+                                            Edit Name
+                                        </button>
+                                    </>
+                                )}
+                            </h2>
                             {textAreaIsShowing && (
                                 <>
                                     <textarea

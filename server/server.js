@@ -219,7 +219,6 @@ app.get("/all/messages", async (req, res) => {
     const { userId } = req.session;
     try {
         const { rows } = await getAllMessageInfo(userId);
-        console.log("rows from all messagen: ", rows);
         res.json(rows);
     } catch (error) {
         console.log("error in getting all messages: ", error);
@@ -231,7 +230,6 @@ app.get("/dogname", async (req, res) => {
     const { userId } = req.session;
     try {
         const { rows } = await getDogName(userId);
-        console.log("rows from dog: ", rows[0].dog_name);
         if (rows != undefined) {
             res.json(rows[0]);
         } else {
@@ -245,20 +243,15 @@ app.get("/dogname", async (req, res) => {
 
 app.post("/new/dogname", async (req, res) => {
     const { userId } = req.session;
-    console.log("testtest: ", userId);
     const { newDogName } = req.body;
-    console.log("dog: ", newDogName);
-    console.log("dogtype: ", typeof newDogName);
+
     try {
         const result = await getDogName(userId);
-        console.log("test2: ", result.rows[0]);
         if (result.rows != undefined) {
             const { rows } = await updateDogName(newDogName, userId);
-            console.log("rows from updating dog: ", rows[0]);
             res.json(rows[0]);
         } else {
             const { rows } = await insertDogName(newDogName, userId);
-            console.log("rows from inserting dog: ", rows[0]);
             res.json(rows[0]);
         }
     } catch (error) {
@@ -268,7 +261,6 @@ app.post("/new/dogname", async (req, res) => {
 });
 
 app.get("*", (req, res) => {
-    console.log("req.url: ", req.url);
     if (!req.session.userId) {
         res.redirect("/welcome");
     } else {
@@ -288,9 +280,7 @@ io.on("connection", function (socket) {
     }
 
     const userId = socket.request.session.userId;
-    console.log("userId: ", userId);
     onlineUsers[socket.id] = userId;
-    console.log("onlineUsers: ", onlineUsers);
     console.log(`User ${userId} just connected with socket ${socket.id}`);
     const uniqueUsers = [...new Set(Object.values(onlineUsers))];
     console.log("uniqueUsers: ", uniqueUsers);
