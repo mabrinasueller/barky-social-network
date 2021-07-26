@@ -16,15 +16,14 @@ export default function Profile(props) {
 
     useEffect(() => {
         getDogName();
-    });
+    }, []);
 
     function getDogName() {
         console.log("component did mount!");
         (async () => {
             try {
                 const { data } = await axios.get("/dogname");
-                console.log("data from connection: ", data.name);
-                setDogName(data.name);
+                setDogName(data.dog_name);
             } catch (error) {
                 console.log("Error in connection: ", error);
             }
@@ -33,14 +32,12 @@ export default function Profile(props) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("newdogname", newDogName);
-        console.log("button was clicked");
         try {
-            const { data } = await axios.post("/new/dogname", {
+            await axios.post("/new/dogname", {
                 newDogName,
             });
-            console.log("data to new dog name: ", data.name);
             getDogName();
+            toggleName();
         } catch (error) {
             console.log("Error in sending new dog name: ", error);
         }

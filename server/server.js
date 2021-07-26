@@ -231,7 +231,7 @@ app.get("/dogname", async (req, res) => {
     const { userId } = req.session;
     try {
         const { rows } = await getDogName(userId);
-        console.log("rows from dog: ", rows);
+        console.log("rows from dog: ", rows[0].dog_name);
         if (rows != undefined) {
             res.json(rows[0]);
         } else {
@@ -248,19 +248,21 @@ app.post("/new/dogname", async (req, res) => {
     console.log("testtest: ", userId);
     const { newDogName } = req.body;
     console.log("dog: ", newDogName);
+    console.log("dogtype: ", typeof newDogName);
     try {
-        const result = getDogName(userId);
-        if (result.rows != null) {
-            const { rows } = await updateDogName(userId, newDogName);
+        const result = await getDogName(userId);
+        console.log("test2: ", result.rows[0]);
+        if (result.rows != undefined) {
+            const { rows } = await updateDogName(newDogName, userId);
             console.log("rows from updating dog: ", rows[0]);
             res.json(rows[0]);
         } else {
-            const { rows } = await insertDogName(userId, newDogName);
+            const { rows } = await insertDogName(newDogName, userId);
             console.log("rows from inserting dog: ", rows[0]);
             res.json(rows[0]);
         }
     } catch (error) {
-        console.log("error in getting dogname: ", error);
+        console.log("error in inserting dogname: ", error);
         res.status(500).json;
     }
 });
