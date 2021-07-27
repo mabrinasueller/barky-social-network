@@ -186,6 +186,7 @@ export default function Profile(props) {
     const [dogLike, setDogLike] = useState();
     const [dogDislike, setDogDislike] = useState();
     const [dogSearch, setDogSearch] = useState();
+    const [dogPhoto, setDogPhoto] = useState();
 
     function toggleTextarea() {
         setTextAreaIsShowing(!textAreaIsShowing);
@@ -222,6 +223,12 @@ export default function Profile(props) {
         } catch (error) {
             console.log("Error in sending new dog name: ", error);
         }
+    };
+
+    const handlePhotoSubmit = async (e) => {
+        e.preventDefault();
+        var formData = new FormData();
+        formData.append("file", file);
     };
 
     return (
@@ -271,7 +278,9 @@ export default function Profile(props) {
                                                 name="file"
                                                 className="inputfile"
                                                 onChange={(e) =>
-                                                    this.handleChange(e)
+                                                    setDogPhoto(
+                                                        e.target.files[0]
+                                                    )
                                                 }
                                             ></input>
                                         </div>
@@ -279,7 +288,7 @@ export default function Profile(props) {
                                         <div className="modal-buttons">
                                             <button
                                                 onClick={(e) => {
-                                                    handleSubmit(e);
+                                                    handlePhotoSubmit(e);
                                                     toggleDogUploader();
                                                 }}
                                             >
